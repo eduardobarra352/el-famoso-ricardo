@@ -1,12 +1,12 @@
 const Discord = require(`discord.js`);
 const bot = new Discord.Client({disableEveryone: true});
 
-bot.on("ready", async () => {
+bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setActivity(`el famoso ricardo`);
 });
 
-bot.on("message", async message => {
+bot.on("message", message => {
     
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
