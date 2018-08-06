@@ -7,11 +7,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content === '>help') {
-      message.reply('codigos para violara todomio mis mijitos:
-      >tula
-      >famoso
-      >help
-      esoson todos SOI MUY XD jaja');
+      message.reply('codigos para violara todomio mis mijitos: >tula ; >famoso ; >help ; esoson todos SOI MUY XD jaja');
     }
 });
 
