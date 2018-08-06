@@ -1,26 +1,24 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require("discord.js");
+const bot = new Discord.Client({disableEveryone: true});
 
-client.on('ready', () => {
-    console.log('te voy a violarATM');
+bot.on("ready", async () => {
+    console.log(`${bot.user.username} is online! `);
+    bot.user.setActivity(`el famoso ricardo`);
 });
 
-client.on('message', message => {
-    if (message.content === '>help') {
-      message.reply('codigos para violara todomio mis mijitos: >tula ; >famoso ; >help ; esoson todos SOI MUY XD jaja');
+bot.on("message", async message => {
+    
+    if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
+    
+    let prefix = '>';
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    
+    if (cmd === `${prefix}famoso`){
+        message.channel.send("ricardo");
     }
 });
 
-client.on('message', message => {
-    if (message.content === '>tula') {
-      message.reply('comes jajaj');
-    }
-});
-
-client.on('message', message => {
-    if (message.content === '>famoso') {
-      message.reply('ricardo :famosoricardo:');
-    }
-});
-
-client.login(process.env.BOT_TOKEN);
+bot.login(process.env.token);
