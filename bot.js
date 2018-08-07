@@ -18,7 +18,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === `${prefix}say` + message.content){
+    if (cmd === `${prefix}say` + `message.content`){
         message.channel.send(message.content);
     }
     else if (cmd === `${prefix}tm`){
