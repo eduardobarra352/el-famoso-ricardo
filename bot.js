@@ -19,7 +19,7 @@ bot.on("message", message => {
         message.channel.send("ricardo");
     }
     if (cmd === `${prefix}paz`){
-        message.channel.send("amemonos y porfavor no peleen, acaso por ser bot ya me odian xd respecto y bendiciones :pry:");
+        message.channel.send("amemonos");
     }
     if (cmd === `${prefix}help`){
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos **>famoso** .");
