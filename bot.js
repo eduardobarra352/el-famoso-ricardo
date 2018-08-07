@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 const bot = new Discord.Client({disableEveryone: true});
-const game = new Discord.Game("tm"));
+const game = new Discord.Game("tm");
 
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
