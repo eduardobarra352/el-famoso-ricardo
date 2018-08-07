@@ -31,12 +31,9 @@ bot.on("message", message => {
         message.channel.send("ricardo");
     }
     if (cmd === `${prefix}say`, sayMessage){
-        module.exports.run = async (bot, message, args) => {
-
-           if(!message.member.hasPermission("ADMINISTRATOR")) return;
+           if(!message.user.hasPermission("ADMINISTRATOR")) return;
            message.delete().catch();
            message.channel.send(sayMessage);
-
         }
     }
     if (cmd === `${prefix}tm`){
