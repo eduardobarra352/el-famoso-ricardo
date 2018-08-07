@@ -3,8 +3,8 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
-    bot.user.setStatus(`idle`);
-    bot.user.setGame(`>help`);
+    bot.user.setStatus(`Online`);
+    bot.user.setGame(>help);
 });
 
 bot.on("message", message => {
