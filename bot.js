@@ -30,7 +30,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === `${prefix}say` + sayMessage){
+    if (cmd === `${prefix}say`, sayMessage){
         message.delete().catch();
         message.channel.send(sayMessage);
     }
