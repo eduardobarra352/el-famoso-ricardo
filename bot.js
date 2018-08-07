@@ -14,7 +14,6 @@ bot.on("message", message => {
     if (message.channel.type === "dm") return;
     
     //variantes
-    var Playcommand = 'prefix' + "play";
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -23,10 +22,6 @@ bot.on("message", message => {
     //comandos de prefix
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
-    }
-    if (cmd === Playcommand, message){
-        message.channel.send("**status cambiado** ajaj");
-        bot.user.setPresence({game: {name: message + '\ >help', type: 3}});
     }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
