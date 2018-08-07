@@ -18,6 +18,7 @@ bot.on("message", message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    const sayMessage = cmd.join(" ");
     
     if (cmd === `${prefix}`){
         message.channel.send("Si");
@@ -29,6 +30,10 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
+    if (cmd === `${prefix}say`, sayMessage){
+        message.delete().catch();
+        message.channel.send(sayMessage);
+    }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
@@ -39,18 +44,5 @@ bot.on("message", message => {
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
     }
 });
-
-module.exports.run = async (bot, message, args) => {
-
-      if(!message.member.hasPermission("ADMINISTRATOR")) return;
-      const sayMessage = cmd.join(" ");
-      message.delete().catch();
-      message.channel.send(sayMessage);
-
-}
-
-module.exports.help = {
-  name: "say"
-}
 
 bot.login(process.env.token);
