@@ -25,7 +25,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}play`, message){
         message.channel.send("**status cambiado** ajaj");
-        bot.user.setPresence({game: {name: message, ' \ >help'}});
+        bot.user.setPresence({game: {name: message, '\ >help'});
     }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
