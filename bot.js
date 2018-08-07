@@ -3,7 +3,6 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
-    bot.user.setActivity(`el famoso ricardo`);
 });
 
 bot.on("message", message => {
