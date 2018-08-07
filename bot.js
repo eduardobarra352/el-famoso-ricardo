@@ -14,7 +14,7 @@ bot.on("message", message => {
     if (message.channel.type === "dm") return;
     
     //variantes
-    var Playcommand = `${prefix}play`;
+    var Playcommand = 'prefix' + "play";
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
