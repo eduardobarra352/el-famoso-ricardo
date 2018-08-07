@@ -4,7 +4,7 @@ const bot = new Discord.Client({disableEveryone: true});
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`idle`)
-    bot.user.setGame(`tm`)
+    bot.user.setGame("tm")
 });
 
 bot.on("message", message => {
