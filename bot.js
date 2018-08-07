@@ -3,7 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
-    bot.user.change_presence(game = new Discord.Game(name ='tm'));
+    bot.change_presence(game = new Discord.Game(name ='tm'));
 });
 
 bot.on("message", message => {
