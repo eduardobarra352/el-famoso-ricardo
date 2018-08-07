@@ -8,7 +8,7 @@ bot.on("ready", () => {
     bot.user.setPresence({game: {name: 'testeando | >help', type: 3}});
 });
 
-bot.on("message", async message => {
+bot.on("message", message => {
     
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
@@ -18,7 +18,7 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    const sayMessage = cmd.join(" ");
+    const sayMessage = cmd.Join(" ");
     
     if (cmd === `${prefix}`){
         message.channel.send("Si");
