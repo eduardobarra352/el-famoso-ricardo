@@ -1,6 +1,7 @@
 const Discord = require(`discord.js`);
 const bot = new Discord.Client({disableEveryone: true});
 
+//bot en conexión
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
@@ -12,15 +13,21 @@ bot.on("message", message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     
+    //variantes
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     
+    //comandos de prefix
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    else if (cmd === `${prefix}tm`){
+    if (cmd === `${prefix}play` & `message.content`){
+        message.channel.send("**status cambiado** ajaj");
+        bot.user.setPresence({game: {name: 'message.content' '>help', type: 3}});
+    }
+    if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
     if (cmd === `${prefix}paz`){
