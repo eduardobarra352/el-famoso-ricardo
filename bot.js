@@ -24,7 +24,7 @@ bot.on("message", message => {
         message.channel.send("ricardo");
     }
     if (cmd === `${prefix}say`){
-        message.channel.reply("otra vez pendejoxd");
+        message.reply("otra vez pendejoxd");
         if(message.channel === " "){
             message.channel.send('message.channel');
         }
