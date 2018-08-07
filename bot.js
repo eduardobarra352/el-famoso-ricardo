@@ -18,7 +18,7 @@ bot.on("message", message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    const sayMessage = cmd(" ");
+    const sayMessage = " ";
     
     if (cmd === `${prefix}`){
         message.channel.send("Si");
