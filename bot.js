@@ -23,6 +23,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
+    if (cmd === `${prefix}say`){
+        bot.user.say(" ");
+    }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
