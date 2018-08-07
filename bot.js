@@ -8,7 +8,7 @@ bot.on("ready", () => {
     bot.user.setPresence({game: {name: 'testeando | >help', type: 3}});
 });
 
-bot.on("message", async message , join , cmd , args => {
+bot.on("message", async message => {
     
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
