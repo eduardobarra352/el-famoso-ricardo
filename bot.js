@@ -23,7 +23,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === `${prefix}play` & `message.content`){
+    if (cmd === `${prefix}play` && text){
         message.channel.send("**status cambiado** ajaj");
         bot.user.setPresence({game: {name: '"message.content" \ >help'}});
     }
