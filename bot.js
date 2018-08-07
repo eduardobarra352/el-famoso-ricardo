@@ -32,7 +32,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}say`, sayMessage){
         message.channel.send(sayMessage);
-        message.delete().catch();
+        message.delete();
     }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
