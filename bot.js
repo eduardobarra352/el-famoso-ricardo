@@ -4,8 +4,8 @@ const game = new Discord.Game(true);
 
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
-    bot.user.setStatus("Online");
-    bot.user.setGame("TM");
+    bot.user.setStatus('Online');
+    bot.user.setGame('TM');
 });
 
 bot.on("message", message => {
