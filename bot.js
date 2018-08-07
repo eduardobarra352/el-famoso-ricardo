@@ -17,7 +17,6 @@ bot.on("message", message => {
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    let cmd2 = messageArray[2];
     let args = messageArray.slice(1);
     
     if (cmd === `${prefix}`){
@@ -40,5 +39,18 @@ bot.on("message", message => {
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
     }
 });
+
+module.exports.run = async (bot, message, args) => {
+
+      if(>message.member.hasPermission("ADMINISTRATOR")) return;
+      const sayMessage = args.join(" ");
+      message.delete().catch();
+      message.channel.send(sayMessage);
+
+}
+
+module.exports.help = {
+  name: "say"
+}
 
 bot.login(process.env.token);
