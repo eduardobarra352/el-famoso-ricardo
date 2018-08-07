@@ -24,7 +24,10 @@ bot.on("message", message => {
         message.channel.send("ricardo");
     }
     if (cmd === `${prefix}say`){
-        bot.user.say('message');
+        message.channel.reply("otra vez pendejoxd");
+        bot.user.say(" ");
+        if(bot.user.say === " "){
+            message.channel.send('message');
     }
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
