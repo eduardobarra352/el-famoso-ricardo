@@ -13,13 +13,14 @@ bot.on("message", message => {
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
+    let messageReply = cmd;
     let args = messageArray.slice(1);
     
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    else if (cmd === `${prefix}say` + message.content){
-        message.channel.send(message.content);
+    else if (cmd === `${prefix}say` + messageReply){
+        message.channel.send(messageReply);
     }
     else if (cmd === `${prefix}say`) {
     	message.reply("note quedes blanco, **di algo**");
