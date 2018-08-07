@@ -21,7 +21,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}say`) {
     	message.reply("note quedes blanco, **di algo**");
     }
-    else if (cmd === `${prefix}say` `messageArray`){
+    else if (cmd === `${prefix}say` + `messageArray`){
         message.channel.send(messageArray);
     }
     else if (cmd === `${prefix}tm`){
