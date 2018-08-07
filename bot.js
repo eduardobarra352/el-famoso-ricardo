@@ -43,7 +43,7 @@ bot.on("message", message => {
 module.exports.run = async (bot, message, args) => {
 
       if(!message.member.hasPermission("ADMINISTRATOR")) return;
-      const sayMessage = args.join(" ");
+      const sayMessage = cmd.join(" ");
       message.delete().catch();
       message.channel.send(sayMessage);
 
