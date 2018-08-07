@@ -13,7 +13,7 @@ bot.on("message", message => {
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    let messageReply = cmd;
+    let messageReply = message.content;
     let args = messageArray.slice(1);
     
     if (cmd === `${prefix}famoso`){
