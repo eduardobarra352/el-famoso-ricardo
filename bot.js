@@ -19,11 +19,11 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    else if (cmd === `${prefix}say` + messageReply){
-        message.channel.send(messageReply);
-        if (cmd === `${prefix}say`) {
+    if (cmd === `${prefix}say`) {
     	message.reply("note quedes blanco, **di algo**");
-  	    }
+        if (cmd === `${prefix}say` + `messageReply`){
+        message.channel.send(`messageReply`);
+        }
     }
     else if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
