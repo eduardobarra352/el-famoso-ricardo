@@ -5,7 +5,7 @@ const bot = new Discord.Client({disableEveryone: true});
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
-    bot.user.setPresence({game: {name: '>help', type: 3}});
+    bot.user.setPresence({game: {name: 'testeando / >help', type: 3}});
 });
 
 bot.on("message", message => {
@@ -23,12 +23,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === `${prefix}say`){
-        message.reply("otra vez pendejoxd");
-        if(message.channel === " "){
-            message.channel.send('message.channel');
-        }
-    }
+    
     if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
