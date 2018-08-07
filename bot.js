@@ -17,16 +17,17 @@ bot.on("message", message => {
     let prefix = '>';
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
+    let cmd2 = messageArray[1];
     let args = messageArray.slice(1);
     
     //comandos de prefix
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (args === `${prefix}dato`){
+    if (cmd2 === `${prefix}say`){
         message.reply('sigue elpendejoxd');
         if (cmd === message){
-            message.channel.send('cmd');
+            message.channel.send('message');
         }
     }
     if (cmd === `${prefix}tm`){
