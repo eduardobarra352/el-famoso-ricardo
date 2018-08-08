@@ -66,6 +66,10 @@ bot.on("message", message => {
     if (cmd === `${prefix}sans`){
         message.channel.send("gaming");
     }
+    if (cmd === `famoso`){
+        let famosoemoji = message.guild.emojis.find('name', "famoso");
+        message.react(famosoemoji);
+    }
     if (cmd === `barrato`){
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         message.react(barratoemoji);
@@ -77,7 +81,7 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>barrato** ; **>sans** ; **>gaming** ; **>say (decir algoXD :famosoricardo:)** ; **>purge (el destructor ricardo)** ; **>playing (cambia mi estado de juego omg)**.");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: ```>famoso ; >ricardo ; >tm ; >paz ; >barrato ; >sans ; >gaming ; >say (decir algoXD :famosoricardo:) ; >purge (el destructor ricardo) ; >playing (cambia mi estado de juego omg)```.");
     }
 });
 
