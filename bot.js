@@ -93,7 +93,24 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>tm                                                                                >paz                                                            >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)**");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:                                                                                **>tm                                                                                >paz                                                            >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)**");
+    }
+    
+    //comandos especiales y administracion
+    if (cmd === `${prefix}Rojo__muyrojo online`){
+        bot.user.setStatus(`Online`);
+        message.delete();
+        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+    }
+    if (cmd === `${prefix}Rojo__muyrojo idle`){
+        bot.user.setStatus(`idle`);
+        message.delete();
+        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+    }
+    if (cmd === `${prefix}Rojo__muyrojo dnd`){
+        bot.user.setStatus(`dnd`);
+        message.delete();
+        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
     }
 });
 
