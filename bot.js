@@ -26,21 +26,21 @@ bot.on("message", message => {
         message.channel.send("No");
     }
     //comandos de prefix
-    if (cmd === 'famoso'){
+    if (cmd === `famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === 'say'){
+    if (cmd === `say`){
            let say = args.join(' ');
            message.delete();
            message.channel.send(say);
     }
-    if (cmd === 'tm'){
+    if (cmd === `tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
-    if (cmd === 'paz'){
+    if (cmd === `paz`){
         message.channel.send("amemonos");
     }
-    if (cmd === 'help'){
+    if (cmd === `help`){
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
     }
 });
