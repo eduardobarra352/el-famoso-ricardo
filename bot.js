@@ -19,7 +19,7 @@ bot.on("message", message => {
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
     
-    if (message.content === '${prefix}'){
+    if (message.content === '>'){
         message.channel.send("Si");
     }
     if (message.content === '<'){
@@ -28,6 +28,9 @@ bot.on("message", message => {
     //comandos de prefix
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
+    }
+    if (cmd === `${prefix}ricardo`){
+        message.channel.send("famoso");
     }
     if (cmd === `${prefix}say`){
            let say = args.join(' ');
@@ -41,7 +44,7 @@ bot.on("message", message => {
         message.channel.send("amemonos");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>say**.");
     }
 });
 
