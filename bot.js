@@ -5,7 +5,7 @@ const bot = new Discord.Client({disableEveryone: true});
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
-    bot.user.setPresence({game: {name: '>help', type: 3}});
+    bot.user.setPresence({game: {name: ' >help', type: 3}});
 });
 
 bot.on("message", message => {
@@ -41,7 +41,7 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
     if (cmd === `${prefix}playing`){
-        bot.user.setPresence({game: {name: '>help', type: 3}});
+        bot.user.setPresence({game: {name: ' >help', type: 3}});
         let play = args.join(' ');
         if (cmd === `${prefix}playing` && play){
             bot.user.setPresence({game: {name: play , type: 3}});
@@ -52,7 +52,7 @@ bot.on("message", message => {
         message.channel.send("amemonos");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>say** ; **>playing**.");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>say (decir algoXD :famosoricardo:)** ; **>playing (cambia mi estado de juego omg)**.");
     }
 });
 
