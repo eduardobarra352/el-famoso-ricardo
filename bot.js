@@ -19,28 +19,28 @@ bot.on("message", message => {
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
     
-    if (message.content === '>'){
+    if (message.content === '${prefix}'){
         message.channel.send("Si");
     }
     if (message.content === '<'){
         message.channel.send("No");
     }
     //comandos de prefix
-    if (cmd === `famoso`){
+    if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
     }
-    if (cmd === `say`){
+    if (cmd === `${prefix}say`){
            let say = args.join(' ');
            message.delete();
            message.channel.send(say);
     }
-    if (cmd === `tm`){
+    if (cmd === `${prefix}tm`){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
-    if (cmd === `paz`){
+    if (cmd === `${prefix}paz`){
         message.channel.send("amemonos");
     }
-    if (cmd === `help`){
+    if (cmd === `${prefix}help`){
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
     }
 });
