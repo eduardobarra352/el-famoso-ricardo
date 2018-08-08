@@ -99,19 +99,22 @@ bot.on("message", message => {
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`){
         let status = args.join(' ');
+        message.delete();
         if (cmd === `${prefix}352421` && status === 'online'){
             bot.user.setStatus(`Online`);
+            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
         if (cmd === `${prefix}352421` && status === 'idle'){
             bot.user.setStatus(`idle`);
+            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
         if (cmd === `${prefix}352421` && status === 'dnd'){
             bot.user.setStatus(`dnd`);
+            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        message.delete();
     }
 });
 
