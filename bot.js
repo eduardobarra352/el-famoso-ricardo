@@ -67,7 +67,7 @@ bot.on("message", message => {
         message.channel.send("gaming");
     }
     if (cmd === `famoso`){
-        let famosoemoji = message.guild.emojis.find('name', "famoso");
+        let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
     }
     if (cmd === `barrato`){
