@@ -48,7 +48,6 @@ bot.on("message", message => {
     if (cmd === `${prefix}playing`){
         bot.user.setPresence({game: {name: ' >help', type: 3}});
         let play = args.join(' ');
-        message.delete();
         if (cmd === `${prefix}playing` && play){
             bot.user.setPresence({game: {name: play , type: 3}});
             message.channel.send("uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
