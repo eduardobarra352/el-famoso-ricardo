@@ -44,7 +44,7 @@ bot.on("message", message => {
         bot.user.setPresence({game: {name: '>help', type: 3}});
         let play = args.join(' ');
         bot.user.setPresence({game: {name: play , type: 3}});
-        message.reply("**omg, cambie de jugando a**" play);
+        message.reply("uy jaja me cambiastes mi estado");
     }
     if (cmd === `${prefix}paz`){
         message.channel.send("amemonos");
