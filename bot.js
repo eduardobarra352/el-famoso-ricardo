@@ -66,6 +66,10 @@ bot.on("message", message => {
     if (cmd === `${prefix}sans`){
         message.channel.send("gaming");
     }
+    if (cmd === `barrato`){
+        let barratoemoji = message.guild.emojis.find('name', "barrato");
+        message.react(barratoemoji);
+    }
     if (cmd === `${prefix}gaming`){
         message.channel.send("sans");
     }
