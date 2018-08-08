@@ -10,38 +10,37 @@ bot.on("ready", () => {
 
 bot.on("message", message => {
     
-    if (message.author.bot) return;
+    if (message.author.bot) return undefined;
     if (message.channel.type === "dm") return;
     
     //variantes
-    let prefix = '>';
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let sayMessage = " ";
+    const prefix = '>';
+    let msg = message.content.toLowerCase();
+    let args = message.content.slice(prefix.lenght).trim().split(' ');
+    let cmd = args.shift().toLowerCase();
     
-    if (cmd === `${prefix}`){
+    if (message.content === '>'){
         message.channel.send("Si");
     }
-    if (cmd === `<`){
+    if (message.content === '<'){
         message.channel.send("No");
     }
     //comandos de prefix
-    if (cmd === `${prefix}famoso`){
+    if (cmd === 'famoso'){
         message.channel.send("ricardo");
     }
-    if (cmd === `${prefix}say`, sayMessage){
-           if(!message.user.hasPermission("ADMINISTRATOR")) return;
-           message.delete().catch();
-           message.channel.send(sayMessage);
+    if (cmd === 'say'){
+           let say = args.join(' ');
+           message.delete();
+           message.channel.send(say);
     }
-    if (cmd === `${prefix}tm`){
+    if (cmd === 'tm'){
         message.channel.send("https://media.discordapp.net/attachments/394205840804151308/398998022920470530/sketch-1515197879765.png");
     }
-    if (cmd === `${prefix}paz`){
+    if (cmd === 'paz'){
         message.channel.send("amemonos");
     }
-    if (cmd === `${prefix}help`){
+    if (cmd === 'help'){
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>tm** ; **>paz**.");
     }
 });
