@@ -97,20 +97,21 @@ bot.on("message", message => {
     }
     
     //comandos especiales y administracion
-    if (cmd === `${prefix}Rojo__muyrojo online`){
-        bot.user.setStatus(`Online`);
+    if (cmd === `${prefix}Rojo__muyrojo`){
+        let status = args.join(' ');
+        if (cmd === `${prefix}Rojo__muyrojo` && status === 'online'){
+            bot.user.setStatus(`Online`);
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}Rojo__muyrojo` && status === 'idle'){
+            bot.user.setStatus(`idle`);
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}Rojo__muyrojo` && status === 'dnd'){
+            bot.user.setStatus(`dnd`);
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
         message.delete();
-        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-    }
-    if (cmd === `${prefix}Rojo__muyrojo idle`){
-        bot.user.setStatus(`idle`);
-        message.delete();
-        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-    }
-    if (cmd === `${prefix}Rojo__muyrojo dnd`){
-        bot.user.setStatus(`dnd`);
-        message.delete();
-        message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
     }
 });
 
