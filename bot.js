@@ -66,6 +66,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}sans`){
         message.channel.send("gaming");
     }
+    
     if (cmd === `famoso`){
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
@@ -74,14 +75,25 @@ bot.on("message", message => {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         message.react(barratoemoji);
     }
+    if (cmd === `phineas`){
+        let phineasemoji = message.guild.emojis.find('name', "phineas");
+        message.react(phineasemoji);
+    }
+    
     if (cmd === `${prefix}gaming`){
         message.channel.send("sans");
+    }
+    if (cmd === `${prefix}gato`){
+        message.channel.send("https://www.youtube.com/channel/UCmUk4tyuIw1AZBzYqXmxsbw");
+    }
+    if (cmd === `${prefix}gatogaymermaluma`){
+        message.channel.send("https://www.youtube.com/channel/UCmUk4tyuIw1AZBzYqXmxsbw");
     }
     if (cmd === `${prefix}barrato`){
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: ```>tm                                                                                >paz                                                            >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: ```>tm                                                                                >paz                                                            >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
     }
 });
 
