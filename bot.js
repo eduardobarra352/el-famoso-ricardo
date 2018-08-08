@@ -60,7 +60,7 @@ bot.on("message", message => {
         if(!args[0]) return message.channel.send("no");
         message.channel.bulkDelete(args[0]).then(() => {
         message.channel.send(`Clear ${args[0]} messages.`).then(msg => msg.delete(2000));
-    })
+    });
     if (cmd === `${prefix}sans`){
         message.channel.send("gaming");
     }
