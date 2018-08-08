@@ -24,9 +24,10 @@ bot.on("message", message => {
     }
     if (message.content === '<'){
         message.channel.send("No");
-    }
-    if (cmd === '<' && args){
-        message.channel.send("es para el otro lado XDSJ");
+        let otrolado = args.join(' ');
+        if (cmd === '<' && otrolado){
+            message.channel.send("es para el otro lado XDSJ");
+        }
     }
     
     //comandos de prefix
@@ -72,7 +73,7 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}help`){
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>barrato** ; **>sans** ; **>gaming** ; **>say (decir algoXD :famosoricardo:)** ; **>playing (cambia mi estado de juego omg)**.");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos: **>famoso** ; **>ricardo** ; **>tm** ; **>paz** ; **>barrato** ; **>sans** ; **>gaming** ; **>say (decir algoXD :famosoricardo:)** ; **>purge (el destructor ricardo)** ; **>playing (cambia mi estado de juego omg)**.");
     }
 });
 
