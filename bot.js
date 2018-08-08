@@ -97,17 +97,17 @@ bot.on("message", message => {
     }
     
     //comandos especiales y administracion
-    if (cmd === `${prefix}Rojo__muyrojo`){
+    if (cmd === `${prefix}352421`){
         let status = args.join(' ');
-        if (cmd === `${prefix}Rojo__muyrojo` && status === 'online'){
+        if (cmd === `${prefix}352421` && status === 'online'){
             bot.user.setStatus(`Online`);
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}Rojo__muyrojo` && status === 'idle'){
+        if (cmd === `${prefix}352421` && status === 'idle'){
             bot.user.setStatus(`idle`);
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}Rojo__muyrojo` && status === 'dnd'){
+        if (cmd === `${prefix}352421` && status === 'dnd'){
             bot.user.setStatus(`dnd`);
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
