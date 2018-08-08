@@ -56,10 +56,10 @@ bot.on("message", message => {
         message.channel.send("amemonos");
     }
     if (cmd === `${prefix}purge`){
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No.");
-        if(!args[0]) return message.channel.send("no");
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
+        if(!args[0]) return message.channel.send("No puedes eliminar algo que sea nada q grasioso no¿");
         message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`Clear ${args[0]} messages.`).then(msg => msg.delete(2000));
+        message.channel.send(`se ha borrado ${args[0]} mensajes, omg soi un **destructor** _ricardo_.`).then(msg => msg.delete(4000));
     });
     }
     if (cmd === `${prefix}sans`){
