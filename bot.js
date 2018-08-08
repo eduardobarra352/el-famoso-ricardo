@@ -25,6 +25,10 @@ bot.on("message", message => {
     if (message.content === '<'){
         message.channel.send("No");
     }
+    if (cmd === '<' && args){
+        message.channel.send("es para el otro lado XDSJ");
+    }
+    
     //comandos de prefix
     if (cmd === `${prefix}famoso`){
         message.channel.send("ricardo");
@@ -50,6 +54,12 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}paz`){
         message.channel.send("amemonos");
+    }
+    if (cmd === `${prefix}purge`){
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No.");
+        if(!args[0]) return message.channel.send("no");
+        message.channel.bulkDelete(args[0]).then(() => {
+        message.channel.send(`Clear ${args[0]} messages.`).then(msg => msg.delete(2000));
     }
     if (cmd === `${prefix}sans`){
         message.channel.send("gaming");
