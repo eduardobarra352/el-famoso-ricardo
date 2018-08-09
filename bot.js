@@ -3,7 +3,7 @@ const bot = new Discord.Client({disableEveryone: true});
 
 //bot en conexión
 bot.on("ready", () => {
-    var play = '>help';
+    let play = '>help';
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({game: {name: play, type: 3}});
