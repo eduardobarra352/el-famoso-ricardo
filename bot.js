@@ -3,9 +3,10 @@ const bot = new Discord.Client({disableEveryone: true});
 
 //bot en conexión
 bot.on("ready", () => {
+    var play = '>help';
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
-    bot.user.setPresence({game: {name: ' >help', type: 3}});
+    bot.user.setPresence({game: {name: play, type: 3}});
 });
 
 bot.on("message", message => {
@@ -114,6 +115,9 @@ bot.on("message", message => {
             bot.user.setStatus(`dnd`);
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}352421` && status === 'jugando'){
+            bot.user.setPresence({game: {name: play, type: 1}});
         }
     }
 });
