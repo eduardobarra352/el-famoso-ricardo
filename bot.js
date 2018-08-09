@@ -116,8 +116,25 @@ bot.on("message", message => {
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}352421` && status === 'jugando'){
+        if (cmd === `${prefix}352421` && status === 'playing'){
+            bot.user.setPresence({game: {name: play, type: 0}});
+            message.delete();
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}352421` && status === 'streaming'){
             bot.user.setPresence({game: {name: play, type: 1}});
+            message.delete();
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}352421` && status === 'listening'){
+            bot.user.setPresence({game: {name: play, type: 2}});
+            message.delete();
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
+        }
+        if (cmd === `${prefix}352421` && status === 'watching'){
+            bot.user.setPresence({game: {name: play, type: 3}});
+            message.delete();
+            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
     }
 });
