@@ -6,7 +6,7 @@ bot.on("ready", () => {
     var play = '>help';
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
-    bot.user.setPresence({game: {name: play, type: 3}});
+    bot.user.setPresence({game: {name: play, type: 1}});
 });
 
 bot.on("message", message => {
@@ -113,26 +113,6 @@ bot.on("message", message => {
         }
         if (cmd === `${prefix}352421` && status === 'dnd'){
             bot.user.setStatus(`dnd`);
-            message.delete();
-            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-        }
-        if (cmd === `${prefix}352421` && status === 'playing'){
-            bot.user.setPresence({game: {type: 0}});
-            message.delete();
-            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-        }
-        if (cmd === `${prefix}352421` && status === 'streaming'){
-            bot.user.setPresence({game: {type: 1}});
-            message.delete();
-            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-        }
-        if (cmd === `${prefix}352421` && status === 'listening'){
-            bot.user.setPresence({game: {type: 2}});
-            message.delete();
-            message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
-        }
-        if (cmd === `${prefix}352421` && status === 'watching'){
-            bot.user.setPresence({game: {type: 3}});
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
