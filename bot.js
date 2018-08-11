@@ -190,7 +190,7 @@ function canvasApp() {
 		
 		//Image
 		if (img.src) {
-        drawImageProp(context,img);
+                drawImageProp(context,img);
 		}
         
 		//Live
@@ -269,20 +269,6 @@ function canvasApp() {
 
 
    }
-
-   function textBoxChanged(e) {
-      var target = e.target;
-      message = target.value;
-      drawScreen();
-   }
-   
-   
-   function textBox2Changed(e) {
-      var target = e.target;
-      tickermessage = target.value;
-      drawScreen();
-   }
-   
    function handleImage(e) {
    var reader = new FileReader();
     reader.onload = function(event){
@@ -307,240 +293,20 @@ function canvasApp() {
         button.href = dataURL;
     });
 
-
-    $('#btn-imgur').click(function(){
-       share();
-    });
-
-	function share(){
-    try {
-        var img = theCanvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    } catch(e) {
-        var img = theCanvas.toDataURL().split(',')[1];
-    }
-    $('.upload-response').html('Uploading...');
-
-    // upload to imgur using jquery/CORS
-    // https://developer.mozilla.org/En/HTTP_access_control
-    $.ajax({
-        url: 'https://api.imgur.com/3/image',
-        type: 'POST',
-        headers: {
-            Authorization: 'Client-ID ae18f967d8336e3',
-            Accept: 'application/json'
-        },
-        data: {
-            type: 'base64',
-            name: 'breakyourownnews.jpg',
-            title: 'Break Your Own News',
-            caption: 'Made with http://www.breakyourownnews.com/',
-            image: img
-        },
-        success: function(result) {
-            ga('send', 'event', 'Break Your Own News', 'imgur');
-            console.dir(result);
-            var url = 'https://imgur.com/gallery/' + result.data.id;
-            var deleteurl = 'https://imgur.com/delete/' + result.data.deletehash;
-            $('.upload-response').html("Uploaded! You can find it at <a href='" + url + "'>" + url + "</a><br />If you want to delete your image, save and visit this address: <a href='" + deleteurl + "'>" + deleteurl + "</a>");
-        },
-        error: function(result) {
-            $('.upload-response').html('Couldn\'t upload to imgur - sorry! :(');
-        }
-
-    });
-
     }
 
-    function postCanvasToFacebook() {
-
-        var facebookmessage = $('#facebook-text').val();
-        var data = theCanvas.toDataURL("image/png");
-        var encodedPng = data.substring(data.indexOf(',') + 1, data.length);
-        var decodedPng = Base64Binary.decode(encodedPng);
-        FB.getLoginStatus(function(response) {
-            if (response.status === "connected") {
-                postImageToFacebook(response.authResponse.accessToken, "breakyourownnews", "image/png", decodedPng, facebookmessage);
-            } else if (response.status === "not_authorized") {
-                FB.login(function(response) {
-                    postImageToFacebook(response.authResponse.accessToken, "breakyourownnews", "image/png", decodedPng, facebookmessage);
-                }, {scope: "publish_actions"});
-            } else {
-                FB.login(function(response)  {
-                    postImageToFacebook(response.authResponse.accessToken, "breakyourownnews", "image/png", decodedPng, facebookmessage);
-                }, {scope: "publish_actions"});
-            }
-        });
-
-    }
 
 
     $('#btn-facebook-start').click(function(){
         $('.facebook-box').fadeIn();
     });
-
-    $('#btn-facebook').click(function(){
-        postCanvasToFacebook();
-    });
-
-
     $('#btn-twitter-start').click(function(){
         $('.twitter-box').fadeIn();
     });
 
-    $('#btn-twitter').click(function(){
-        postCanvasToTwitter();
-    });
-
-// Initialize OAuth with key
-    OAuth.initialize("0k2gvmSkemsuqbLW6ZFWMzaaVd8");
-
-
-    $('#btn-tumblr-start').click(function(){
-
-        OAuth.popup('tumblr').done(function(tumblr) {
-
-
-                tumblr.get('https://api.tumblr.com/v2/user/info')
-                    .done(function (response) {
-
-                        var blogs = response.response.user.blogs;
-
-                        $('#tumblr__blogs').empty();
-
-                        $.each(blogs, function( index, value ) {
-                            $('#tumblr__blogs').append("<option value=\"" + value.name + "\">" + value.title + "</option>");
-                        });
-
-                        $('.tumblr-box').fadeIn();
-
-
-                        $('#btn-tumblr').click(function(){
-                            postCanvasToTumblr(tumblr);
-                        });
-
-
-                    })
-                    .fail(function (err) {
-                        //handle error with err
-
-                        console.log(err);
-                    });
-
-            })
-            .fail(function (err) {
-                alert('Sorry, looks like we can\'t connect to Tumblr right now.');
-                $('.tumblr-box').hide();
-            });
-
-    });
-
-    function postCanvasToTumblr(tumblr) {
-        var blogid = $('#tumblr__blogs').val();
-        var tumblrText = $('#tumblr__text').val();
-        var tumblrTags = $('#tumblr__tags').val();
-        var tumblrImg = theCanvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-
-        $('.tumblr-box').fadeOut();
-
-        $('.upload-response').html('Uploading...');
-
-        tumblr.post('https://api.tumblr.com/v2/blog/' + blogid + '/post', {
-            data: {
-                type: "photo",
-                caption: tumblrText,
-                tags: tumblrTags,
-                data64: tumblrImg
-            }
-        })
-            .done(function (response) {
-                //console.log(response);
-
-                ga('send', 'event', 'Break Your Own News', 'Tumblr');
-                $('.upload-response').html('Uploaded! Check it out on your Tumblr.');
-
-            })
-            .fail(function (err) {
-                //handle error with err
-
-                $('.upload-response').html('Sorry, there was an error posting to Tumblr right now.');
-
-                //console.log(err);
-            });
-    }
-
-
-    function postCanvasToTwitter() {
-
-        var twitterText = $('#twitter-text').val();
-        $('.twitter-box').fadeOut();
-
-        // Convert canvas image to Base64
-        var twimg = theCanvas.toDataURL();
-        // Convert Base64 image to binary
-        var file = dataURItoBlob(twimg);
-        // Open a tweet popup and autopopulate with data
-        OAuth.popup("twitter").then(function(result) {
-            var data = new FormData();
-            // Tweet text
-            data.append('status', twitterText);
-            // Binary image
-            data.append('media[]', file, 'breaking-news.png');
-            // Post to Twitter as an update with media
-            return result.post('/1.1/statuses/update_with_media.json', {
-                data: data,
-                cache: false,
-                processData: false,
-                contentType: false
-            });
-            // Success/Error Logging
-        }).done(function(data){
-            var str = JSON.stringify(data, null, 2);
-            $('.upload-response').html("Success! Tweet posted.");
-            ga('send', 'event', 'Break Your Own News', 'Twitter');
-            console.log(data.expanded_url);
-        }).fail(function(e){
-            var errorTxt = JSON.stringify(e, null, 2);
-            $('.upload-response').html("Error! Sorry about that.")
-        });
-    }
-
-    function dataURItoBlob(dataURI) {
-        // convert base64/URLEncoded data component to raw binary data held in a string
-        var byteString;
-        if (dataURI.split(',')[0].indexOf('base64') >= 0)
-            byteString = atob(dataURI.split(',')[1]);
-        else
-            byteString = unescape(dataURI.split(',')[1]);
-        // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        // write the bytes of the string to a typed array
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        return new Blob([ia], {type:mimeString});
-    }
-
 
 }
 
-
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-window.fbAsyncInit = function() {
-    FB.init({
-        appId  : "1543106709255541",
-        status : true,
-        cookie : true,
-        xfbml  : true  // parse XFBML
-    });
-};
 
     
     //comandos especiales y administracion
