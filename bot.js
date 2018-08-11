@@ -296,15 +296,6 @@ function canvasApp() {
     }
 
 
-
-    $('#btn-facebook-start').click(function(){
-        $('.facebook-box').fadeIn();
-    });
-    $('#btn-twitter-start').click(function(){
-        $('.twitter-box').fadeIn();
-    });
-
-
     
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`){
