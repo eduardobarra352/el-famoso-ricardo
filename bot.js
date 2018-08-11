@@ -103,8 +103,6 @@ bot.on("message", message => {
 	
 var authToken;
 
-window.addEventListener("load", eventWindowLoaded, false);
-
 function eventWindowLoaded() {
 
    canvasApp();
