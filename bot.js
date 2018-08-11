@@ -305,9 +305,6 @@ function canvasApp() {
     });
 
 
-});
-
-
     
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`){
