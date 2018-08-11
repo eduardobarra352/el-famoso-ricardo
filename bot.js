@@ -99,94 +99,115 @@ bot.on("message", message => {
     if (cmd === `${prefix}barrato`){
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
+	
+	
+	
+    if (cmd === `${prefix}breakingnews`){
+        message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
+    }
+    if (cmd === `${prefix}test`){
+	    string css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
+            string html = String.Format("<h1>{0}, Eres gei</h1>", Context.User.Username);
+            var converter = new HtmlToImageConverter
+            {
+                Width = 1280,
+                Height = 720
+            };
+            var pngBytes = converter.GenerateImage(css + html, NReco.ImageGenerator.ImageFormat.Png);
+            await Context.Channel.SendFileAsync(new MemoryStream(pngBytes), "test.png");
+    }
+	
+	
+	
+	
     if (cmd === `${prefix}help`){
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >paz                                                                                >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
     }
     
 	
-var authToken;
+    var authToken;
 
-function eventWindowLoaded() {
+    function eventWindowLoaded() {
 
-   canvasApp();
-}
-
-function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
-
-    if (arguments.length === 2) {
-        x = y = 0;
-        w = 1280;
-        h = 720;
+         canvasApp();
     }
 
-    /// default offset is center
-    offsetX = offsetX ? offsetX : 0.5;
-    offsetY = offsetY ? offsetY : 0.5;
+    function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
 
-    /// keep bounds [0.0, 1.0]
-    if (offsetX < 0) offsetX = 0;
-    if (offsetY < 0) offsetY = 0;
-    if (offsetX > 1) offsetX = 1;
-    if (offsetY > 1) offsetY = 1;
+        if (arguments.length === 2) {
+            x = y = 0;
+            w = 1280;
+            h = 720;
+        }
+    
+        /// default offset is center
+        offsetX = offsetX ? offsetX : 0.5;
+        offsetY = offsetY ? offsetY : 0.5;
 
-    var iw = img.width,
+        /// keep bounds [0.0, 1.0]
+        if (offsetX < 0) offsetX = 0;
+        if (offsetY < 0) offsetY = 0;
+        if (offsetX > 1) offsetX = 1;
+        if (offsetY > 1) offsetY = 1;
+    
+        var iw = img.width,
         ih = img.height,
         r = Math.min(w / iw, h / ih),
         nw = iw * r,   /// new prop. width
         nh = ih * r,   /// new prop. height
         cx, cy, cw, ch, ar = 1;
 
-    /// decide which gap to fill    
-    if (nw < w) ar = w / nw;
-    if (nh < h) ar = h / nh;
-    nw *= ar;
-    nh *= ar;
+        /// decide which gap to fill    
+        if (nw < w) ar = w / nw;
+        if (nh < h) ar = h / nh;
+        nw *= ar;
+        nh *= ar;
 
-    /// calc source rectangle
-    cw = iw / (nw / w);
-    ch = ih / (nh / h);
+        /// calc source rectangle
+        cw = iw / (nw / w);
+        ch = ih / (nh / h);
+    
+        cx = (iw - cw) * offsetX;
+        cy = (ih - ch) * offsetY;
+    
+        /// make sure source rectangle is valid
+        if (cx < 0) cx = 0;
+        if (cy < 0) cy = 0;
+        if (cw > iw) cw = iw;
+        if (ch > ih) ch = ih;
+    
+        /// fill image in dest. rectangle
+        context.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
+    }
 
-    cx = (iw - cw) * offsetX;
-    cy = (ih - ch) * offsetY;
+    function canvasApp() {
+    
+       var message = "Something went viral online";
+       var tickermessage = "\"Is this really news?\" asks commenter  |  5 million retweets in 1 hour already";
+       var img = new Image();
+    
+       var theCanvas = document.getElementById("canvasOne");
+       var context = theCanvas.getContext("2d");
+    
+       var formElement = document.getElementById("textBox");
+       formElement.addEventListener("keyup", textBoxChanged, false);
+       
+       var formElement2 = document.getElementById("tickerBox");
+       formElement2.addEventListener("keyup", textBox2Changed, false);
+    
+       var imageLoader = document.getElementById('imageLoader');
+        imageLoader.addEventListener('change', handleImage, false);
+    	
+    	
+    	  var imageObj = new Image();
+          imageObj.src = 'overlay.png';
+    	
+    
+       drawScreen();
 
-    /// make sure source rectangle is valid
-    if (cx < 0) cx = 0;
-    if (cy < 0) cy = 0;
-    if (cw > iw) cw = iw;
-    if (ch > ih) ch = ih;
-
-    /// fill image in dest. rectangle
-    context.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
-}
-
-function canvasApp() {
-
-   var message = "Something went viral online";
-   var tickermessage = "\"Is this really news?\" asks commenter  |  5 million retweets in 1 hour already";
-   var img = new Image();
-
-   var theCanvas = document.getElementById("canvasOne");
-   var context = theCanvas.getContext("2d");
-
-   var formElement = document.getElementById("textBox");
-   formElement.addEventListener("keyup", textBoxChanged, false);
-   
-   var formElement2 = document.getElementById("tickerBox");
-   formElement2.addEventListener("keyup", textBox2Changed, false);
-
-   var imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false);
-	
-	
-	  var imageObj = new Image();
-      imageObj.src = 'overlay.png';
-	
-
-   drawScreen();
-
-   function drawScreen() {
+       function drawScreen() {
 		  
-		//Background
+    		//Background
 		context.fillStyle = "#222222";
 		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
 		
