@@ -105,7 +105,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}breakingnews`){
         message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
     }
-    if (cmd === `${prefix}test`){
+    if (cmd === `${prefix}test`) async {
 	    const css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
             const html = String.Format("<h1>{0}, Eres gei</h1>", Context.User.Username);
             var converter = new HtmlToImageConverter
