@@ -23,6 +23,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}invite`){
         message.channel.send("https://discordapp.com/oauth2/authorize?client_id=476139360870334464&scope=bot&permissions=0");
     }
+    if (cmd === `${prefix}server`){
+	message.channel.send("https://discord.gg/invite/NGV4RNS");
+    }
     if (message.content === '>'){
         message.channel.send("Si");
     }
