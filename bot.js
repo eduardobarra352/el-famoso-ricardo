@@ -106,8 +106,8 @@ bot.on("message", message => {
         message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
     }
     if (cmd === `${prefix}test`){
-	    string css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
-            string html = String.Format("<h1>{0}, Eres gei</h1>", Context.User.Username);
+	    const css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
+            const html = String.Format("<h1>{0}, Eres gei</h1>", Context.User.Username);
             var converter = new HtmlToImageConverter
             {
                 Width = 1280,
