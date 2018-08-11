@@ -105,17 +105,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}breakingnews`){
         message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
     }
-    if (cmd === `${prefix}test`) async {
-	    const css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
-            const html = String.Format("<h1>{0}, Eres gei</h1>", Context.User.Username);
-            var converter = new HtmlToImageConverter
-            {
-                Width = 1280,
-                Height = 720
-            };
-            var pngBytes = converter.GenerateImage(css + html, NReco.ImageGenerator.ImageFormat.Png);
-            await Context.Channel.SendFileAsync(new MemoryStream(pngBytes), "test.png");
-    }
+    
 	
 	
 	
