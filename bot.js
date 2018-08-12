@@ -101,6 +101,18 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}tu`) {
         message.channel.send({ file: ("./templates/tus.png") });
+        public async Task Hello(string color = "red")
+        {
+            string css = "<style>\n    h1{\n        background-color: " + color + ";\n    }\n</style>\n";
+            string html = String.Format("<h1>Hello {0}!</h1>", Context.User.Username);
+            var converter = new HtmlToImageConverter
+            {
+                Width = 250,
+                Height = 70
+            };
+            var jpgBytes = converter.GenerateImage(css + html, NReco.ImageGenerator.ImageFormat.Jpeg);
+            await Context.Channel.SendFileAsync(new MemoryStream(jpgBytes), "hello.jpg");
+        }
     }
     
     if (cmd === `${prefix}breakingnews`) {
