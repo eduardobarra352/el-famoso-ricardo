@@ -275,7 +275,7 @@ bot.on("message", message => {
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
-            if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl) {
+            if (cmd === `${prefix}breakingnews` && headline === (' ') && ticker === (' ') && imageurl === 'https://') {
                 eventWindowLoaded();
                 var converter = new HtmlToImageConverter
                 {
