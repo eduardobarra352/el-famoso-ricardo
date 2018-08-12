@@ -322,6 +322,6 @@ bot.on("message", message => {
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
     }
-});
+};
 
 bot.login(process.env.token);
