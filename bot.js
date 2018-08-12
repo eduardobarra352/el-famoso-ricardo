@@ -286,6 +286,7 @@ bot.on("message", message => {
                 };
                 var pngBytes = converter.GenerateImage(imageObj.src);
                 message.channel.send(new MemoryStream(pngBytes), "breakingnews.png");
+                message.channel.send({ file: ("./templates/tus.png") });
             }
         }
     }
