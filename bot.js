@@ -53,10 +53,10 @@ bot.on("message", message => {
         message.channel.send({ file: ("./img/tm.png")});
     }
     if (cmd === `${prefix}playing`) {
-        bot.user.setPresence({ game: { name: ' >help', type: 3 } });
+        bot.user.setPresence({ game: { name: ' >help', type: 1 } });
         let play = args.join(' ');
         if (cmd === `${prefix}playing` && play) {
-            bot.user.setPresence({ game: { name: play, type: 3 } });
+            bot.user.setPresence({ game: { name: play, type: 1 } });
             message.channel.send("uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
         }
     }
