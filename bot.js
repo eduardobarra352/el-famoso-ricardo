@@ -131,6 +131,7 @@ bot.on("message", message => {
             case 23: message.channel.send("https://cdn.discordapp.com/attachments/426917497988448256/427194530102771733/comic.png"); break;
             case 24: message.channel.send("https://cdn.discordapp.com/attachments/426917497988448256/426925235258916876/51_sin_titulo.png"); break;
             case 25: message.channel.send("https://cdn.discordapp.com/attachments/423962809274204172/467488838986760194/unknown.png"); break;
+        }
     }
     if (cmd === `${prefix}help`) {
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >invite                                                                                >server                                                                                >paz                                                                                >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
