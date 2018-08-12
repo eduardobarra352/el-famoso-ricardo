@@ -285,7 +285,7 @@ bot.on("message", message => {
                     Width = 1280,
                         Height = 720
                 };
-                var pngBytes = converter.GenerateImage(headline + ticker + imageurl, drawScreen);
+                var pngBytes = converter.GenerateImage(drawScreen);
                 message.channel.send(new MemoryStream(pngBytes), "breakingnews.png");
             }
         }
