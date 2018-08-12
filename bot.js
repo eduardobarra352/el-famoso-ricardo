@@ -100,7 +100,7 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}tu`) {
-        message.channel.send({ file: {"./templates/tus.png"} });
+        message.channel.send({ file: ("./templates/tus.png") });
     }
     
     if (cmd === `${prefix}breakingnews`) {
