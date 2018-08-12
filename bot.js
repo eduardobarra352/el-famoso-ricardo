@@ -78,6 +78,10 @@ bot.on("message", message => {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
     }
+    if (cmd === `famosa`) {
+        let famosaemoji = message.guild.emojis.find('name', "famosaricarda");
+        message.react(famosaemoji);
+    }
     if (cmd === `barrato`) {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         message.react(barratoemoji);
