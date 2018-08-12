@@ -109,7 +109,7 @@ bot.on("message", message => {
         function eventWindowLoaded() {
             canvasApp();
         }
-        eventWindowLoaded();
+        
         function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
 
             if (arguments.length === 2) {
@@ -279,6 +279,7 @@ bot.on("message", message => {
                 reader.readAsDataURL(e.target.files[0]);
             }
             if (cmd === `${prefix}breakingnews` && headline === (' ') && ticker === (' ') && imageurl === 'https://') {
+                eventWindowLoaded();
                 var converter = new HtmlToImageConverter
                 {
                     Width = 1280,
