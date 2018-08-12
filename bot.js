@@ -102,7 +102,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}tu`) {
         message.channel.send({ file: ("./img/tus.png") });
     }
-    if (cmd === `${prefix}XD`) {
+    if (cmd === `${prefix}tumor`) {
         number = 25;
         var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
         switch (random) {
