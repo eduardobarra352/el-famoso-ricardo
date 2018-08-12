@@ -99,7 +99,10 @@ bot.on("message", message => {
     if (cmd === `${prefix}barrato`) {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
-
+    if (cmd === `${prefix}tu`) {
+        message.channel.send('templates/tus.png');
+    }
+    
     if (cmd === `${prefix}breakingnews`) {
         message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
         let imageurl = args.join(' ');
