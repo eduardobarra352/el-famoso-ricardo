@@ -103,29 +103,9 @@ bot.on("message", message => {
 
 
     if (cmd === `${prefix}breakingnews`) {
-        message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
+	message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
         let imageurl = args.join(' ');
-        if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl) {
-            var converter = new HtmlToImageConverter
-            {
-                Width = 1280,
-                Height = 720
-            };
-            var pngBytes = converter.GenerateImage(headline + ticker + imageurl);
-            message.channel.SendFileAsync(new MemoryStream(pngBytes), "breakingnews.png");
-        }
-    }
-
-
-
-
-    if (cmd === `${prefix}help`) {
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >invite                                                                                >server                                                                                >paz                                                                                >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
-    }
-
-	
-	
-    function eventWindowLoaded() {
+	function eventWindowLoaded() {
 
         canvasApp();
     }
@@ -303,21 +283,24 @@ bot.on("message", message => {
 
 
         }
-
-
-
-        var button = document.getElementById('btn-download');
-
-        $('#btn-download').click(function () {
-
-            ga('send', 'event', 'Break Your Own News', 'Download');
-            var dataURL = theCanvas.toDataURL('image/png');
-            button.href = dataURL;
-        });
-
+        if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl) {
+            eventWindowLoaded();
+            var converter = new HtmlToImageConverter
+            {
+                Width = 1280,
+                Height = 720
+            };
+            var pngBytes = converter.GenerateImage(headline + ticker + imageurl);
+            message.channel.SendFileAsync(new MemoryStream(pngBytes), "breakingnews.png");
+        }
     }
 
 
+
+
+    if (cmd === `${prefix}help`) {
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >invite                                                                                >server                                                                                >paz                                                                                >gatogaymermaluma                                                                                >say (decir algoXD :famosoricardo:)                                                            >purge (el destructor ricardo)                                                            >playing (cambia mi estado de juego omg)```");
+    }
 
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`) {
