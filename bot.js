@@ -287,7 +287,6 @@ bot.on("message", message => {
             var pngBytes = converter.GenerateImage(headline + ticker + imageurl);
             message.channel.SendFileAsync(new MemoryStream(pngBytes), "breakingnews.png");
         }
-    }
 
 
 
