@@ -107,7 +107,6 @@ bot.on("message", message => {
         message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
         let imageurl = args.join(' ');
             if (cmd === `${prefix}breakingnews` && headline === (' ') && ticker === (' ') && imageurl === 'https://') {
-                eventWindowLoaded();
                 function eventWindowLoaded() {
                     canvasApp();
                 }
