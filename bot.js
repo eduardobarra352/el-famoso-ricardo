@@ -31,9 +31,9 @@ bot.on("message", message => {
     }
     if (message.content === '<') {
         message.channel.send("No");
-        let otrolado = args.join(' ');
+        let otrolado = args.join(' ').slice(999999);
         if (cmd === '<' && otrolado) {
-            message.channel.send("es para el otro lado XDSJ");
+            message.reply("es para el otro lado XDSJ");
         }
     }
 
@@ -105,6 +105,18 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}tu`) {
         message.channel.send({ file: ("./img/tus.png") });
+    }
+    if (cmd === `${prefix}detectorql`) {
+        let barratoemoji = message.guild.emojis.find('name', "barrato");
+        var number = 5;
+        var random = Math.floor (Math.random() * (number - 4 + 3)) + 1;
+        switch (random) {
+            case 1: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} no eres **QL** uff tesalvastes bb :baby_symbol: :skull:`); break;
+            case 2: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif detecto qls cerca mio pero no se qien ${barratoemoji} :skull: :coffin: TM`); break;
+            case 3: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} me uele a que loeres perote qiero asi q no :heart:XD :skull:`); break;
+            case 4: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} mmmmm :sos:pechoso :skull: :tm:`); break;
+            case 5: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} UN **QL** tienes 5 segundos para correr SJXASJSA :skull: :coffin: :man_dancing: adjunto`); break;
+        }
     }
     if (cmd === `${prefix}famosisimo`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
