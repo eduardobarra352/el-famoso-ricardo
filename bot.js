@@ -116,12 +116,12 @@ bot.on("message", message => {
         var number = 6;
         var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
         switch (random) {
-            case 1: message.channel.send(```${message.author}``, te identificas con el famoso ricardo omg ${famosoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669540088217601/enlarge.png`); break;
-            case 2: message.channel.send(```${message.author}``, te identificas con la famosa ricarda jsjsj ${famosaemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669584103112725/enlarge.png`); break;
-            case 3: message.channel.send(```${message.author}``, te identificas con el famoso _**s h r e k a r d o**_ OLACOMOestan ${shrekardoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669637194743834/enlarge.png`); break;
-            case 4: message.channel.send(```${message.author}``, te identificas con el _acaca_ __**PUTQ**__ ono ${putqemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669679670591488/enlarge.png`); break;
-            case 5: message.channel.send(```${message.author}``, te identificas con el barratisimo :b:arrato ${barratoemoji} https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png`); break;
-            case 6: message.channel.send(```${message.author}``, te identificas con Frida:tm: ME EMPUTQS DXDDJXJD ${meemputasemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669913871876124/enlarge.png`); break;
+            case 1: message.channel.send('``${message.author}``, te identificas con el famoso ricardo omg ${famosoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669540088217601/enlarge.png'); break;
+            case 2: message.channel.send('``${message.author}``, te identificas con la famosa ricarda jsjsj ${famosaemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669584103112725/enlarge.png'); break;
+            case 3: message.channel.send('``${message.author}``, te identificas con el famoso _**s h r e k a r d o**_ OLACOMOestan ${shrekardoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669637194743834/enlarge.png'); break;
+            case 4: message.channel.send('``${message.author}``, te identificas con el _acaca_ __**PUTQ**__ ono ${putqemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669679670591488/enlarge.png'); break;
+            case 5: message.channel.send('``${message.author}``, te identificas con el barratisimo :b:arrato ${barratoemoji} https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png'); break;
+            case 6: message.channel.send('``${message.author}``, te identificas con Frida:tm: ME EMPUTQS DXDDJXJD ${meemputasemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669913871876124/enlarge.png'); break;
         }
     }
     if (cmd === `${prefix}tumor`) {
