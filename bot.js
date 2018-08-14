@@ -108,13 +108,13 @@ bot.on("message", message => {
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
         if (cmd === `${prefix}tu` && tus) {
-              var converter = new Image
+              var converter = new Image ()
                 {
-                        Width = 507,
-                        Height = 431
+                        let Width = image.width('507');
+                        let Height = image.height('431');
               };
             var pngBytes = converter.GenerateImage(image + tus);
-            message.channel.SendFileAsync(new MemoryStream(pngBytes), "tus.png");
+            message.channel.SendFileAsync("tus.png");
             //message.channel.send(tus, { file: ("./img/tus.png") });
         }
     }
