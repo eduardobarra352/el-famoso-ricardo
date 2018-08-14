@@ -108,6 +108,7 @@ bot.on("message", message => {
         let tus = args.join(' ').slice(22);
         if (cmd === `${prefix}tu` && `${tus}`){
             message.channel.send(`${tus}`, { file: ("./img/tus.png") });
+        }
     }
     if (cmd === `${prefix}detectorql`) {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
