@@ -115,8 +115,8 @@ bot.on("message", message => {
            // var pngBytes = converter.GenerateImage(image + tus);
            // message.channel.SendFileAsync("tus.png");
             //message.channel.send(tus, { file: ("./img/tus.png") });
-        }
-    }
+     //   }
+    //}
     if (cmd === `${prefix}detectorql`) {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         var number = 5;
