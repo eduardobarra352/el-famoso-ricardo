@@ -106,7 +106,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}tu`) {
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
-        if (cmd.startsWith (prefix + "tu" + tus)) {
+        if (msg.startsWith (prefix + "tu" + tus)) {
             //var converter = new HtmlToImageConverter
             //  {
             //          Width = 507,
@@ -114,7 +114,7 @@ bot.on("message", message => {
             //  };
         //  var pngBytes = converter.GenerateImage(headline + ticker + imageurl, drawScreen);
         //  message.channel.SendFileAsync(new MemoryStream(pngBytes), "tus.png");
-            message.channel.send('tus', { file: ("./img/tus.png") });
+            message.channel.send(tus, { file: ("./img/tus.png") });
         }
     }
     if (cmd === `${prefix}detectorql`) {
