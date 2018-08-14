@@ -110,8 +110,7 @@ bot.on("message", message => {
         if (cmd === `${prefix}tu` && tus) {
               var converter
                 {
-                        let Width = image.width('507');
-                        let Height = image.height('431');
+                        image.length = 507, 431;
               };
             var pngBytes = converter.GenerateImage(image + tus);
             message.channel.SendFileAsync("tus.png");
