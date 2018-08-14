@@ -31,7 +31,7 @@ bot.on("message", message => {
     }
     if (message.content === '<') {
         message.channel.send("No");
-        let otrolado = args.join(' ').slice(22);
+        let otrolado = args.join(' ').slice(msg.lenght);
         if (message.channel === '<' && otrolado === ' ') {
             message.reply("es para el otro lado XDSJ");
         }
@@ -108,7 +108,7 @@ bot.on("message", message => {
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
         if (cmd === `${prefix}tu` && tus) {
-              var converter = new ImageConverter
+              var converter = new Image
                 {
                         Width = 507,
                         Height = 431
