@@ -108,7 +108,7 @@ bot.on("message", message => {
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
         if (cmd === `${prefix}tu` && tus) {
-              var converter = new HtmlToImageConverter
+              var converter = new ImageConverter
                 {
                         Width = 507,
                         Height = 431
