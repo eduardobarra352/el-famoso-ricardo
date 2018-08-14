@@ -107,6 +107,7 @@ bot.on("message", message => {
         message.reply("complemente el Tu para q dea un mensaje de la siguiente forma:```>tu [textXD]```");
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
+        const Image = image;
         if (cmd === `${prefix}tu` && tus) {
               var converter = new Image ()
                 {
