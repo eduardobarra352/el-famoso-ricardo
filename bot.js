@@ -103,17 +103,17 @@ bot.on("message", message => {
     if (cmd === `${prefix}barrato`) {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
-    if (cmd === `${prefix}tu`) {
-        message.reply("complemente el Tu para q dea un mensaje de la siguiente forma:```>tu [textXD]```");
-        let image = { file: ("./img/tus.png") };
-        let tus = args.join(' ');
-        if (cmd === `${prefix}tu` && tus) {
-              var converter
-                {
-                        image.length = 507, 431;
-              };
-            var pngBytes = converter.GenerateImage(image + tus);
-            message.channel.SendFileAsync("tus.png");
+    //if (cmd === `${prefix}tu`) {
+      //  message.reply("complemente el Tu para q dea un mensaje de la siguiente forma:```>tu [textXD]```");
+        //let image = { file: ("./img/tus.png") };
+        //let tus = args.join(' ');
+        //if (cmd === `${prefix}tu` && tus) {
+          //    var converter
+            //    {
+             //           image.length = 507, 431;
+              //};
+           // var pngBytes = converter.GenerateImage(image + tus);
+           // message.channel.SendFileAsync("tus.png");
             //message.channel.send(tus, { file: ("./img/tus.png") });
         }
     }
