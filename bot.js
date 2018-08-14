@@ -104,17 +104,18 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}tu`) {
+        message.reply("complemente el Tu para q dea un mensaje de la siguiente forma:```>tu [textXD]```");
         let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
         if (cmd === `${prefix}tu` && tus) {
-            //var converter = new HtmlToImageConverter
-            //  {
-            //          Width = 507,
-            //          Height = 431
-            //  };
-        //  var pngBytes = converter.GenerateImage(headline + ticker + imageurl, drawScreen);
-        //  message.channel.SendFileAsync(new MemoryStream(pngBytes), "tus.png");
-            message.channel.send(tus, { file: ("./img/tus.png") });
+              var converter = new HtmlToImageConverter
+                {
+                        Width = 507,
+                        Height = 431
+              };
+            var pngBytes = converter.GenerateImage(image + tus);
+            message.channel.SendFileAsync(new MemoryStream(pngBytes), "tus.png");
+            //message.channel.send(tus, { file: ("./img/tus.png") });
         }
     }
     if (cmd === `${prefix}detectorql`) {
