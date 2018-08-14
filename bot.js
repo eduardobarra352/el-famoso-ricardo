@@ -106,7 +106,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}tu`) {
         message.channel.send({ file: ("./img/tus.png") });
         let tus = args.join(' ').slice(22);
-        if (cmd === `${prefix}tu` && tus === ()){
+        if (cmd === `${prefix}tu` && `${tus}`){
             message.channel.send(`${tus}`, { file: ("./img/tus.png") });
     }
     if (cmd === `${prefix}detectorql`) {
