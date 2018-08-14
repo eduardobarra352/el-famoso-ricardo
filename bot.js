@@ -32,7 +32,7 @@ bot.on("message", message => {
     if (message.content === '<') {
         message.channel.send("No");
         let otrolado = args.join(' ').slice(22);
-        if (message.channel === '<' && otrolado) {
+        if (message.channel === '<' && otrolado === ' ') {
             message.reply("es para el otro lado XDSJ");
         }
     }
@@ -106,7 +106,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}tu`) {
         message.channel.send({ file: ("./img/tus.png") });
         let tus = args.join(' ').slice(8);
-        message.channel.send(`${tus}`, { file: ("./img/tus.png") });
+        if (msg.startsWith (prefix + tus)) {
+            message.channel.send(tus, { file: ("./img/tus.png") });
+        }
     }
     if (cmd === `${prefix}detectorql`) {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
