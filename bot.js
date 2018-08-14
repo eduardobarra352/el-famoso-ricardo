@@ -104,7 +104,7 @@ bot.on("message", message => {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
     if (cmd === `${prefix}tu`) {
-        let image = { files: ("./img/tus.png") };
+        let image = { file: ("./img/tus.png") };
         let tus = args.join(' ');
         if (cmd.startsWith (prefix + "tu" + tus)) {
             //var converter = new HtmlToImageConverter
@@ -114,7 +114,7 @@ bot.on("message", message => {
             //  };
         //  var pngBytes = converter.GenerateImage(headline + ticker + imageurl, drawScreen);
         //  message.channel.SendFileAsync(new MemoryStream(pngBytes), "tus.png");
-            message.channel.send('tus', { files: ("./img/tus.png") });
+            message.channel.send('tus', { file: ("./img/tus.png") });
         }
     }
     if (cmd === `${prefix}detectorql`) {
