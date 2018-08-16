@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require(`discord.js`);
 const bot = new Discord.Client({ disableEveryone: true });
 
 //bot en conexión
@@ -443,7 +443,7 @@ bot.on("message", message => {
 //  }
 
     if (cmd === `${prefix}help`) {
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA                                                                                comandos:```>tm                                                                                >invite                                                                                >server                                                                                >famosisimo                                                                                >detectorql                                                                                >paz                                                                                >tumor (100 variaciones distintas omg)                                                                                >gatogaymermaluma                                                                                >say (decir algoXD)                                                                                >purge (el destructor ricardo)                                                                                >playing (cambia mi estado de juego omg)```");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >invite                                                                                >server                                                                                >famosisimo                                                                                >detectorql                                                                                >paz                                                                                >tumor (100 variaciones distintas omg)                                                                                >gatogaymermaluma                                                                                >say (decir algoXD)                                                                                >purge (el destructor ricardo)                                                                                >playing (cambia mi estado de juego omg)```");
     }
 //ESPACIO:                                                                                
     //comandos especiales y administracion
