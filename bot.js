@@ -445,7 +445,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}help`) {
         message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>famosisimo \n>detectorql \n>paz \n>tumor (100 variaciones distintas omg) \n>gatogaymermaluma \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg)```");
     }
-//ESPACIO:                                                                                
+///ESPACIO:                                                                                
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`) {
         let status = args.join(' ');
