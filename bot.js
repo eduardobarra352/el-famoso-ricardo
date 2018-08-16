@@ -1,10 +1,12 @@
 const Discord = require(`discord.js`);
+const botconfig = require("./botconfig.json");
 const bot = new Discord.Client({ disableEveryone: true });
 
 //bot en conexión
 bot.on("ready", () => {
     var play = `>help`;
     console.log(`${bot.user.username} is online! `);
+    bot.user.setAvatar("https://cdn.discordapp.com/attachments/400718108454551562/478220221513990144/enlarge.png")
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: play, type: 1 } });
 });
@@ -57,11 +59,16 @@ bot.on("message", message => {
         let play = args.join(' ');
         if (cmd === `${prefix}playing` && play) {
             bot.user.setPresence({ game: { name: play, type: 1 } });
-            message.channel.send("uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
+            message.channel.send(":white_check_mark: uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
         }
     }
     if (cmd === `${prefix}paz`) {
         message.channel.send("amemonos");
+    }
+    if (cmd === `${prefix}avatar`) {
+        image = message.attachments.first().url;
+        bot.user.setAvatar(image);
+        message.channel.send(":white_check_mark: ajaj mecambiastes mi **foto de perfil** q cursed no¿");
     }
     if (cmd === `${prefix}purge`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
@@ -229,9 +236,9 @@ bot.on("message", message => {
             case 76: message.channel.send("https://media.discordapp.net/attachments/361290434057732096/473817432365203464/DjUWBTDXgAAcUEa.png?width=577&height=638"); break;
             case 77: message.channel.send("https://media.discordapp.net/attachments/468940425143517194/471006384109125632/FB_IMG_1532367061180.jpg"); break;
             case 78: message.channel.send("https://cdn.discordapp.com/attachments/458037874017828866/464247105528135681/ifunny.png"); break;
-            case 79: message.channel.send("veibi lah bida e um siklo :arrows_counterclockwise: wu                                                                                 i loh q no sirbe io nolo resiklo :wastebasket:                                                                                 azy q d mi bida muebet :punch: :door:                                                                                 q sy t lometo ez pa rekordar un :regional_indicator_t: :b:  :regional_indicator_t:  ie ```-mierdosita 07/26/2018```"); break;
+            case 79: message.channel.send("veibi lah bida e um siklo :arrows_counterclockwise: wu \ni loh q no sirbe io nolo resiklo :wastebasket: \nazy q d mi bida muebet :punch: :door: \nq sy t lometo ez pa rekordar un :regional_indicator_t: :b:  :regional_indicator_t:  ie ```-mierdosita 07/26/2018```"); break;
             case 80: message.channel.send("https://cdn.discordapp.com/attachments/438168310928900097/439269884828844033/maxresdefault.png"); break;
-            case 81: message.channel.send("he soñado con ese hombre...                                                                                ¡Quiero ese hombre!                                                                                ¡Ese hombre es mi sueño, la razón por la que vivo, la razón por la que fuí traido,la razón por la que respiro!                                                                                ¡Como desearia que el FAMOSORICARDO estuviera a mi lado como en estos momentos....! ```-Kanjii 07/05/2018```"); break;
+            case 81: message.channel.send("he soñado con ese hombre... \n¡Quiero ese hombre! \n¡Ese hombre es mi sueño, la razón por la que vivo, la razón por la que fuí traido,la razón por la que respiro! \n¡Como desearia que el FAMOSORICARDO estuviera a mi lado como en estos momentos....! ```-Kanjii 07/05/2018```"); break;
             case 82: message.channel.send("https://cdn.discordapp.com/attachments/411706318685077515/455409168199712788/unknown.png"); break;
             case 83: message.channel.send("https://cdn.discordapp.com/attachments/411706318685077515/440680276138393601/el_ql.png"); break;
             case 84: message.channel.send("https://www.youtube.com/watch?v=nFWM8H0nNJc"); break;
@@ -253,7 +260,7 @@ bot.on("message", message => {
             case 100: message.channel.send("https://cdn.discordapp.com/attachments/415365025121697792/478268594074157063/unknown.png"); break;
         }
     }
-    
+
 //  if (cmd === `${prefix}breakingnews`) {
 //      message.reply("confusion, la forma en la q sehace es la sig:```>breakingnews [headline] [ticker] [imageurl]```");
 //      let imageurl = args.join(' ');
@@ -286,7 +293,7 @@ bot.on("message", message => {
 //              nh = ih * r,   /// new prop. height
 //              cx, cy, cw, ch, ar = 1;
 //
-//          /// decide which gap to fill    
+//          /// decide which gap to fill
 //          if (nw < w) ar = w / nw;
 //          if (nh < h) ar = h / nh;
 //          nw *= ar;
@@ -443,9 +450,9 @@ bot.on("message", message => {
 //  }
 
     if (cmd === `${prefix}help`) {
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA: comandos:```>tm                                                                                >invite                                                                                >server                                                                                >famosisimo                                                                                >detectorql                                                                                >paz                                                                                >tumor (100 variaciones distintas omg)                                                                                >gatogaymermaluma                                                                                >say (decir algoXD)                                                                                >purge (el destructor ricardo)                                                                                >playing (cambia mi estado de juego omg)```");
+        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>famosisimo \n>detectorql \n>paz \n>tumor (100 variaciones distintas omg) \n>gatogaymermaluma \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>avatar (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil)```");
     }
-//ESPACIO:                                                                                
+//ESPACIO:
     //comandos especiales y administracion
     if (cmd === `${prefix}352421`) {
         let status = args.join(' ');
@@ -472,4 +479,4 @@ bot.on("message", message => {
     }
 });
 
-bot.login(process.env.token);
+bot.login(botconfig.token);
