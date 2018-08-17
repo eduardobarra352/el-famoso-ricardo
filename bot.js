@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
-var pdfcrowd = require("pdfcrowd");
+var pdfcrowd = require('pdfcrowd');
 var clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
 
 //bot en conexión
@@ -113,9 +113,6 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}tu`) {
         let tus = args.join(' ');
-        if (cmd === `${prefix}tu` && tus === null) {
-          message.reply("```>tu [texto]```");
-        }
         if (cmd === `${prefix}tu` && tus) {
           message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
           try {
