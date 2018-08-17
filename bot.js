@@ -35,7 +35,7 @@ bot.on("message", message => {
     if (message.content === '<') {
         message.channel.send("No");
         let otrolado = args.join(' ').slice(msg.lenght);
-        if (message.channel === '<' && otrolado === ' ') {
+        if (cmd === '<' && otrolado === ' ') {
             message.reply("es para el otro lado XDSJ");
         }
     }
@@ -69,7 +69,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
         bot.user.setAvatar(image);
-        message.channel.send(":white_check_mark: ajaj mecambiastes mi **foto de perfil** q cursed no¿");
+        message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \nsi no ha cambiado el perfil aun, paso el segundo caso");
     }
     if (cmd === `${prefix}purge`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
