@@ -64,7 +64,11 @@ bot.on("message", message => {
     if (cmd === `${prefix}paz`) {
         message.channel.send("amemonos");
     }
-    
+    if (cmd === `${prefix}avatar`) {
+        let image = message.attachments.first().url;
+        bot.user.setAvatar(image);
+        message.channel.send(":white_check_mark: ajaj mecambiastes mi **foto de perfil** q cursed no¿");
+    }
     if (cmd === `${prefix}purge`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
         if (!args[0]) return message.channel.send(":x: No puedes eliminar algo que sea nada q grasioso no¿");
