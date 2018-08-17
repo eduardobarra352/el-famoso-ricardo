@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
+var pdfcrowd = require("pdfcrowd");
+var clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
 
 //bot en conexión
 bot.on("ready", () => {
@@ -109,20 +111,33 @@ bot.on("message", message => {
     if (cmd === `${prefix}barrato`) {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
     }
-    //if (cmd === `${prefix}tu`) {
-      //  message.reply("complemente el Tu para q dea un mensaje de la siguiente forma:```>tu [textXD]```");
-        //let image = { file: ("./img/tus.png") };
-        //let tus = args.join(' ');
-        //if (cmd === `${prefix}tu` && tus) {
-          //    var converter
-            //    {
-             //           image.length = 507, 431;
-              //};
-           // var pngBytes = converter.GenerateImage(image + tus);
-           // message.channel.SendFileAsync("tus.png");
+    if (cmd === `${prefix}tu`) {
+        let tus = args.join(' ');
+        if (cmd === `${prefix}tu` && tus === null) {
+          message.reply("```>tu [texto]```");
+        }
+        if (cmd === `${prefix}tu` && tus) {
+          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
+          try {
+              clientee.setOutputFormat("png");
+          } catch(why) {
+              console.error("Pdfcrowd Error: " + why);
+              console.error("Pdfcrowd Error Code: " + why.getCode());
+              console.error("Pdfcrowd Error Message: " + why.getMessage());
+              process.exit(1);
+          }
+          clientee.convertStringToFile(
+          `<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>`,
+          "Tu.png",
+          function(err, fileName) {
+            if (err) return console.error("Pdfcrowd Error: " + err);
+            console.log("Success: the file was created " + fileName);
+            message.channel.send({file: ("Tu.png")});
+          });
             //message.channel.send(tus, { file: ("./img/tus.png") });
-     //   }
-    //}
+            //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
+          }
+    }
     if (cmd === `${prefix}detectorql`) {
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         var number = 5;
@@ -449,7 +464,7 @@ bot.on("message", message => {
 //  }
 
     if (cmd === `${prefix}help`) {
-        message.channel.send("ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>famosisimo \n>detectorql \n>paz \n>tumor (100 variaciones distintas omg) \n>gatogaymermaluma \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>avatar (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil)```");
+        message.channel.send("ola mis __niÃ±os__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>famosisimo \n>detectorql \n>tu \n>paz \n>tumor (100 variaciones distintas omg) \n>gatogaymermaluma \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>avatar (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil)```");
     }
 //ESPACIO:
     //comandos especiales y administracion
