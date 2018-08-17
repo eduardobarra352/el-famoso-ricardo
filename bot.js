@@ -114,7 +114,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}tu`) {
         let tus = args.join(' ');
         if (cmd === `${prefix}tu` && tus) {
-          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
+          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(3000));
           try {
               clientee.setOutputFormat("png");
           } catch(why) {
