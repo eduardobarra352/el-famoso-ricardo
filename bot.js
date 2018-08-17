@@ -7,7 +7,7 @@ const clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4f
 bot.on("ready", () => {
     var play = `>help`;
     console.log(`${bot.user.username} is online! `);
-    bot.user.setAvatar("https://cdn.discordapp.com/attachments/400718108454551562/478220221513990144/enlarge.png")
+    bot.user.setAvatar("https://cdn.discordapp.com/attachments/400718108454551562/478220221513990144/enlarge.png");
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: play, type: 1 } });
 });
