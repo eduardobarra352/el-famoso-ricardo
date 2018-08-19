@@ -66,8 +66,8 @@ bot.on("message", message => {
         message.channel.send("amemonos");
     }
     if (cmd === `${prefix}avatar`) {
-        if (!args[0]) return message.reply("```>avatar \n <Imagen>```");
         let image = message.attachments.first();
+        if (!args[0] && !image) return message.reply("```>avatar \n <Imagen>```");
         let avatarlink = args.join(' ');
         if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         else if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
