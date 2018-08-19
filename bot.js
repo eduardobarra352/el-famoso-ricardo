@@ -94,7 +94,7 @@ bot.on("message", message => {
         if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
         let info = ytdl.getInfo(args[0]);
         let conectado = message.member.voiceChannel.join();
-        let dispatcher = ytdl(args[0], { filter: "audioonly" });
+        let dispatcher = conectado.playStream(ytdl(args[0], { filter: "audioonly" }));
         message.channel.send(`:musical_note: Ahorita escuchando: ${info.title}`);
     }
     if (cmd === `${prefix}leave`) {
