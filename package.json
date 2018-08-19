@@ -13,6 +13,7 @@
     "ffmpeg-binaries": "^4.0.0",
     "opusscript": "0.0.6",
     "request": "2.81.0",
-    "ytdl-core": "^0.24.0"
+    "ytdl-core": "^0.24.0",
+    "node-opus": "0.3.0"
   }
 }
