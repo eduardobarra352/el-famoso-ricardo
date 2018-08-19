@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
+const ytdl = require('ytdl-core');
 const pdfcrowd = require("pdfcrowd");
 const clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
 
@@ -83,6 +84,24 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
+    }
+    if (cmd === `${prefix}play`) {
+        if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
+        if (message.guild.me.voiceChannel) return message.channel.send("uy pero ya estoi en elcanal de voz jej");
+        if (!args[0]) return message.reply("```>play [url]```");
+        let validate = ytdl.validateURL(args[0]);
+        if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
+        let info = ytdl.getInfo(args[0]);
+        let conectado = message.member.voiceChannel.join();
+        let dispatcher = conectado.playStream(ytdl(args[0], { filter: "audioonly" }));
+        message.channel.send(`:musical_note: Ahorita escuchando: ${info.title}`);
+    }
+    if (cmd === `${prefix}leave`) {
+        if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
+        if (!message.guild.me.voiceChannel) return message.reply(":no_entry: No puedo conectarme al tal canal de voz sorri");
+        if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.channel.send(":x: no estas en el canal de voz correcto,,,");
+        message.guild.me.voiceChannel.leave();
+        message.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
     }
 
     if (cmd === `famoso`) {
