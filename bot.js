@@ -34,10 +34,7 @@ bot.on("message", message => {
     }
     if (message.content === '<') {
         message.channel.send("No");
-        let otrolado = args.join(' ').slice(msg.lenght);
-        if (cmd === '<' && otrolado === ' ') {
-            message.reply("es para el otro lado XDSJ");
-        }
+        if (args[0]) return message.reply("es para el otro lado XDSJ");
     }
 
     //comandos de prefix
@@ -49,6 +46,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}say`) {
         let say = args.join(' ');
+        if (!args[0]) return message.reply("```>say [TextXD]```");
         message.delete();
         message.channel.send(say);
     }
@@ -58,6 +56,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}playing`) {
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
         let play = args.join(' ');
+        if (!args[0]) return message.reply("```>playing [TextXD]```");
         if (cmd === `${prefix}playing` && play) {
             bot.user.setPresence({ game: { name: play, type: 1 } });
             message.channel.send(":white_check_mark: uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
@@ -68,8 +67,10 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
+        if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
+        if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         bot.user.setAvatar(image);
-        message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \nsi no ha cambiado el perfil aun, paso el segundo caso");
+        message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \n-si le llego este mensaje como respuesta y aun el bot no se ha cambiado el perfil, puede por ser una imagen copiada y llega a tardar mas de 5 minutos (es mas recomendable una descargada) \n-si no ha cambiado el perfil aun, paso el segundo caso");
     }
     if (cmd === `${prefix}purge`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
@@ -113,6 +114,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}tu`) {
         let tus = args.join(' ');
+        if (!args[0]) return message.reply("```>tu [texto]```");
         if (cmd === `${prefix}tu` && tus) {
           message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
           try {
