@@ -26,7 +26,7 @@ bot.on("message", message => {
     let cmd = args.shift().toLowerCase();
 
     if (cmd === `${prefix}invite`) {
-        message.channel.send("https://discordapp.com/oauth2/authorize?client_id=476139360870334464&scope=bot&permissions=0");
+        message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
     }
     if (cmd === `${prefix}server`) {
         message.channel.send("https://discord.gg/NGV4RNS");
