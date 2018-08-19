@@ -66,8 +66,8 @@ bot.on("message", message => {
         message.channel.send("amemonos");
     }
     if (cmd === `${prefix}avatar`) {
-        let image = message.attachments.first().url;
-        //if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
+        let image = message.attachments.first();
+        if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
         if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         bot.user.setAvatar(image);
         message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \n-si le llego este mensaje como respuesta y aun el bot no se ha cambiado el perfil, puede por ser una imagen copiada y llega a tardar mas de 5 minutos (es mas recomendable una descargada) \n-si no ha cambiado el perfil aun, paso el segundo caso");
