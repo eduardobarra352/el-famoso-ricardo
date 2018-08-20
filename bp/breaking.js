@@ -187,4 +187,3 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
                   message.channel.send({file: ("breakingnews.png")});
                 });
           }
-      }
