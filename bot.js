@@ -94,12 +94,12 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}play`) {
         try {
-            let commandFile = require(`./bp/play.js`);
-            commandFile.run(bot, message, args, opus);
             let opus = {
                 ownerID: ownerID,
                 active: active
-            };
+            }
+            let commandFile = require(`./bp/play.js`);
+            commandFile.run(bot, message, args, opus);
         } catch(e) {
             console.log(e.stack);
         }
@@ -107,7 +107,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}leave`) {
         try {
             let commandFile = require(`./bp/leave.js`);
-            commandFile.run(bot, message, args);
+            commandFile.run(bot, message, args, opus);
         } catch(e) {
             console.log(e.stack);
         }
