@@ -12,7 +12,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
                 process.exit(1);
               }
               clientee.convertStringToFile(
-                `<link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet"><canvas id="canvasOne" width="1280" height="720" class="byon-canvas">.</canvas>`,
+                `<script type="https://www.breakyourownnews.com/text/javascript" src="https://www.breakyourownnews.com/script.js?v=2.15"></script><link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet"><canvas id="canvasOne" width="1280" height="720" class="byon-canvas">.</canvas>`,
                 "breakingnews.png",
                 function(err, fileName) {
                   if (err) return console.error("Pdfcrowd Error: " + err);
