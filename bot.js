@@ -25,6 +25,7 @@ bot.on("message", message => {
 
     //variantes
     const prefix = '>';
+    const active = new Map();
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
