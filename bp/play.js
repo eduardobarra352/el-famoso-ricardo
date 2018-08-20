@@ -31,7 +31,7 @@ async function play(bot, opus, data) {
   bot.channels.get(data.queue[0].announceChannel).send(`:musical_note: Ahorita por fin escuchas: **${data.queue[0].songTitle}** | Elegido de: **${data.queue[0].requester}**`);
   data.dispatcher = await data.connection.playStream(ytdl(data.queue[0].url, { filter: 'audioonly' }));
   data.dispatcher.guildID = data.guildID;
-  data.dispatcher.once('finish', function() {
+  data.dispatcher.once('end', function() {
     finish(bot, opus, this);
   });
 }
