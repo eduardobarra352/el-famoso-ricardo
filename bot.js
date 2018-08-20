@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
+const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
 const opus = require('node-opus');
 const pdfcrowd = require("pdfcrowd");
