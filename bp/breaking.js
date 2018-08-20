@@ -1,8 +1,11 @@
-exports.run = async (bot, message, args, pdfcrowd, clientee) => {
+exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews | [headline] | [ticker] | [imageurl]```");
       let headline = args.join(' ');
       let ticker = args.join(' ');
       let imageurl = args.join(` `);
+      if (!headline[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
+      if (!ticker[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
+      if (!imageurl[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
       function eventWindowLoaded() {
           canvasApp();
       }
