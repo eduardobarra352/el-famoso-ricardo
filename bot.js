@@ -95,7 +95,9 @@ bot.on("message", message => {
         try {
             let commandFile = require(`./bp/play.js`);
             commandFile.run(bot, message, args);
-            let opus = active: active;
+            let opus = {
+                active: active
+            }
         } catch(e) {
             console.log(e.stack);
         }
