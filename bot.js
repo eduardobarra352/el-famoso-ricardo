@@ -26,6 +26,7 @@ bot.on("message", message => {
     //variantes
     const prefix = '>';
     const active = new Map();
+    const ownerID = '363515212738854913';
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
@@ -96,8 +97,9 @@ bot.on("message", message => {
             let commandFile = require(`./bp/play.js`);
             commandFile.run(bot, message, args);
             let opus = {
+                ownerID: ownerID,
                 active: active
-            }
+            };
         } catch(e) {
             console.log(e.stack);
         }
