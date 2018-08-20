@@ -26,7 +26,7 @@ bot.on("message", message => {
     //variantes
     const prefix = '>';
     const active = new Map();
-    const ownerID = '363515212738854913';
+    const ownerID = process.env.ownerID;
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
