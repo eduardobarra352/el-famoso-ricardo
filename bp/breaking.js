@@ -185,6 +185,6 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
                   console.log("Success: the file was created " + fileName);
                   message.channel.send({file: ("breakingnews.png")});
                 });
+          }
       }
-    }
-  }
+}
