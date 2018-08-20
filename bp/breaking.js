@@ -1,4 +1,4 @@
-exports.run = async (bot, message, args, pdfcrowd, clientee) {
+exports.run = async (bot, message, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews | [headline] | [ticker] | [imageurl]```");
       let headline = args.join(' ');
       let ticker = args.join(' ');
