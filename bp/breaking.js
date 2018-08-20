@@ -6,7 +6,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
       if (!headline) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
       if (!ticker) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
       if (!imageurl) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
-          if (message.content === `${prefix}breakingnews ${headline} | ${ticker} | ${imageurl}`) {
+          if (message.content === `${prefix}breakingnews` && headline && `|` && ticker && `|` && imageurl) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
