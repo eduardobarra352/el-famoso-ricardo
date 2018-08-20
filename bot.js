@@ -4,9 +4,10 @@ const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
 const opus = require('node-opus');
 const opusscript = require('opusscript');
+const ffmpegbinaries = require('ffmpeg-binaries');
 const pdfcrowd = require("pdfcrowd");
 const clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
-var avconv = require('avconv');
+const avconv = require('avconv');
 
 //bot en conexión
 bot.on("ready", () => {
