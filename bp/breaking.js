@@ -156,6 +156,7 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
               context.globalAlpha = 1;
               context.shadowBlur = 0;
           }
+      }
           function handleImage(e) {
               var reader = new FileReader();
               reader.onload = function (event) {
@@ -187,5 +188,3 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
                 });
           }
       }
-}
-}
