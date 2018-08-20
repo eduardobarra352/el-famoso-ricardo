@@ -1,4 +1,4 @@
-exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
+exports.run = async (bot, message, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] [imageurl]```");
       let imageurl = args.join(` `);
       if (!headline) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
@@ -167,7 +167,7 @@ exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
               }
               reader.readAsDataURL(e.target.files[0]);
           }
-          if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl === `http://`) {
+          if (message.content === `${prefix}breakingnews` && headline && ticker && imageurl === `http://`) {
               eventWindowLoaded();
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
