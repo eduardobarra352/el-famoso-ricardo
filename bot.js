@@ -1,4 +1,3 @@
-const prefix = '>';
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
 const FFMPEG = require('ffmpeg');
@@ -25,15 +24,10 @@ bot.on("message", message => {
     if (message.channel.type === "dm") return;
 
     //variantes
+    const prefix = '>';
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
-    try {
-        let commandFile = require(`./bp/${cmd}.js`);
-        commandFile.run(bot, message, args);
-    } catch(e) {
-        console.log(e.stack);
-    }
 
     if (cmd === `${prefix}invite`) {
         message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
@@ -95,6 +89,22 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
+    }
+    if (cmd === `${prefix}play`) {
+        try {
+            let commandFile = require(`./bp/play.js`);
+            commandFile.run(bot, message, args);
+        } catch(e) {
+            console.log(e.stack);
+        }
+    }
+    if (cmd === `${prefix}leave`) {
+        try {
+            let commandFile = require(`./bp/leave.js`);
+            commandFile.run(bot, message, args);
+        } catch(e) {
+            console.log(e.stack);
+        }
     }
 
     if (cmd === `famoso`) {
