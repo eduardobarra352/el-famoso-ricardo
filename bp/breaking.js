@@ -1,7 +1,5 @@
 exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] [imageurl]```");
-      let headline = args.join(' ');
-      let ticker = args.join(' ');
       let imageurl = args.join(` `);
       if (!headline) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
       if (!ticker) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
