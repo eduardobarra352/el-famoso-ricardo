@@ -1,3 +1,4 @@
+
 exports.run = async (bot, message, args, opus) => {
   var number = 100;
   var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
