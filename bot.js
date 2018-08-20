@@ -95,7 +95,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}play`) {
         try {
             let commandFile = require(`./bp/play.js`);
-            commandFile.run(bot, message, args);
+            commandFile.run(bot, message, args, opus);
             let opus = {
                 ownerID: ownerID,
                 active: active
