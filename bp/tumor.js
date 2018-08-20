@@ -1,5 +1,5 @@
 
-exports.run = async (bot, message, args, opus) => {
+exports.run = async (bot, message, args) => {
   var number = 100;
   var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
   switch (random) {
