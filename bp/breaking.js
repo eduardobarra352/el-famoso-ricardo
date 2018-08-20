@@ -1,5 +1,5 @@
 exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
-      if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] [imageurl]```");
+      if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] | [imageurl]```");
       let headline = args.join(' ');
       let ticker = args.join(' ');
       let imageurl = args.join(` `);
@@ -9,6 +9,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
       function eventWindowLoaded() {
           canvasApp();
       }
+      eventWindowLoaded();
       function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
 
           if (arguments.length === 2) {
@@ -61,7 +62,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
 
           let headline = args.join(' ');
           let ticker = args.join(' ');
-          var img = new Image();
+          var img = imageurl;
 
           var theCanvas = document.getElementById("canvasOne");
           var context = theCanvas.getContext("2d");
@@ -169,8 +170,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
               }
               reader.readAsDataURL(e.target.files[0]);
           }
-          if (message.content === `${prefix}breakingnews` && headline && ticker && imageurl === `http://`) {
-              eventWindowLoaded();
+          if (message.content === `${prefix}breakingnews ${headline} | ${ticker} | ${imageurl}`) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
