@@ -18,7 +18,7 @@ bot.on("ready", () => {
     bot.user.setPresence({ game: { name: play, type: 1 } });
 });
 
-bot.on("message", message => {
+bot.on("message", async message => {
 
     if (message.author.bot) return undefined;
     if (message.channel.type === "dm") return;
@@ -97,8 +97,8 @@ bot.on("message", message => {
         let validate = ytdl.validateURL(args[0]);
         if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
         let info = ytdl.getInfo(args[0]);
-        let conectado = message.member.voiceChannel.join();
-        let dispatcher = conectado.playStream(ytdl(args[0], { filter: "audioonly" }));
+        let connection = message.member.voiceChannel.join();
+        let dispatcher = connection.play(ytdl(args[0], { filter: "audioonly" }));
         message.channel.send(`:musical_note: Ahorita escuchando: ${info.title}`);
     }
     if (cmd === `${prefix}leave`) {
