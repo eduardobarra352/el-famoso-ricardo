@@ -1,11 +1,11 @@
 exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
-      if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] | [imageurl]```");
+      if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] [imageurl]```");
       let headline = args.join(' ');
       let ticker = args.join(' ');
       let imageurl = args.join(` `);
-      if (!headline[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
-      if (!ticker[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
-      if (!imageurl[0]) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
+      if (!headline) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
+      if (!ticker) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
+      if (!imageurl) return message.channel.send(":x: estan malpuestos o son incorrectos, intentaaaXD");
       function eventWindowLoaded() {
           canvasApp();
       }
@@ -169,7 +169,7 @@ exports.run = async (bot, message, cmd, args, pdfcrowd, clientee) => {
               }
               reader.readAsDataURL(e.target.files[0]);
           }
-          if (cmd === `${prefix}breakingnews` && headline && `|` && ticker && `|` && imageurl === `http://`) {
+          if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl === `http://`) {
               eventWindowLoaded();
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
