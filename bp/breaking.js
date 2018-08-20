@@ -6,7 +6,6 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
       function eventWindowLoaded() {
           canvasApp();
       }
-
       function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
 
           if (arguments.length === 2) {
@@ -187,3 +186,4 @@ exports.run = async (bot, message, args, pdfcrowd, clientee) {
                   message.channel.send({file: ("breakingnews.png")});
                 });
           }
+}
