@@ -8,6 +8,7 @@ const ffmpegbinaries = require('ffmpeg-binaries');
 const pdfcrowd = require("pdfcrowd");
 const clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
 const avconv = require('avconv');
+const active = new Map();
 
 //bot en conexión
 bot.on("ready", () => {
@@ -25,7 +26,6 @@ bot.on("message", message => {
 
     //variantes
     const prefix = '>';
-    const active = new Map();
     const ownerID = process.env.ownerID;
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
