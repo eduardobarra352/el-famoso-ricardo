@@ -5,8 +5,7 @@ const ytdl = require('ytdl-core');
 const opus = require('node-opus');
 const opusscript = require('opusscript');
 const ffmpegbinaries = require('ffmpeg-binaries');
-const pdfcrowd = require("pdfcrowd");
-const clientee = new pdfcrowd.HtmlToImageClient("barrato352", "9685063c868898c4fbe0d8c0b6d76b2a");
+const html2png = require('html2png');
 const avconv = require('avconv');
 const active = new Map();
 
@@ -148,22 +147,20 @@ bot.on("message", message => {
         if (!args[0]) return message.reply("```>tu [texto]```");
         if (cmd === `${prefix}tu` && tus) {
           message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
-          try {
-              clientee.setOutputFormat("png");
-          } catch(why) {
-              console.error("Pdfcrowd Error: " + why);
-              console.error("Pdfcrowd Error Code: " + why.getCode());
-              console.error("Pdfcrowd Error Message: " + why.getMessage());
-              process.exit(1);
-          }
-          clientee.convertStringToFile(
-          `<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>`,
-          "Tu.png",
-          function(err, fileName) {
-            if (err) return console.error("Pdfcrowd Error: " + err);
-            console.log("Success: the file was created " + fileName);
-            message.channel.send({file: ("Tu.png")});
-          });
+            var screenshot = html2png({ width: 1024, height: 798});
+            screenshot.render('<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>', function (err, data) {
+                if (err) return screenshot.error(err, cb);
+                console.log(data);
+                message.channel.send({file: ("Tu.png")});
+            });
+          //clientee.convertStringToFile(
+          //`<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>`,
+          //"Tu.png",
+          //function(err, fileName) {
+          //  if (err) return console.error("Pdfcrowd Error: " + err);
+          //  console.log("Success: the file was created " + fileName);
+          //  message.channel.send({file: ("Tu.png")});
+          //});
             //message.channel.send(tus, { file: ("./img/tus.png") });
             //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
           }
