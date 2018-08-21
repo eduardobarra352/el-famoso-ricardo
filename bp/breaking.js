@@ -1,5 +1,5 @@
 exports.run = async (bot, message, cmd, prefix, args, webshot) => {
-      if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] \n <imagen>```");
+      if (!args[0]) return message.reply("```>breakingnews | [headline] | [ticker] \n <imagen>```");
       let imagen = message.attachments.first().url;
       let barra = ' | ';
       let args2 = message.content.slice(cmd.lenght).trim().split(barra);
@@ -19,7 +19,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
       if (m < 10) {
           m = "0" + m
       };
-      if (cmd === `${prefix}breakingnews` && headline && barra && ticker) {
+      if (cmd === `${prefix}breakingnews` && barra && headline && barra && ticker) {
             var options = {
                   siteType: 'html',
                   defaultWhiteBackground: true,
