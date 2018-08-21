@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "discord.js": "^11.4.2",
-    "html2png": "1.1.2",
+    "htmlshot": "1.0.1",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
     "node-gyp": "^3.8.0",
