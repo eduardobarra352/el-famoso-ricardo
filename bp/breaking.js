@@ -2,7 +2,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] \n <imagen>```");
       let imagen = message.attachments.first().url;
       let barra = ' | ';
-      let args2 = message.content.slice(args.lenght).trim().split(barra);
+      let args2 = message.content.slice(prefix.lenght).trim().split(barra);
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let ticker = args3[1];
       let headline = args2[1];
