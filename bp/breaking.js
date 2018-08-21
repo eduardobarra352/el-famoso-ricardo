@@ -12,7 +12,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (m < 10) {
           m = "0" + m
       };
-          if (cmd === `${prefix}breakingnews` + headline + ticker) {
+          if (cmd === `${prefix}breakingnews` && headline && ticker) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
