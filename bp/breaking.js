@@ -3,7 +3,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
       let imagen = message.attachments.first().url;
       let checking = `>breakingnews `;
       let barra = ' | ';
-      let args2 = message.content.slice(checking.lenght).trim().split(checking);
+      let args2 = message.content.slice(checking.lenght).trim().split(checking, barra);
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let ticker = args3[1];
       let headline = args2[1];
