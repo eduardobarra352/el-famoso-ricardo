@@ -1,5 +1,5 @@
 exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
-      if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] \n <imagen>```");
+      if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] \n <imagen>```");
       let imagen = message.attachments.first().url;
       let headline = args.join(' ');
       let ticker = args.join(' ');
@@ -12,7 +12,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (m < 10) {
           m = "0" + m
       };
-          if (cmd === `${prefix}breakingnews` && headline && ticker) {
+          if (cmd === `${prefix}breakingnews ${headline} | ${ticker}`) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
