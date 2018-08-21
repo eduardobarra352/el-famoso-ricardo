@@ -26,7 +26,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
                     defaultWhiteBackground: true,
                     screenSize: {
                           width: 1024,
-                          height: 798
+                          height: 576
                     }
               };
                 message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(1000));
