@@ -1,190 +1,19 @@
-exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
+exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] [ticker] [imageurl]```");
+      let img = new Image();
       let headline = args.join(' ');
       let ticker = args.join(' ');
       let imageurl = args.join(` `);
-      try {
-                clientee.setOutputFormat("png");
-              } catch(why) {
-                console.error("Pdfcrowd Error: " + why);
-                console.error("Pdfcrowd Error Code: " + why.getCode());
-                console.error("Pdfcrowd Error Message: " + why.getMessage());
-                process.exit(1);
-              }
-              clientee.convertStringToFile(
-                `<script type="https://www.breakyourownnews.com/text/javascript" src="https://www.breakyourownnews.com/script.js?v=2.15"></script><link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet"><canvas id="canvasOne" width="1280" height="720" class="byon-canvas">.</canvas>`,
-                "breakingnews.png",
-                function(err, fileName) {
-                  if (err) return console.error("Pdfcrowd Error: " + err);
-                  console.log("Success: the file was created " + fileName);
-                  message.channel.send({file: ("breakingnews.png")});
-                });
-      function eventWindowLoaded() {
-          canvasApp();
-      }
-
-      function drawImageProp(context, img, x, y, w, h, offsetX, offsetY) {
-
-          if (arguments.length === 2) {
-              x = y = 0;
-              w = 1280;
-              h = 720;
-          }
-
-          /// default offset is center
-          offsetX = offsetX ? offsetX : 0.5;
-          offsetY = offsetY ? offsetY : 0.5;
-
-          /// keep bounds [0.0, 1.0]
-          if (offsetX < 0) offsetX = 0;
-          if (offsetY < 0) offsetY = 0;
-          if (offsetX > 1) offsetX = 1;
-          if (offsetY > 1) offsetY = 1;
-
-          var iw = img.width,
-              ih = img.height,
-              r = Math.min(w / iw, h / ih),
-              nw = iw * r,   /// new prop. width
-              nh = ih * r,   /// new prop. height
-              cx, cy, cw, ch, ar = 1;
-
-          /// decide which gap to fill
-          if (nw < w) ar = w / nw;
-          if (nh < h) ar = h / nh;
-          nw *= ar;
-          nh *= ar;
-
-          /// calc source rectangle
-          cw = iw / (nw / w);
-          ch = ih / (nh / h);
-
-          cx = (iw - cw) * offsetX;
-          cy = (ih - ch) * offsetY;
-
-          /// make sure source rectangle is valid
-          if (cx < 0) cx = 0;
-          if (cy < 0) cy = 0;
-          if (cw > iw) cw = iw;
-          if (ch > ih) ch = ih;
-
-          /// fill image in dest. rectangle
-          context.drawImage(img, cx, cy, cw, ch, x, y, w, h);
-      }
-
-      function canvasApp() {
-
-          let headline = args.join(' ');
-          let ticker = args.join(' ');
-          var img = new Image();
-
-          var theCanvas = document.getElementById("canvasOne");
-          var context = theCanvas.getContext("2d");
-
-
-          var imageObj = new Image();
-          imageObj.src = 'overlay.png';
-
-
-          drawScreen();
-
-          function drawScreen() {
-
-              //Background
-              context.fillStyle = "#222222";
-              context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-
-
-              //Image
-              if (img.src) {
-                  drawImageProp(context, img);
-              }
-
-              //Live
-              context.fillStyle = "rgba(194, 21, 15, 1.000)";
-              context.fillRect(80, 40, 104, 60);
-
-              context.font = "700 36px Signika";
-              context.fillStyle = "#FFFFFF";
-              context.fillText('LIVE', 96, 84);
-
-              //Box
-              context.fillStyle = "rgba(255,255,255,0.85)";
-              context.fillRect(80, 510, 1200, 110);
-
-              //Clock
-
-              context.fillStyle = "#000";
-              context.fillRect(80, 620, 100, 60);
-
-              today = new Date();
-              var m = today.getMinutes();
-              var h = today.getHours();
-
-              if (m < 10) {
-                  m = "0" + m
-              };
-
-              context.font = "700 28px Signika";
-              context.fillStyle = "#FFFFFF";
-              context.fillText((h + ":" + m), 96, 660);
-
-              //Breaking News Strap
-              // Create gradient
-              redgrd = context.createLinearGradient(0, 430, 0, 510);
-
-              // Add colors
-              redgrd.addColorStop(0.000, 'rgba(109, 36, 39, 1.000)');
-              redgrd.addColorStop(0.015, 'rgba(224, 54, 44, 1.000)');
-              redgrd.addColorStop(0.455, 'rgba(194, 21, 15, 1.000)');
-              redgrd.addColorStop(0.488, 'rgba(165, 10, 1, 1.000)');
-              redgrd.addColorStop(1.000, 'rgba(109, 36, 39, 1.000)');
-
-              context.fillStyle = redgrd;
-              context.fillRect(80, 430, 420, 80);
-
-              context.font = "700 48px Signika";
-              context.fillStyle = "#FFFFFF";
-              context.fillText('BREAKING NEWS', 100, 488);
-
-              //Text
-              context.font = "700 72px Signika";
-              context.fillStyle = "#000000";
-              context.fillText(headline.toUpperCase(), 100, 590);
-
-              //Ticker
-              context.fillStyle = "#feeb1a";
-              context.fillRect(180, 620, 1100, 60);
-
-              context.font = "700 28px Signika";
-              context.fillStyle = "#000";
-              context.fillText(ticker.toUpperCase(), 200, 660);
-
-              //Logo
-              context.shadowColor = "rgba(0,0,0,0.7)";
-              context.shadowOffsetX = 0;
-              context.shadowOffsetY = 0;
-              context.shadowBlur = 6;
-              context.globalAlpha = 0.6;
-              //context.drawImage(imageObj, 560, 20);
-              context.font = "400 36px Signika";
-              context.fillStyle = "#fff";
-              context.fillText('breakyourownnews.com', 860, 80);
-              context.globalAlpha = 1;
-              context.shadowBlur = 0;
-          }
-          }
-          function handleImage(e) {
-              var reader = new FileReader();
-              reader.onload = function (event) {
-                  img.onload = function () {
-                      drawScreen();
-                  }
-                  img.src = event.target.result;
-              }
-              reader.readAsDataURL(e.target.files[0]);
-          }
-          if (cmd === `${prefix}breakingnews` && headline && ticker && imageurl === `http://`) {
-              eventWindowLoaded();
+      if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
+      if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
+      if (!imageurl) return message.channel.send(":x: no sepuede sin el url dela imagen, siga intentando");
+      const today = new Date();
+      var m = today.getMinutes();
+      var h = today.getHours();
+      if (m < 10) {
+          m = "0" + m
+      };
+          if (cmd === `${prefix}breakingnews` + headline + ticker + imageurl === img.url) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
@@ -195,7 +24,7 @@ exports.run = async (bot, message, prefix, args, pdfcrowd, clientee) => {
                 process.exit(1);
               }
               clientee.convertStringToFile(
-                `<link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet"><canvas id="canvasOne" width="1280" height="720" class="byon-canvas">.</canvas>`,
+                `<link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet"/><style type="text/css">.text2 {font-family: Signika;font-size: x-large;color: #FFFFFF;text-align: center;}.auto-style1 {font-family: Signika;font-size: 30pt;}.auto-style2 {font-family: Signika;font-size: x-large;color: #000000;text-align: left;}</style><body><form id="form1" runat="server" style="width: 1024px; position: absolute; left: 4px; top: 5px; height: 546px;"><div style="height: 576px; position: absolute; left: -7px; top: -13px;"> <img height="546" src="https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/breaking.png?raw=true" width="1024" /></div><img alt="" height="546" src=${imageurl} width="1024" /></form><p id="headline" class="auto-style1" style="position: absolute; left: 73px; top: 358px; width: 940px; height: 61px;"><strong>${headline}</strong></p><p class="text2" style="position: absolute; left: 67px; top: 446px; width: 70px; height: 37px" id="clock">${h}:${m}</p><p class="auto-style2" style="position: absolute; left: 159px; top: 445px; width: 852px; height: 30px" id="ticker"><strong>${ticker}</strong></p></body>`,
                 "breakingnews.png",
                 function(err, fileName) {
                   if (err) return console.error("Pdfcrowd Error: " + err);
