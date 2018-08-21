@@ -6,7 +6,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
       let args2 = message.content.slice(checking.lenght).trim().split(checking, barra);
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let ticker = args3[1];
-      let headline = args2[1];
+      let headline = args2[2];
       if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
       if (!imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
