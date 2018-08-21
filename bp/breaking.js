@@ -2,7 +2,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] \n <imagen>```");
       let imagen = message.attachments.first().url;
       let barra = ' | ';
-      let headline = args.join(' ').split(barra, ' ');
+      let headline = args.join(' ').split(barra);
       let ticker = args.join(' ');
       if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
