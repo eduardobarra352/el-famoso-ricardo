@@ -3,7 +3,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       let imagen = message.attachments.first();
       let barra = ' | ';
       let headline = args.join(' ').split(barra);
-      let ticker = args.slice(1).join(' ');
+      let ticker = args[2].slice(1).join(' ');
       if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
       if (!imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
@@ -16,7 +16,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (m < 10) {
           m = "0" + m
       };
-          if (cmd === `${prefix}breakingnews` + headline + barra + ticker) {
+          if (cmd === `${prefix}breakingnews` && headline && barra && ticker) {
               message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(4000));
               try {
                 clientee.setOutputFormat("png");
