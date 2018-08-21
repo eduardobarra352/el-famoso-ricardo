@@ -4,7 +4,7 @@ exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       let barra = ' | ';
       let headline = args[0];
       let args2 = message.content.slice(headline.lenght).trim().split(barra);
-      let ticker = args2[0];
+      let ticker = args2[2];
       if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
       if (!imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
