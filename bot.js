@@ -210,7 +210,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}breakingnews`) {
         try {
             let commandFile = require(`./bp/breaking.js`);
-            commandFile.run(bot, message, prefix, args, pdfcrowd, clientee);
+            commandFile.run(bot, message, cmd, args, pdfcrowd, clientee);
         } catch(e) {
             console.log(e.stack);
         }
