@@ -1,12 +1,15 @@
 exports.run = async (bot, message, cmd, prefix, args, pdfcrowd, clientee) => {
       if (!args[0]) return message.reply("```>breakingnews [headline] | [ticker] \n <imagen>```");
-      let imagen = message.attachments.first().url;
+      let imagen = message.attachments.first();
       let barra = ' | ';
-      let headline = args.join(' ').split(this.lenght);
+      let headline = args.join(' ').split(barra);
       let ticker = args.slice(1).join(' ');
       if (!headline) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (!ticker) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
       if (!imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
+      if (!headline && ticker && imagen) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
+      if (headline && !ticker && imagen) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
+      if (headline && ticker && !imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
       const today = new Date();
       var m = today.getMinutes();
       var h = today.getHours();
