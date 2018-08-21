@@ -29,7 +29,7 @@ bot.on("message", message => {
     const ownerID = process.env.ownerID;
     const code = process.env.code;
     let msg = message.content.toLowerCase();
-    let args = message.content.slice(prefix.lenght).trim().split(' ');
+    let args = message.content.slice(prefix.lenght).trim().split(' | ');
     let cmd = args.shift().toLowerCase();
 
     if (cmd === `${prefix}invite`) {
