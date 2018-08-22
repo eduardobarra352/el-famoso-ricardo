@@ -10,7 +10,7 @@ function finish(bot, opus, dispatcher) {
   else {
     opus.activo.delete(dispatcher.guildID);
     let vc = bot.guilds.get(dispatcher.guildID).me.voiceChannel;
-    if (vc) return vc.leave();
+    if (vc) vc.leave();
   }
 }
 
