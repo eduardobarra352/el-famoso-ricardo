@@ -43,7 +43,7 @@ exports.run = async (bot, message, args, opus) => {
           url: args[0],
           announceChannel: message.channel.id
         });
-        if (!data.dispatcher) return play(bot, opus, data);
+        if (!data.dispatcher) play(bot, opus, data);
         else {
           message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         }
