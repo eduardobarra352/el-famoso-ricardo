@@ -35,7 +35,7 @@ exports.run = async (bot, message, args, opus) => {
         //message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
         let data = opus.activo.get(message.guild.id) || {};
         if (!data.connection) data.connection = await message.member.voiceChannel.join();
-        if (!data.queue) return data.queue = [];
+        if (!data.queue) data.queue = [];
         data.guildID = message.guild.id;
         data.queue.push({
           songTitle: info.title,
