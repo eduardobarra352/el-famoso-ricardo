@@ -18,7 +18,7 @@ async function play(bot, opus, data) {
   bot.channels.get(data.queue[0].announceChannel).send(`:musical_note: Ahorita por fin escuchas: **${data.queue[0].songTitle}** | Elegido de: **${data.queue[0].requester}**`);
   data.dispatcher = await data.connection.playStream(ytdl(data.queue[0].url, { filter: 'audioonly' }));
   data.dispatcher.guildID = data.guildID;
-  data.dispatcher.once('finished', function() {
+  data.dispatcher.once('end', function() {
     finish(bot, opus, this);
   });
 }
@@ -33,7 +33,7 @@ exports.run = async (bot, message, args, opus) => {
         //let connection = await message.member.voiceChannel.join();
         //let dispatcher = await connection.play(ytdl(args[0], { filter: "audioonly" }));
         //message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
-        let data = opus.activo.get(message.guild.id) || {};
+        const data = opus.activo.get(message.guild.id) || {};
         if (!data.connection) data.connection = await message.member.voiceChannel.join();
         if (!data.queue) data.queue = [];
         data.guildID = message.guild.id;
