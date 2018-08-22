@@ -1,4 +1,4 @@
-exports.run = async (bot, message, args, opus) => {
+exports.run = async (bot, message, args, opus, activo) => {
   if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
   let fetched = opus.activo.get(message.guild.id);
   if (!fetched) return message.channel.send(":x: Mmmmm no hayotro video o audio en la lista");
