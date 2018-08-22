@@ -104,6 +104,17 @@ bot.on("message", message => {
             console.log(e.stack);
         }
     }
+    if (cmd === `${prefix}queue`) {
+        try {
+            let opus = {
+                active: active
+            }
+            let commandFile = require(`./bp/queue.js`);
+            commandFile.run(bot, message, args, opus);
+        } catch(e) {
+            console.log(e.stack);
+        }
+    }
     if (cmd === `${prefix}leave`) {
         try {
             let commandFile = require(`./bp/leave.js`);
