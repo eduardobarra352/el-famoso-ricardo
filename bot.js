@@ -107,7 +107,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}queue`) {
         try {
             let opus = {
-                active: active
+                active: activo
             }
             let commandFile = require(`./bp/queue.js`);
             commandFile.run(bot, message, args, opus);
