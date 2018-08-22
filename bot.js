@@ -7,7 +7,6 @@ const opusscript = require('opusscript');
 const ffmpegbinaries = require('ffmpeg-binaries');
 const webshot = require('node-webshot');
 const avconv = require('avconv');
-const active = new Map();
 
 //bot en conexión
 bot.on("ready", () => {
@@ -27,6 +26,7 @@ bot.on("message", message => {
     const prefix = '>';
     const ownerID = process.env.ownerID;
     const code = process.env.code;
+    const activo = new Map();
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
@@ -96,7 +96,7 @@ bot.on("message", message => {
         try {
             let opus = {
                 ownerID: ownerID,
-                active: active
+                active: activo
             }
             let commandFile = require(`./bp/play.js`);
             commandFile.run(bot, message, args, opus);
