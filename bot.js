@@ -236,6 +236,9 @@ bot.on("message", message => {
         if (cmd === `${prefix}${code}` && status === 'servers') {
             message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o`);
+            if (cmd === `${prefix}${code}` && status === 'servers names') {
+            message.delete();
+            message.channel.send(`${bot.guilds.map(g=>g.name).join('\n')}`);
         }
     }
 });
