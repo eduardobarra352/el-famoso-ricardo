@@ -10,7 +10,7 @@ function finish(bot, opus, dispatcher) {
   else {
     opus.activo.delete(dispatcher.guildID);
     let vc = bot.guilds.get(dispatcher.guildID).me.voiceChannel;
-    if (vc) vc.leave();
+    if (vc) return vc.leave();
   }
 }
 
@@ -34,8 +34,8 @@ exports.run = async (bot, message, args, opus) => {
         //let dispatcher = await connection.play(ytdl(args[0], { filter: "audioonly" }));
         //message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
         let data = opus.activo.get(message.guild.id) || {};
-        if (!data.connection) data.connection = await message.member.voiceChannel.join();
-        if (!data.queue) data.queue = [];
+        if (!data.connection) return data.connection = await message.member.voiceChannel.join();
+        if (!data.queue) return data.queue = [];
         data.guildID = message.guild.id;
         data.queue.push({
           songTitle: info.title,
@@ -43,7 +43,7 @@ exports.run = async (bot, message, args, opus) => {
           url: args[0],
           announceChannel: message.channel.id
         });
-        if (!data.dispatcher) play(bot, opus, data);
+        if (!data.dispatcher) return play(bot, opus, data);
         else {
           message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         }
