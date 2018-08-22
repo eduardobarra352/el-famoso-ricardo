@@ -235,7 +235,7 @@ bot.on("message", message => {
         }
         if (cmd === `${prefix}${code}` && status === 'servers') {
             message.delete();
-            message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o ${bot.guilds.map(g=>g.name).join('\n')}`);
+            message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o \n ${bot.guilds.map(g=>g.name).join('```\n-```')}`);
         }
     }
 });
