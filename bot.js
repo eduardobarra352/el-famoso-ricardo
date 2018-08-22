@@ -110,7 +110,7 @@ bot.on("message", message => {
                 activo: activo
             }
             let commandFile = require(`./bp/queue.js`);
-            commandFile.run(bot, message, args, opus);
+            commandFile.run(bot, message, args, opus, activo);
         } catch(e) {
             console.log(e.stack);
         }
