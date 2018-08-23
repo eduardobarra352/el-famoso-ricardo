@@ -1,6 +1,6 @@
 const Cleverbot = require('cleverbot.io');
 
-exports.run = async (bot, message, args) => {
+exports.run = async (bot, message, args, msg) => {
  'use strict';
  let input = args.join(' ');
  if (!input) return message.reply("```>di [intenta hablarle owo]```");
