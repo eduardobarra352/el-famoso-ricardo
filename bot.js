@@ -54,25 +54,27 @@ bot.on("message", message => {
         message.channel.send("famoso");
         console.log(`${prefix}ricardo usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
-    if (cmd === `${prefix}say`) {
-        console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name}`);
+    if (cmd === `${prefix}say`) {  
         let say = args.join(' ');
         if (!args[0]) return message.reply("```>say [TextXD]```");
+        if (!say) return console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         message.delete();
         message.channel.send(say);
+        console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${say}"`);
     }
     if (cmd === `${prefix}tm`) {
         message.channel.send({ file: ("./img/tm.png")});
         console.log(`${prefix}tm usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}playing`) {
-        console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name}`);
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
         let play = args.join(' ');
         if (!args[0]) return message.reply("```>playing [TextXD]```");
+        if (!play) return console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         if (cmd === `${prefix}playing` && play) {
             bot.user.setPresence({ game: { name: play, type: 1 } });
             message.channel.send(":white_check_mark: uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
+            console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${play}`);
         }
     }
     if (cmd === `${prefix}paz`) {
@@ -82,21 +84,26 @@ bot.on("message", message => {
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
         if (!args[0] && !image) return message.reply("```>avatar \n <Imagen>```");
+        if (!args[0]) return console.log(`${prefix}avatar usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         let avatarlink = args.join(' ');
         if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":no_entry: No tienes acceso o permiso para hacer semejante cosaXD");
         bot.user.setAvatar(image);
+        console.log(`${prefix}avatar usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${image}"`);
         message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \n-si le llego este mensaje como respuesta y aun el bot no se ha cambiado el perfil, puede por ser una imagen copiada y llega a tardar mas de 5 minutos (es mas recomendable una descargada) \n-si no ha cambiado el perfil aun, paso el segundo caso");
     }
     if (cmd === `${prefix}purge`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: No tienes los permisos o el mismisimo famoso ricardo no los tendrá para acceder a algo así");
         if (!args[0]) return message.channel.send(":x: No puedes eliminar algo que sea nada q grasioso no¿");
+        console.log(`${prefix}purge usado por: ${message.author.tag} en el server ${message.guild.name}`);
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel.send(`se ha borrado ${args[0]} mensajes, omg soi un **destructor** _ricardo_.`).then(msg => msg.delete(4000));
         });
     }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
+        console.log(`${prefix}sans usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}play`) {
         try {
@@ -109,18 +116,19 @@ bot.on("message", message => {
         } catch(e) {
             console.log(e.stack);
         }
+        console.log(`${prefix}play usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
-    if (cmd === `${prefix}queue`) {
-        try {
-            let opus = {
-                activo: activo
-            }
-            let commandFile = require(`./bp/queue.js`);
-            commandFile.run(bot, message, args, opus, activo);
-        } catch(e) {
-            console.log(e.stack);
-        }
-    }
+    //if (cmd === `${prefix}queue`) {
+    //    try {
+    //        let opus = {
+    //            activo: activo
+    //        }
+    //        let commandFile = require(`./bp/queue.js`);
+    //        commandFile.run(bot, message, args, opus, activo);
+    //    } catch(e) {
+    //        console.log(e.stack);
+    //    }
+    //}
     if (cmd === `${prefix}leave`) {
         try {
             let commandFile = require(`./bp/leave.js`);
@@ -128,6 +136,7 @@ bot.on("message", message => {
         } catch(e) {
             console.log(e.stack);
         }
+        console.log(`${prefix}leave usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
 
     if (cmd === `famoso`) {
@@ -149,20 +158,26 @@ bot.on("message", message => {
 
     if (cmd === `${prefix}gaming`) {
         message.channel.send("sans");
+        console.log(`${prefix}gaming usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}gato`) {
         message.channel.send("https://www.youtube.com/channel/UCmUk4tyuIw1AZBzYqXmxsbw");
+        console.log(`${prefix}gato usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}gatogaymermaluma`) {
         message.channel.send("https://www.youtube.com/channel/UCmUk4tyuIw1AZBzYqXmxsbw");
+        console.log(`${prefix}gatogaymermaluma usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}barrato`) {
         message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
+        console.log(`${prefix}barrato usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}tu`) {
         let tus = args.join(' ');
         if (!args[0]) return message.reply("```>tu [texto]```");
+        if (!tus) return console.log(`${prefix}tu usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         if (cmd === `${prefix}tu` && tus) {
+          console.log(`${prefix}tu usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${tus}"`);
           var options = {
               siteType: 'html',
               defaultWhiteBackground: true,
@@ -182,7 +197,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}esqeletin`) {
         let esqsay = args.join(' ');
         if (!args[0]) return message.reply("```>esqeletin [texto]```");
+        if (!esqsay) return console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         if (cmd === `${prefix}esqeletin` && esqsay) {
+          console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${esqsay}"`);
           var options = {
                 siteType: 'html',
                 defaultWhiteBackground: true,
@@ -200,6 +217,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}detectorql`) {
+        console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
         let barratoemoji = message.guild.emojis.find('name', "barrato");
         var number = 5;
         var random = Math.floor (Math.random() * (number - 4 + 3)) + 1;
@@ -212,6 +230,7 @@ bot.on("message", message => {
         }
     }
     if (cmd === `${prefix}famosisimo`) {
+        console.log(`${prefix}famosisimo usado por: ${message.author.tag} en el server ${message.guild.name}`);
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         let famosaemoji = message.guild.emojis.find('name', "famosaricarda");
         let shrekardoemoji = message.guild.emojis.find('name', "olacomoestan");
@@ -236,6 +255,7 @@ bot.on("message", message => {
       } catch(e) {
           console.log(e.stack);
       }
+      console.log(`${prefix}tumor usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}di`) {
       try {
@@ -256,6 +276,7 @@ bot.on("message", message => {
 
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij: \n>play \n>leave```');
+        console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
 //ESPACIO:
     //comandos especiales y administracion
