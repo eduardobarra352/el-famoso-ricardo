@@ -10,7 +10,7 @@ exports.run = async (bot, message, args, msg) => {
  clbt.create(function (err, session) {
    clbt.ask(input, function (err, response) {
          console.log(session + ':', response);
-         msg.delete();
+         msg => msg.delete();
          message.channel.send(response);
        });
    });
