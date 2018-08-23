@@ -26,7 +26,6 @@ const yt = require('yt-search');
 
 exports.run = async (bot, message, args, opus, activo) => {
         if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
-        let search = args.join(' ').split(yt);
         if (message.guild.me.voiceChannel) return message.channel.send("uy pero ya estoi en elcanal de voz jej");
         if (!args[0]) return message.reply("```>play [url]```");
         let validate = await ytdl.validateURL(args[0]);
@@ -50,7 +49,7 @@ exports.run = async (bot, message, args, opus, activo) => {
         //  message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         //}
         //opus.activo.set(message.guild.id, data);
-        yt(args.slice(search).join(' '), function(err, res){
+        yt(args.join(' '), function(err, res){
           if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
           let videos = res.video.slice(0, 10);
           let resp = '';
