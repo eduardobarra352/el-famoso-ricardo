@@ -29,7 +29,7 @@ exports.run = async (bot, message, args, opus, activo) => {
         if (message.guild.me.voiceChannel) return message.channel.send("uy pero ya estoi en elcanal de voz jej");
         if (!args[0]) return message.reply("```>play [url]```");
         let validate = await ytdl.validateURL(args[0]);
-        if (!validate && !yt) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
+        if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
         let info = await ytdl.getInfo(args[0]);
         let connection = await message.member.voiceChannel.join();
         let dispatcher = await connection.playStream(ytdl(args[0], { filter: "audioonly" }));
@@ -49,14 +49,14 @@ exports.run = async (bot, message, args, opus, activo) => {
         //  message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         //}
         //opus.activo.set(message.guild.id, data);
-        yt(args.join(' '), function(err, res){
-          if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          let videos = res.video.slice(0, 10);
-          let resp = '';
-          for(var i in videos) {
-            resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
-          }
-          resp += `eliga el número del video q qieres lel: **1-${videos.lenght}**`;
-          message.channel.send(resp);
-        });
+        //yt(args.join(' '), function(err, res){
+        //  if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+        //  let videos = res.video.slice(0, 10);
+        //  let resp = '';
+        //  for(var i in videos) {
+        //    resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
+        //  }
+        //  resp += `eliga el número del video q qieres lel: **1-${videos.lenght}**`;
+        //  message.channel.send(resp);
+        //});
 }
