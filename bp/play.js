@@ -34,6 +34,7 @@ exports.run = async (bot, message, args, opus, activo) => {
         let connection = await message.member.voiceChannel.join();
         let dispatcher = await connection.playStream(ytdl(args[0], { filter: "audioonly" }));
         message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
+        console.log(`>play usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         //const data = opus.activo.get(message.guild.id) || {};
         //if (!data.connection) data.connection = await message.member.voiceChannel.join();
         //if (!data.queue) data.queue = [];
