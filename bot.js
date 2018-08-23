@@ -48,14 +48,14 @@ bot.on("message", message => {
     //comandos de prefix
     if (cmd === `${prefix}famoso`) {
         message.channel.send("ricardo");
-        console.log(`${prefix}famoso usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}famoso usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}ricardo`) {
         message.channel.send("famoso");
-        console.log(`${prefix}ricardo usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}ricardo usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}say`) {
-        console.log(`${prefix}say usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name}`);
         let say = args.join(' ');
         if (!args[0]) return message.reply("```>say [TextXD]```");
         message.delete();
@@ -63,10 +63,10 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}tm`) {
         message.channel.send({ file: ("./img/tm.png")});
-        console.log(`${prefix}tm usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}tm usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}playing`) {
-        console.log(`${prefix}playing usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name}`);
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
         let play = args.join(' ');
         if (!args[0]) return message.reply("```>playing [TextXD]```");
@@ -77,7 +77,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}paz`) {
         message.channel.send("amemonos");
-        console.log(`${prefix}paz usado por: ${message.author.id} en el server ${message.guild.name}`);
+        console.log(`${prefix}paz usado por: ${message.author.tag} en el server ${message.guild.name}`);
     }
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
