@@ -1,8 +1,9 @@
 const Cleverbot = require('cleverbot.io');
 
-exports.run = async (bot, message, args) {
-  'use strict';
+exports.run = async (bot, message, args) => {
+ 'use strict';
  let input = process.args.slice(2).join(' ');
+ if (!input) return message.reply("```>di [intenta hablarle owo]```");
  let clbt = new Cleverbot('3hvWzi38KHKHHY0y', 'vdAjTZR6qfnxKmJOX9cSotqjD5K1qzxK');
  clbt.setNick('Vlad');
  clbt.create(function (err, session) {
