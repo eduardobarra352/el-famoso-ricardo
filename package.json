@@ -1,7 +1,7 @@
 {
   "name": "el-famoso-ricardo",
   "description": "el famoso ricardo",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
@@ -17,6 +17,7 @@
     "request": "2.81.0",
     "avconv": "3.1.0",
     "ytdl-core": "^0.24.0",
+    "yt-search": "0.1.4",
     "node-opus": "^0.2.4"
   }
 }
