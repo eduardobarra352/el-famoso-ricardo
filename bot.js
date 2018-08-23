@@ -232,7 +232,14 @@ bot.on("message", message => {
           console.log(e.stack);
       }
     }
-
+    if (cmd === `${prefix}di`) {
+      try {
+          let commandFile = require(`./bp/clever.js`);
+          commandFile.run(bot, message, args);
+      } catch(e) {
+          console.log(e.stack);
+      }
+    }
     if (cmd === `${prefix}breakingnews`) {
         try {
             let commandFile = require(`./bp/breaking.js`);
