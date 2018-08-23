@@ -12,7 +12,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
       if (!headline && ticker && imagen) return message.channel.send(":x: sedesconoce eltitulon, siga intentando");
       if (headline && !ticker && imagen) return message.channel.send(":x: sedesconoce lainfo destacada, siga intentando");
       if (headline && ticker && !imagen) return message.reply(":no_entry: soloesta permitido una imagen copiada o ya descargada");
-      
+      if (!args[0] && !headline && !ticker && !imagen) return console.log(`${prefix}breakingnews usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
       const today = new Date();
       var m = today.getMinutes();
       var h = today.getHours();
@@ -20,6 +20,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
           m = "0" + m
       };
       if (cmd === `${prefix}breakingnews` && barra && headline && barra && ticker) {
+            console.log(`${prefix}breakingnews usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${headline} + ${ticker}"`);
             var options = {
                   siteType: 'html',
                   defaultWhiteBackground: true,
