@@ -58,5 +58,5 @@ exports.run = async (bot, message, args, opus, activo) => {
           }
           resp += `eliga el número del video q qieres lel: **1-${videos.lenght}**`;
           message.channel.send(resp);
-        }
+        });
 }
