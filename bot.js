@@ -165,12 +165,32 @@ bot.on("message", message => {
                   height: 798
               }
           };
-          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(1000));
+          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
           webshot(`<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>`, 'Tu.png', options, function(err) {
               message.channel.send({file: ("Tu.png")});
           });
             //message.channel.send(tus, { file: ("./img/tus.png") });
             //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
+          }
+    }
+    if (cmd === `${prefix}esqeletin`) {
+        let esqsay = args.join(' ');
+        if (!args[0]) return message.reply("```>esqeletin [texto]```");
+        if (cmd === `${prefix}esqeletin` && esqsay) {
+          var options = {
+                siteType: 'html',
+                defaultWhiteBackground: true,
+                screenSize: {
+                      width: 1024,
+                      height: 566
+                }
+          };
+          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
+          webshot(`<head><link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"><style type="text/css">.auto-style1 {	font-family: Indie Flower;	font-size: xx-large;	margin-bottom: 0px;	margin-top: 0px;}.auto-style2 {	margin-top: 0px;}</style></head><p style="width: 1026px; position: absolute; left: 0px; top: 0px; height: 568px;" class="auto-style2"><img alt="esqueletin" height="566" src="https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true" width="1024" class="auto-style2" /></p><p class="auto-style1" style="width: 244px; position: absolute; left: 589px; top: 205px; height: 161px;"><strong>${esqsay}</strong></p>`, 'esqeletin.png', options, function(err) {
+          message.channel.send({file: ("esqeletin.png")});
+          });
+            //message.channel.send({ file: ("./bp/esqeletin.png") });
+            //\n https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true
           }
     }
     if (cmd === `${prefix}detectorql`) {
