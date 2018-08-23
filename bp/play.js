@@ -1,4 +1,5 @@
 const ytdl = require('ytdl-core');
+const yt = require('yt-search');
 
 //function finish(bot, opus, dispatcher) {
 //  let fetched = opus.activo.get(dispatcher.guildID);
@@ -48,4 +49,14 @@ exports.run = async (bot, message, args, opus, activo) => {
         //  message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         //}
         //opus.activo.set(message.guild.id, data);
+        yt(args.join(' '), function(err, res){
+          if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+          let videos = res.video.slice(0, 10);
+          let resp = '';
+          for(var i in videos) {
+            resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
+          }
+          resp += `eliga el número del video q qieres lel: **1-${videos.lenght}**`;
+          message.channel.send(resp);
+        }
 }
