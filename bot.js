@@ -320,6 +320,6 @@ function Log(bot, message, args) {
   return;
   const guild = bot.guilds.find('id', serverID);
   if (!guild) return;
-  if (guild) return message.guild.channel.send(embed);
+  if (guild) return message.guild.send(embed);
 }
 bot.login(process.env.token);
