@@ -288,7 +288,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}di`) {
       try {
           let commandFile = require(`./bp/clever.js`);
-          commandFile.run(bot, message, args);
+          commandFile.run(bot, message, args, Log);
       } catch(e) {
           console.log(e.stack);
       }
@@ -296,7 +296,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}breakingnews`) {
         try {
             let commandFile = require(`./bp/breaking.js`);
-            commandFile.run(bot, message, cmd, prefix, args, webshot);
+            commandFile.run(bot, message, cmd, prefix, args, webshot, Log);
         } catch(e) {
             console.log(e.stack);
         }
