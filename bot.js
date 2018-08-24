@@ -318,7 +318,6 @@ function Log(bot, message, args) {
   .addField("Hora", message.createdAt)
   .addField("Servidor", message.guild.name);
   return;
-  if (member.guild.id !== ownerID) return;
-  ownerID.sendMessage(embed);
+  if (member.guild.id === serverID) return message.channel.send(embed);
 }
 bot.login(process.env.token);
