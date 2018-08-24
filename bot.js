@@ -317,6 +317,8 @@ function Log(bot, message, args) {
   .addField("Usuario", message.author.tag)
   .addField("Hora", message.createdAt)
   .addField("Servidor", message.guild.name);
-  return message.channel.sendMessage(serverID, embed);
+  return;
+  if (member.guild.id !== ownerID) return;
+  message.channel.sendMessage(embed);
 }
 bot.login(process.env.token);
