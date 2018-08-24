@@ -9,6 +9,8 @@ const ffmpegbinaries = require('ffmpeg-binaries');
 const webshot = require('node-webshot');
 const avconv = require('avconv');
 const activo = new Map();
+const ownerID = process.env.ownerID;
+const guildID = process.env.serverID;
 
 //bot en conexión
 bot.on("ready", () => {
@@ -25,8 +27,6 @@ bot.on("message", message => {
 
     //variantes
     const prefix = '>';
-    const ownerID = process.env.ownerID;
-    const guildID = process.env.serverID;
     const code = process.env.code;
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
