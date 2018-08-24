@@ -4,7 +4,6 @@ exports.run = async (bot, message, args, Log) => {
  'use strict';
  let input = args.join(' ');
  if (!input) return message.reply("```>di [intenta hablarle owo]```");
- message.channel.send(`:speech_balloon: Respondiendo,,,`).then(msg => msg.delete(12000));
  message.channel.startTyping();
  if (!args[0]) return console.log(`>di usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
  let clbt = new Cleverbot('3hvWzi38KHKHHY0y', 'vdAjTZR6qfnxKmJOX9cSotqjD5K1qzxK');
