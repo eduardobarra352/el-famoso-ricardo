@@ -26,6 +26,7 @@ bot.on("message", message => {
     //variantes
     const prefix = '>';
     const ownerID = process.env.ownerID;
+    const serverID = process.env.serverID;
     const code = process.env.code;
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
@@ -65,6 +66,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}tm`) {
         message.channel.send({ file: ("./img/tm.png")});
         console.log(`${prefix}tm usado por: ${message.author.tag} en el server ${message.guild.name}`);
+        Log(bot, message, args);
     }
     if (cmd === `${prefix}playing`) {
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
@@ -305,4 +307,19 @@ bot.on("message", message => {
     }
 });
 
+function Log(bot, message, args) {
+  let embed = new Discord.RichEmbed()
+  .setColor("#40f230")
+  .addField("Log")
+  .setDescription("Nuevos usos del bot y su respectivo sitio")
+  .setThumbnail(message.guild.displayAvatarURL)
+  .addField("Uso", message.content)
+  .addField("Usuario", message.author.tag)
+  .addField("Hora", message.createdAt)
+  .addField("Servidor", message.guild.name);
+  return;
+  const guild = bot.guilds.find('id', serverID);
+  if (!guild) return;
+  if (guild) return message.guild.channel.send(embed);
+}
 bot.login(process.env.token);
