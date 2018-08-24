@@ -67,7 +67,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}say`) {  
         let say = args.join(' ');
         message.channel.startTyping();
-        setTimeout(()=>{ message.channel.stopTyping(); },2000);
+        setTimeout(()=>{ message.channel.stopTyping(); },800);
         if (!args[0]) return message.reply("```>say [TextXD]```");
         if (!say) return console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         message.delete();
@@ -118,7 +118,7 @@ bot.on("message", message => {
         Log(bot, message, args);
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel.startTyping();
-            setTimeout(()=>{ message.channel.stopTyping(); },2000);
+            setTimeout(()=>{ message.channel.stopTyping(); },1000);
             message.channel.send(`se ha borrado ${args[0]} mensajes, omg soi un **destructor** _ricardo_.`).then(msg => msg.delete(4000));
         });
     }
@@ -205,6 +205,7 @@ bot.on("message", message => {
         if (!args[0]) return message.reply("```>tu [texto]```");
         if (!tus) return console.log(`${prefix}tu usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         if (cmd === `${prefix}tu` && tus) {
+          message.channel.startTyping();
           console.log(`${prefix}tu usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${tus}"`);
           Log(bot, message, args);
           var options = {
@@ -215,9 +216,9 @@ bot.on("message", message => {
                   height: 798
               }
           };
-          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
           webshot(`<style type="text/css">\n.auto-style1 {\n	text-align: center;\n	font-size: 35pt;\n}\n</style>\n<body style="width: 1024px; height: 798px;">\n<p id="textu" class="auto-style1" enableviewstate="true" style="position: absolute; left: 347px; top: 335px; width: 563px; height: 246px; max-width: 267px; max-height: 125px; line-height: normal; vertical-align: text-top; color: #000000; font-style: normal; word-spacing: 20px;" visible="true">${tus}</p><p style="width: 504px">\n<img alt="image" height="801" src="https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png" width="1024" /></p>\n</body>`, 'Tu.png', options, function(err) {
               message.channel.send({file: ("Tu.png")});
+              message.channel.stopTyping();
           });
             //message.channel.send(tus, { file: ("./img/tus.png") });
             //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
@@ -228,6 +229,7 @@ bot.on("message", message => {
         if (!args[0]) return message.reply("```>esqeletin [texto]```");
         if (!esqsay) return console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         if (cmd === `${prefix}esqeletin` && esqsay) {
+          message.channel.startTyping();
           console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${esqsay}"`);
           Log(bot, message, args);
           var options = {
@@ -238,15 +240,16 @@ bot.on("message", message => {
                       height: 566
                 }
           };
-          message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
           webshot(`<head><link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"><style type="text/css">.auto-style1 {	font-family: Indie Flower;	font-size: xx-large;	margin-bottom: 0px;	margin-top: 0px;}.auto-style2 {	margin-top: 0px;}</style></head><p style="width: 1026px; position: absolute; left: 0px; top: 0px; height: 568px;" class="auto-style2"><img alt="esqueletin" height="566" src="https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true" width="1024" class="auto-style2" /></p><p class="auto-style1" style="width: 244px; position: absolute; left: 589px; top: 205px; height: 161px;"><strong>${esqsay}</strong></p>`, 'esqeletin.png', options, function(err) {
           message.channel.send({file: ("esqeletin.png")});
+          message.channel.stopTyping();
           });
             //message.channel.send({ file: ("./bp/esqeletin.png") });
             //\n https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true
           }
     }
     if (cmd === `${prefix}detectorql`) {
+        message.channel.startTyping();
         console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
         let barratoemoji = message.guild.emojis.find('name', "barrato");
@@ -259,8 +262,10 @@ bot.on("message", message => {
             case 4: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} mmmmm :sos:pechoso :skull: :tm:`); break;
             case 5: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} UN **QL** tienes 5 segundos para correr SJXASJSA :skull: :coffin: :man_dancing: adjunto`); break;
         }
+        message.channel.stopTyping();
     }
     if (cmd === `${prefix}famosisimo`) {
+        message.channel.startTyping();
         console.log(`${prefix}famosisimo usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
@@ -279,6 +284,7 @@ bot.on("message", message => {
             case 5: message.channel.send(`${message.author}, te identificas con el barratisimo :b:arrato ${barratoemoji} https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png`); break;
             case 6: message.channel.send(`${message.author}, te identificas con Frida:tm: ME EMPUTQS DXDDJXJD ${meemputasemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669913871876124/enlarge.png`); break;
         }
+        message.channel.stopTyping();
     }
     if (cmd === `${prefix}tumor`) {
       try {
