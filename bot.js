@@ -66,6 +66,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}say`) {  
         let say = args.join(' ');
+        message.channel.startTyping().then(msg => msg.stopTyping(4000));
         if (!args[0]) return message.reply("```>say [TextXD]```");
         if (!say) return console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         message.delete();
