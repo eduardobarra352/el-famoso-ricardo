@@ -317,9 +317,6 @@ function Log(bot, message, args) {
   .addField("Usuario", message.author.tag)
   .addField("Hora", message.createdAt)
   .addField("Servidor", message.guild.name);
-  return;
-  const guild = bot.guilds.find('id', serverID);
-  if (!guild) return;
-  if (guild) return message.guild.send(embed);
+  return message.channel.sendMessage(serverID, embed);
 }
 bot.login(process.env.token);
