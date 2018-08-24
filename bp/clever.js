@@ -13,6 +13,7 @@ exports.run = async (bot, message, args) => {
          console.log(session + ':', response);
          message.channel.send(response);
          console.log(`>di usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${input}"`);
+         Log(bot, message, args);
        });
    });
 }
