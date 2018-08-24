@@ -319,6 +319,6 @@ function Log(bot, message, args) {
   .addField("Servidor", message.guild.name);
   return;
   if (member.guild.id !== ownerID) return;
-  message.channel.sendMessage(embed);
+  ownerID.sendMessage(embed);
 }
 bot.login(process.env.token);
