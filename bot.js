@@ -356,7 +356,7 @@ function Log(bot, message, args) {
     .addField("Usuario", message.author.tag)
     .addField("Hora", message.createdAt)
     .addField("Servidor", message.guild.name)
-    .setTimestamp()
+    .setTimestamp(new Date())
     .setImage(thumbnail);
     return bot.guilds.get(guildID).channels.get("482387992837881858").send(embed);
 }
