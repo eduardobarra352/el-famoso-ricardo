@@ -338,13 +338,13 @@ function Log(bot, message, args) {
     let thumbnail = message.guild.displayAvatarURL;
     let embed = new Discord.RichEmbed()
     .setColor("#40f230")
-    .addField("Log", "xd")
+    .addField("Log", message.channel.name)
     .setDescription("Nuevos usos del bot y su respectivo sitio")
     .setThumbnail(thumbnail)
     .addField("Uso", message.content)
     .addField("Usuario", message.author.tag)
     .addField("Hora", message.createdAt)
     .addField("Servidor", message.guild.name);
-    return bot.guilds.get(guildID).channels.get("415365025121697792").send(embed);
+    return bot.guilds.get(guildID).channels.get("482387992837881858").send(embed);
 }
 bot.login(process.env.token);
