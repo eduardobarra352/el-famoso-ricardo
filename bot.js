@@ -26,7 +26,7 @@ bot.on("message", message => {
     //variantes
     const prefix = '>';
     const ownerID = process.env.ownerID;
-    const serverID = process.env.serverID;
+    const guildID = process.env.serverID;
     const code = process.env.code;
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
@@ -317,6 +317,6 @@ function Log(bot, message, args) {
   .addField("Usuario", message.author.tag)
   .addField("Hora", message.createdAt)
   .addField("Servidor", message.guild.name);
-  return bot.guilds.get(serverID).channels.get("415365025121697792").send(embed);
+  return bot.guilds.get(guildID).channels.get("415365025121697792").send(embed);
 }
 bot.login(process.env.token);
