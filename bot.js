@@ -98,7 +98,6 @@ bot.on("message", message => {
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
         if (!args[0] && !image) return message.reply("```>avatar \n <Imagen>```");
-        if (!args[0]) return console.log(`${prefix}avatar usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         let avatarlink = args.join(' ');
         if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
