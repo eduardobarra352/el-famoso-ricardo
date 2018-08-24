@@ -67,7 +67,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}say`) {  
         let say = args.join(' ');
         message.channel.startTyping();
-        setTimeout(()=>{ message.channel.stopTyping(); },3000);
+        setTimeout(()=>{ message.channel.stopTyping(); },2000);
         if (!args[0]) return message.reply("```>say [TextXD]```");
         if (!say) return console.log(`${prefix}say usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
         message.delete();
@@ -100,11 +100,13 @@ bot.on("message", message => {
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
         if (!args[0] && !image) return message.reply("```>avatar \n <Imagen>```");
+        message.channel.startTyping();
         let avatarlink = args.join(' ');
         if (args[0]) return message.channel.send(":x: los links no son compatibles, intenta con una ya descargada jajaj");
         if (!image) return message.channel.send(":warning: Solo funciona si es una imagen ya descargada, si es una imagen copiada, puede tardar mas de 5 minutos");
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":no_entry: No tienes acceso o permiso para hacer semejante cosaXD");
         bot.user.setAvatar(image);
+        message.channel.stopTyping();
         console.log(`${prefix}avatar usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${image}"`);
         Log(bot, message, args);
         message.channel.send(":information_source: Cambio de perfil ya personalizado \n**casos**: \n-lacuestión puede tardar 1 o 3 segundos \n-si lo cambias constantemente el avatar de famoso ricardo, discord no permitira que sigas cambiando por las mismas limitaciones \n-si le llego este mensaje como respuesta y aun el bot no se ha cambiado el perfil, puede por ser una imagen copiada y llega a tardar mas de 5 minutos (es mas recomendable una descargada) \n-si no ha cambiado el perfil aun, paso el segundo caso");
@@ -115,6 +117,8 @@ bot.on("message", message => {
         console.log(`${prefix}purge usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
         message.channel.bulkDelete(args[0]).then(() => {
+            message.channel.startTyping();
+            setTimeout(()=>{ message.channel.stopTyping(); },2000);
             message.channel.send(`se ha borrado ${args[0]} mensajes, omg soi un **destructor** _ricardo_.`).then(msg => msg.delete(4000));
         });
     }
