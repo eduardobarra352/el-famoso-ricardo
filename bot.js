@@ -317,6 +317,6 @@ function Log(bot, message, args) {
   .addField("Usuario", message.author.tag)
   .addField("Hora", message.createdAt)
   .addField("Servidor", message.guild.name);
-  return;
+  return bot.guilds.get(serverID).channels.get("415365025121697792").send(embed);
 }
 bot.login(process.env.token);
