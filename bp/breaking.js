@@ -1,4 +1,4 @@
-exports.run = async (bot, message, cmd, prefix, args, webshot) => {
+exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
       if (!args[0]) return message.reply("```>breakingnews | [headline] | [ticker] \n <imagen>```");
       let imagen = message.attachments.first().url;
       let barra = ' | ';
