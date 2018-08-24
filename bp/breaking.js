@@ -21,6 +21,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot) => {
       };
       if (cmd === `${prefix}breakingnews` && barra && headline && barra && ticker) {
             console.log(`${prefix}breakingnews usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${headline} + ${ticker}"`);
+            Log(bot, message, args);
             var options = {
                   siteType: 'html',
                   defaultWhiteBackground: true,
