@@ -14,10 +14,10 @@ const guildID = process.env.serverID;
 
 //bot en conexión
 bot.on("ready", () => {
-    var play = `>help`;
+    var play = ` | >help`;
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
-    bot.user.setPresence({ game: { name: play, type: 1 } });
+    bot.user.setPresence({ game: { name: `>help`, type: 1 } });
 });
 
 bot.on("message", message => {
@@ -82,11 +82,11 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}playing`) {
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
-        let play = args.join(' ');
+        let pl = args.join(' ');
         if (!args[0]) return message.reply("```>playing [TextXD]```");
-        if (!play) return console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
-        if (cmd === `${prefix}playing` && play) {
-            bot.user.setPresence({ game: { name: play, type: 1 } });
+        if (!pl) return console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
+        if (cmd === `${prefix}playing` && pl) {
+            bot.user.setPresence({ game: { name: `${pl}${play}`, type: 1 } });
             message.channel.send(":white_check_mark: uy jaja me cambiastes mi _estado_ (algunas veces puede tardar,,,tm)");
             console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${play}`);
             Log(bot, message, args);
@@ -263,6 +263,35 @@ bot.on("message", message => {
             case 5: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} UN **QL** tienes 5 segundos para correr SJXASJSA :skull: :coffin: :man_dancing: adjunto`); break;
         }
         message.channel.stopTyping();
+    }
+    if (cmd === `${prefix}meme`) {
+      if (!args[0]) return message.reply("```>meme [imagenUrl] | [textoXD]");
+      let barra = ' | ';
+      let imageURL = args.join(' ').split(barra);
+      let args2 = message.content.slice(imageURL.lenght).trim().split(barra);
+      let meme = args2.join(' ');
+      if (!imageURL) return message.channel.send(":x: falta el url dela imagen q desea poner plsans");
+      if (!meme) return message.channel.send(":x: falta eltextodel cibershistorrin siga intentando A");
+      if (!imageURL && meme) return message.channel.send(":x: falta el url dela imagen q desea poner plsans");
+      if (imageURL && !meme) return message.channel.send(":x: falta eltextodel cibershistorrin siga intentando A");
+      if (!barra) return message.reply(":no_entry: lohas escrito todomal, vuelva a intentar");
+      if (imageURL && !barra && meme) return message.reply(":no_entry: lohas escrito todomal, vuelva a intentar");
+      if (!imageURL && !barra && meme) message.reply(":no_entry: lohas escrito todomal, vuelva a intentar");
+      if (cmd === `${prefix}meme` && imageURL && barra && meme) {
+          message.channel.startTyping();
+          var options = {
+              siteType: 'html',
+              defaultWhiteBackground: true,
+              screenSize: {
+                  width: '100%',
+                  height: '100%'
+              }
+          };
+          webshot(`<style type="text/css">.auto-style1 {	font-family: "Arial Black";	position: absolute;	font-size: 50pt;	margin-bottom: 221px;	margin-left: 0px;  margin-right: 418px;	text-align: center;}</style><body><p style="width: 1026px; position: absolute; left: 0px; top: 0px; height: 100%px;" class="auto-style2"><img id="imag" alt="" height="100%" src="${imageURL}" width="100%" /></p><p class="auto-style1" style="left: 15px; top: 1033px; right: 13px;"><strong>${meme}</strong></p></body>`, 'meme.png', options, function(err) {
+          message.channel.send({file: ("meme.png")});
+          message.channel.stopTyping();
+        });
+      }
     }
     if (cmd === `${prefix}famosisimo`) {
         message.channel.startTyping();
