@@ -11,10 +11,10 @@ const avconv = require('avconv');
 const activo = new Map();
 const ownerID = process.env.ownerID;
 const guildID = process.env.serverID;
+const play = ` | >help`;
 
 //bot en conexión
 bot.on("ready", () => {
-    const play = ` | >help`;
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
