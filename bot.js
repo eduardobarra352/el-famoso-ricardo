@@ -257,9 +257,9 @@ bot.on("message", message => {
       if (cmd === `${prefix}john` && jon) {
         var options = {
               siteType: 'html',
-              defaultWhiteBackground: true,
+              defaultWhiteBackground: false,
               screenSize: {
-                    width: '100%',
+                    width: 246,
                     height: '100%'
               }
         };
