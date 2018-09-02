@@ -251,6 +251,24 @@ bot.on("message", message => {
             //\n https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true
           }
     }
+    if (cmd === `${prefix}john`) {
+      let jon = args.join(' ').slice(8);
+      if (!args[0]) return message.reply("```>john [textoXD]```");
+      if (cmd === `${prefix}john` && jon) {
+        var options = {
+              siteType: 'html',
+              defaultWhiteBackground: false,
+              screenSize: {
+                    width: 100%,
+                    height: 100%
+              }
+        };
+        message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
+        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;}</style><link rel="stylesheet" type="text/css" href="//cloud.typography.com/6804272/781004/css/fonts.css" /><body><p id="text" visible="true" class="auto-style1" style="width: 246px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" /></body>`, 'john.png', options, function(err) {
+        message.channel.send({file: ("john.png")});
+        });
+      }
+    }
     if (cmd === `${prefix}detectorql`) {
         message.channel.startTyping();
         console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
