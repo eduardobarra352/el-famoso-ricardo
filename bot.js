@@ -257,14 +257,14 @@ bot.on("message", message => {
               siteType: 'html',
               defaultWhiteBackground: false,
               shotOffset: {
-                  left: 10,
+                  left: 5,
                   right: 0,
                   top: 0,
                   bottom: 0
               },
               shotSize: {
-                      width: 'all',
-                      height: 'all'
+                      width: 253,
+                      height: 190
               }
         };
         webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
