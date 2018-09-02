@@ -252,20 +252,21 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ').split(8);
+      let jon = args.join(' ').slice(8);
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
+        message.channel.startTyping();
         var options = {
               siteType: 'html',
               defaultWhiteBackground: false,
               screenSize: {
-                    width: 246,
+                    width: '100%',
                     height: '100%'
               }
         };
-        message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
-        webshot(`<link rel="stylesheet" type="text/css" href="https//cloud.typography.com/6804272/781004/css/fonts.css" /><style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 246px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" />`, 'john.png', options, function(err) {
+        webshot(`<link rel="stylesheet" href="https://cloud.typography.com/6804272/781004/css/fonts.css" /><style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: x-large;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 718px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="430" width="718" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
+        message.channel.stopTyping();
         });
       }
     }
