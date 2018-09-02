@@ -257,14 +257,14 @@ bot.on("message", message => {
       if (cmd === `${prefix}john` && jon) {
         var options = {
               siteType: 'html',
-              defaultWhiteBackground: false,
+              defaultWhiteBackground: true,
               screenSize: {
                     width: '100%',
                     height: '100%'
               }
         };
         message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
-        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;}</style><link rel="stylesheet" type="text/css" href="//cloud.typography.com/6804272/781004/css/fonts.css" /><body><p id="text" visible="true" class="auto-style1" style="width: 246px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" /></body>`, 'john.png', options, function(err) {
+        webshot(`<link rel="stylesheet" type="text/css" href="https//cloud.typography.com/6804272/781004/css/fonts.css" /><style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 246px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
         });
       }
