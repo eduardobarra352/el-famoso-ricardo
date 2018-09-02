@@ -249,7 +249,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let args2 = message.content.slice(20);
+      let args2 = message.content.slice(cmd.lenght).trim(20).split(20);
       let jon = args.join(' ').split(args2);
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
