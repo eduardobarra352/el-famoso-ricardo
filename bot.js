@@ -249,7 +249,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ').split(this.slice(20));
+      let jon = args.join(' ').split(message.content.slice(20));
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
