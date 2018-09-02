@@ -249,9 +249,9 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let [jon, args2, args3, args4, args5, args6, args7, args8, args9] = args;
+      let jon = args[0, 1, 2];
       if (!args[0]) return message.reply("```>john [textoXD]```");
-      if (cmd === `${prefix}john` && jon + args2 + args3 + args4 + args5) {
+      if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
         var options = {
               siteType: 'html',
