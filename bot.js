@@ -259,8 +259,8 @@ bot.on("message", message => {
               siteType: 'html',
               defaultWhiteBackground: false,
               screenSize: {
-                    width: 100%,
-                    height: 100%
+                    width: '100%',
+                    height: '100%'
               }
         };
         message.channel.send(`:speech_balloon: Enviando,,,`).then(msg => msg.delete(2000));
