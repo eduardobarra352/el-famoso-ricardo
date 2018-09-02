@@ -249,8 +249,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let ar = ' ';
-      let jon = args.join(' ').split();
+      let jon = args.join(' ');
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -258,13 +257,13 @@ bot.on("message", message => {
               siteType: 'html',
               defaultWhiteBackground: false,
               shotOffset: {
-                  left: -10,
+                  left: 10,
                   right: 0,
                   top: 0,
                   bottom: 0
               },
-              screenSize: {
-                      width: 253,
+              shotSize: {
+                      width: 'all',
                       height: 'all'
               }
         };
