@@ -252,7 +252,8 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ').slice(8);
+      let jon = args.join(' ');
+      let args2 = message.content.slice(10);
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -260,11 +261,11 @@ bot.on("message", message => {
               siteType: 'html',
               defaultWhiteBackground: false,
               screenSize: {
-                    width: '100%',
-                    height: '100%'
+                    width: 253,
+                    height: 177
               }
         };
-        webshot(`<link rel="stylesheet" href="https://cloud.typography.com/6804272/781004/css/fonts.css" /><style type="text/css">.auto-style1 {	text-align: left;	font-family: 'Whitney SSm A', 'Whitney SSm B', Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: x-large;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 718px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="430" width="718" />`, 'john.png', options, function(err) {
+        webshot(`<link rel="stylesheet" href="https://cloud.typography.com/6804272/781004/css/fonts.css" /><style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
         message.channel.stopTyping();
         });
