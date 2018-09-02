@@ -250,9 +250,9 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}john`) {
       let jon = {
-          args[0];
-          args[1];
-          args[2];
+          args[0],
+          args[1],
+          args[2]
       }
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
