@@ -249,16 +249,23 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.slice(8);
+      let ar = ' ';
+      let jon = args.join(' ').split();
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
         var options = {
               siteType: 'html',
               defaultWhiteBackground: false,
+              shotOffset: {
+                  left: -10,
+                  right: 0,
+                  top: 0,
+                  bottom: 0
+              },
               screenSize: {
                       width: 253,
-                      height: 200
+                      height: 'all'
               }
         };
         webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
