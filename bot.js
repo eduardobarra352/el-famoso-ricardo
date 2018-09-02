@@ -249,7 +249,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ');
+      let jon = args.join(' ').slice(1);
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -258,34 +258,12 @@ bot.on("message", message => {
               defaultWhiteBackground: false,
               screenSize: {
                       width: 253,
-                      height: '100%'
+                      height: 177
               }
         };
-        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;  margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px; position: absolute; left: 0px; top: 0px; bottom: 349px;">${jon}</p><p style="width: 253px; position: absolute; left: 0px; top: 25px; height: 177px;" class="auto-style2"><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" /></p>`, 'john.png', options, function(err) {
+        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
         message.channel.stopTyping();
-        });
-      }
-    }
-    if (cmd === `${prefix}meme`) {
-      if (!args[0]) return message.reply("```>meme [imagenUrl] | [textoXD]");
-      let barra = ' | ';
-      let imageURL = args.join(' ').split(barra);
-      let args2 = message.content.slice(imageURL.lenght).trim().split(barra);
-      let meme = args2.join(' ');
-      if (!imageURL) return message.channel.send(":x: falta el url dela imagen q desea poner plsans");
-      if (!meme) return message.channel.send(":x: falta eltextodel cibershistorrin siga intentando A");
-      if (cmd === `${prefix}meme` && imageURL && barra && meme) {
-        var options = {
-              siteType: 'html',
-              defaultWhiteBackground: true,
-              screenSize: {
-                    width: '100%',
-                    height: '100%'
-              }
-        };
-        webshot(`<style type="text/css">.auto-style1 {	font-family: "Arial Black";	position: absolute;	font-size: 50pt;	margin-bottom: 221px;	margin-left: 0px;  margin-right: 418px;	text-align: center;}</style><body><p style="width: 1026px; position: absolute; left: 0px; top: 0px; height: 100%px;" class="auto-style2"><img id="imag" alt="" height="100%" src=${imageURL} width="100%" /></p><p class="auto-style1" style="left: 15px; top: 1033px; right: 13px;"><strong>${meme}</strong></p></body>`, 'meme.png', options, function(err) {
-        message.channel.send({file: ("meme.png")});
         });
       }
     }
