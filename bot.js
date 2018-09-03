@@ -250,8 +250,8 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let barra = 'undefined';
-      let args2 = message.content.slice(args.lenght).trim().split(barra);
+      let barra = `undefined`;
+      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
       let jon = args;
       let [jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args2;
       if (!args[0]) return message.reply("```>john [textoXD]```");
