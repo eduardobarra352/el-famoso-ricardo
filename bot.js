@@ -250,57 +250,15 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let [jon, jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args;
+      let barra = 'undefined';
+      let args2 = message.content.slice(args.lenght).trim().split(barra);
+      let jon = args;
+      let [jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args2;
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
         console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon} ${jon2} ${jon3} ${jon4} ${jon5} ${jon6} ${jon7} ${jon8} ${jon9} ${jon10} ${jon11} ${jon12} ${jon13} ${jon14} ${jon15} ${jon16}"`);
         Log(bot, message, args);
-        if (jon2 === undefined) {
-            let [jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon3 === undefined) {
-            let [jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon4 === undefined) {
-            let [jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon5 === undefined) {
-            let [jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon6 === undefined) {
-            let [jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon7 === undefined) {
-            let [jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon8 === undefined) {
-            let [jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon9 === undefined) {
-            let [jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon10 === undefined) {
-            let [jon10, jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon11 === undefined) {
-            let [jon11, jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon12 === undefined) {
-            let [jon12, jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon13 === undefined) {
-            let [jon13, jon14, jon15, jon16] = '';
-        }
-        if (jon14 === undefined) {
-            let [jon14, jon15, jon16] = '';
-        }
-        if (jon15 === undefined) {
-            let [jon15, jon16] = '';
-        }
-        if (jon16 === undefined) {
-            let jon16 = '';
-        }
         var options = {
               siteType: 'html',
               defaultWhiteBackground: false,
