@@ -250,7 +250,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args[0];
+      let jon = args.join(' ');
       if (jon.lenght >= 4) { let args2 = message.content.slice(jon.lenght).trim().split(jon.lenght); }
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
