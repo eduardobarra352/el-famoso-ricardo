@@ -253,8 +253,6 @@ bot.on("message", message => {
     if (cmd === `${prefix}john`) {
       let barra = ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(barra);
-      let args3 = message.content.slice(args2.lenght).trim().split(barra);
-      let spp = args2[5];
       let jon = args[0];
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
