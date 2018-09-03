@@ -24,7 +24,6 @@ bot.on("ready", () => {
 bot.on("message", message => {
 
     if (message.author.bot) return undefined;
-    if (message.channel.type === "dm") return;
 
     //variantes
     const prefix = '>';
@@ -341,7 +340,9 @@ bot.on("message", message => {
             console.log(e.stack);
         }
     }
-
+    if (message.channel.type === "dm") {
+        bot.guilds.get(guildID).channels.get("482387992837881858").reply(`:mailbox_with_mail: has recibido mensaje ``dm`` de ${message.author.tag}\n``ID = ${message.author.id}```);
+    }
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
@@ -350,7 +351,7 @@ bot.on("message", message => {
 //ESPACIO:
     //comandos especiales y administracion
     if (cmd === `${prefix}${code}`) {
-        let status = args.join(' ');
+        let status = args[0];
         message.delete();
         if (cmd === `${prefix}${code}` && status === 'online') {
             bot.user.setStatus(`Online`);
