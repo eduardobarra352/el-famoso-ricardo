@@ -251,13 +251,12 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ');
       let barra = ' ';
+      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
+      let SP = args2[4];
+      let jon = args[0];
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
-        if (args[4]) {
-            let args2 = message.content.slice(args.lenght).trim().split(barra);
-        }
         message.channel.startTyping();
         console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon}"`);
         Log(bot, message, args);
