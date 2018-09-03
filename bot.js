@@ -250,7 +250,8 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let [jon, jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args;
+      let args2 = message.content.slice(prefix.lenght).trim().split(undefined);
+      let [jon, jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args2;
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -270,7 +271,7 @@ bot.on("message", message => {
                       height: 220
               }
         };
-        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${args}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
+        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon} ${jon2} ${jon3} ${jon4} ${jon5} ${jon6} ${jon7} ${jon8} ${jon9} ${jon10} ${jon11} ${jon12} ${jon13} ${jon14} ${jon15} ${jon16}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
         message.channel.stopTyping();
         });
