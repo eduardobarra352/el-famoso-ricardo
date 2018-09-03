@@ -252,6 +252,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}john`) {
       let jon = args.join(' ');
       if (args.lenght >= 4) { let args2 = message.content.slice(jon.lenght).trim().split(' '); }
+      let barra = args2;
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -353,9 +354,9 @@ bot.on("message", message => {
     //comandos especiales y administracion
     if (cmd === `${prefix}${code}`) {
         let status = args[0];
-        let realize = args[1];
-        let dammi = args[2];
-        var mention = message.mentions.users.first();
+        //let realize = args[1];
+        //let dammi = args[2];
+        //var mention = message.mentions.users.first();
         message.delete();
         if (cmd === `${prefix}${code}` && status === 'online') {
             bot.user.setStatus(`Online`);
@@ -376,19 +377,19 @@ bot.on("message", message => {
             message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
         }
-        if (cmd === `${prefix}${code}` && status === 'send') {
-            message.delete();
-            try {
-                if (cmd === `${prefix}${code}` && status === 'send' && realize === mention && dammi) {
-                    mention.sendMessage(dammi);
-                    message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
-                }
-            }
-            catch (err) {
-                console.log(err);
-                bot.guilds.get(guildID).channels.get("482387992837881858").send(err);
-            }
-        }
+        //if (cmd === `${prefix}${code}` && status === 'send') {
+        //    message.delete();
+        //    try {
+        //        if (cmd === `${prefix}${code}` && status === 'send' && realize === mention && dammi) {
+        //            mention.sendMessage(dammi);
+        //            message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
+        //        }
+        //    }
+        //    catch (err) {
+        //        console.log(err);
+        //        bot.guilds.get(guildID).channels.get("482387992837881858").send(err);
+        //    }
+        //}
     }
 });
 
