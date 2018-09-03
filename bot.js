@@ -10,7 +10,6 @@ const webshot = require('node-webshot');
 const avconv = require('avconv');
 const activo = new Map();
 const ownerID = process.env.ownerID;
-const ownerTAG = process.env.ownerTAG;
 const guildID = process.env.serverID;
 const play = ` | >help`;
 
@@ -342,7 +341,7 @@ bot.on("message", message => {
         }
     }
     if (message.channel.type === "dm") {
-        bot.guilds.get(guildID).channels.get("482387992837881858").send(`@${ownerTAG}\n:mailbox_with_mail: has recibido mensaje **dm** de ${message.author.tag}\nID = ${message.author.id}\nMensaje = ${cmd}`);
+        bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de ${message.author.tag}\nID = ${message.author.id}\nMensaje = ${cmd}`);
     }
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
@@ -353,6 +352,9 @@ bot.on("message", message => {
     //comandos especiales y administracion
     if (cmd === `${prefix}${code}`) {
         let status = args[0];
+        let realize = args[1];
+        let dammi = args[2];
+        var mention = message.mentions.users.first();
         message.delete();
         if (cmd === `${prefix}${code}` && status === 'online') {
             bot.user.setStatus(`Online`);
@@ -372,6 +374,13 @@ bot.on("message", message => {
         if (cmd === `${prefix}${code}` && status === 'servers') {
             message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
+        }
+        if (cmd === `${prefix}${code}` && status === 'send') {
+            message.delete();
+            if (cmd === `${prefix}${code}` && status === 'send' && realize === mention && dammi) {
+                mention.sendMessage(dammi);
+                message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
+            }
         }
     }
 });
