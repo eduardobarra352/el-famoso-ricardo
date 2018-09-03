@@ -100,6 +100,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}avatar`) {
         let image = message.attachments.first().url;
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":no_entry: eres bastantePENDJ opara aser esto sinpermisos");
         if (!args[0] && !image) return message.reply("```>avatar \n <Imagen>```");
         message.channel.startTyping();
         let avatarlink = args.join(' ');
@@ -250,9 +251,8 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let barra = args[9];
-      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
-      let jon = args;
+      let jon = args.join(' ');
+      let splitMessage = args.substring(args.indexOf(" ") + 3, args.length);
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
