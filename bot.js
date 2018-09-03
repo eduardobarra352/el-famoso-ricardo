@@ -18,7 +18,7 @@ bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
-    bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(2000));
+    bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
 });
 
 bot.on("message", message => {
@@ -254,6 +254,8 @@ bot.on("message", message => {
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
+        console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon} ${jon2} ${jon3} ${jon4} ${jon5} ${jon6} ${jon7} ${jon8} ${jon9} ${jon10} ${jon11} ${jon12} ${jon13} ${jon14} ${jon15} ${jon16}"`);
+        Log(bot, message, args);
         var options = {
               siteType: 'html',
               defaultWhiteBackground: false,
@@ -268,7 +270,7 @@ bot.on("message", message => {
                       height: 220
               }
         };
-        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}${jon2}${jon3}${jon4}${jon5}${jon6}${jon7}${jon8}${jon9}${jon10}${jon11}${jon12}${jon13}${jon14}${jon15}${jon16}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
+        webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon} ${jon2} ${jon3} ${jon4} ${jon5} ${jon6} ${jon7} ${jon8} ${jon9} ${jon10} ${jon11} ${jon12} ${jon13} ${jon14} ${jon15} ${jon16}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
         message.channel.send({file: ("john.png")});
         message.channel.stopTyping();
         });
@@ -340,7 +342,7 @@ bot.on("message", message => {
     }
 
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij: \n>play \n>leave```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>john [textoXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
