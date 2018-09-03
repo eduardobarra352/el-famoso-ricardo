@@ -250,7 +250,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args.join(' ');
+      let [jon] = args{0, 1, 2, 3, 4};
       let args2;
       if (args.lenght >= 4) { let args2 = message.content.slice(jon.lenght).trim().split(' '); }
       let barra = args2;
