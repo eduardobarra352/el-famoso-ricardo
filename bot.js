@@ -250,13 +250,14 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let args2 = message.content.slice(prefix.lenght).trim().split(undefined);
-      let [jon, jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args2;
+      let barra = 'undefined';
+      let [jon, jon2, jon3, jon4, jon5, jon6, jon7, jon8, jon9, jon10, jon11, jon12, jon13, jon14, jon15, jon16] = args;
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
         console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon} ${jon2} ${jon3} ${jon4} ${jon5} ${jon6} ${jon7} ${jon8} ${jon9} ${jon10} ${jon11} ${jon12} ${jon13} ${jon14} ${jon15} ${jon16}"`);
         Log(bot, message, args);
+        if (jon && !jon2) let args2 = message.content.slice(prefix.lenght).trim().split(barra);
         var options = {
               siteType: 'html',
               defaultWhiteBackground: false,
