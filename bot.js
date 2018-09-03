@@ -254,7 +254,9 @@ bot.on("message", message => {
       let jon = args.join(' ');
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
-        if (args[4]) return args.join(' ').split(' ');
+        if (args[4]) {
+            jon = args.join(' ').split(' ');
+        }
         message.channel.startTyping();
         console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon}"`);
         Log(bot, message, args);
