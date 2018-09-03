@@ -250,7 +250,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}john`) {
-      let jon = args[0, 1, 2, 3, 4];
+      let jon [] = {0, 1, 2, 3, 4};
       if (!args[0]) return message.reply("```>john [textoXD]```");
       if (cmd === `${prefix}john` && jon) {
         message.channel.startTyping();
@@ -341,7 +341,7 @@ bot.on("message", message => {
         }
     }
     if (message.channel.type === "dm") {
-        bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje \dm\ de ${message.author.tag}\n\ID = ${message.author.id}\`);
+        bot.guilds.get(guildID).channels.get("482387992837881858").reply(`:mailbox_with_mail: has recibido mensaje **dm** de ${message.author.tag}\nID = ${message.author.id}`);
     }
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras u.uXD O TOA VIOLARA \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
