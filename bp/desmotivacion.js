@@ -3,7 +3,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let urlimagen = args.join(' ').split(args[1]);
   //let imagen = message.attachments.first().url;
   let args2 = message.content.slice(cmd.lenght).trim().split(barra);
-  let toptext = args2[0];
+  let toptext = args2[1];
   let bottomtext = args2[4];
   if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext] \n2- >desmotivacion [url] [toptext] | [bottomtext] \n3- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
   if (!toptext) return console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
