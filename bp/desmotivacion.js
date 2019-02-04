@@ -35,7 +35,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
       message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
     }
   }
-  if (cmd === `${prefix}desmotivacion` && urlimagen && toptext && barra && bottomtext) {
+  else if (cmd === `${prefix}desmotivacion` && urlimagen && toptext && barra && bottomtext) {
     if(foundurl) {
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
@@ -57,7 +57,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
       message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
     }
   }
-  if (cmd === `${prefix}desmotivacion` && toptext) {
+  else if (cmd === `${prefix}desmotivacion` && toptext) {
     bottomtext = '';
     let imagen = message.attachments.first().url;
     if (imagen) {
