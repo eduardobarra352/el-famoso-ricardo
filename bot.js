@@ -228,7 +228,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}desmotivacion`) {
       try {
           let commandFile = require(`./bp/desmotivacion.js`);
-          commandFile.run(bot, message, args, webshot);
+          commandFile.run(bot, message, args, cmd, webshot);
       } catch(e) {
           console.log(e.stack);
       }
