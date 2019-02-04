@@ -64,7 +64,7 @@ bot.on("message", message => {
         console.log(`${prefix}ricardo usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
-    if (cmd === `${prefix}say`) {  
+    if (cmd === `${prefix}say`) {
         let say = args.join(' ');
         message.channel.startTyping();
         setTimeout(()=>{ message.channel.stopTyping(); },800);
@@ -225,6 +225,16 @@ bot.on("message", message => {
             //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
           }
     }
+    if (cmd === `${prefix}desmotivacion`) {
+      try {
+          let commandFile = require(`./bp/desmotivacion.js`);
+          commandFile.run(bot, message, args);
+      } catch(e) {
+          console.log(e.stack);
+      }
+      console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name}`);
+      Log(bot, message, args);
+    }
     if (cmd === `${prefix}esqeletin`) {
         let esqsay = args.join(' ');
         if (!args[0]) return message.reply("```>esqeletin [texto]```");
@@ -249,36 +259,6 @@ bot.on("message", message => {
             //\n https://github.com/eduardobarra352/el-famoso-ricardo/blob/master/img/esqeletin.png?raw=true
           }
     }
-    //if (cmd === `${prefix}john`) {
-    //  let [jon, jon, jon, jon] = args;
-    //  let args2;
-    //  if (args.lenght >= 4) { let args2 = message.content.slice(jon.lenght).trim().split(' '); }
-    //  let barra = args2;
-    //  if (!args[0]) return message.reply("```>john [textoXD]```");
-    //  if (cmd === `${prefix}john` && jon) {
-    //    message.channel.startTyping();
-    //    console.log(`${prefix}john usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${jon}"`);
-    //    Log(bot, message, args);
-    //    var options = {
-    //          siteType: 'html',
-    //          defaultWhiteBackground: false,
-    //          shotOffset: {
-    //              left: 5,
-    //              right: 0,
-    //              top: 5,
-    //              bottom: 0
-    //          },
-    //          shotSize: {
-    //                  width: 253,
-    //                  height: 220
-    //          }
-    //    };
-    //    webshot(`<style type="text/css">.auto-style1 {	text-align: left;	font-family: Arial, Helvetica, sans-serif;    font-weight: 400;    font-style: normal;	color: #FFFFFF;	margin-bottom: 0px;	font-size: medium;	margin-top: 0px;}</style><p id="text" visible="true" class="auto-style1" style="width: 253px">${jon}</p><img alt="" src="https://media.discordapp.net/attachments/458037874017828866/485632780584222720/end.png" height="177" width="253" />`, 'john.png', options, function(err) {
-    //    message.channel.send({file: ("john.png")});
-    //    message.channel.stopTyping();
-    //    });
-    //  }
-    //}
     if (cmd === `${prefix}detectorql`) {
         message.channel.startTyping();
         console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
