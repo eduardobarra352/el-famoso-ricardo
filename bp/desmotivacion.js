@@ -6,7 +6,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let args3 = message.content.slice(args2.lenght).trim().split(barra);
   let toptext = args2[1];
   let bottomtext = args3[2];
-  let verifyurl = ['http://', 'https://'];
+  let verifyurl = ['http://', 'https://', '.png', '.jpg', '.gif', '.bmp'];
   let foundurl = false;
   for (var i in verifyurl) {
     if (message.content.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
