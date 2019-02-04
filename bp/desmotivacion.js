@@ -10,7 +10,7 @@ exports.run = async (bot, message, args, webshot) => {
   if (cmd === `${prefix}desmotivacion` && urlimagen && toptext) {
     bottomtext = '';
     message.channel.startTyping();
-    console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${esqsay}"`);
+    console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
     Log(bot, message, args);
     var options = {
           siteType: 'html',
