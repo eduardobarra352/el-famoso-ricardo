@@ -1,4 +1,4 @@
-exports.run = async (bot, message, args, cmd, webshot) => {
+exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let barra = ' | ';
   let urlimagen = args.join(' ').split(args[1]);
   //let imagen = message.attachments.first().url;
