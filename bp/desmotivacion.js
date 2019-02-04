@@ -9,6 +9,7 @@ exports.run = async (bot, message, args, webshot) => {
   if (!toptext) return console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
   if (cmd === `${prefix}desmotivacion` && urlimagen && toptext) {
     bottomtext = '';
+    imagen = '';
     message.channel.startTyping();
     console.log(`${prefix}esqeletin usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${esqsay}"`);
     Log(bot, message, args);
