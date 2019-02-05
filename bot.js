@@ -226,12 +226,35 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}desmotivacion`) {
-      try {
-          let commandFile = require(`./bp/desmotivacion.js`);
-          commandFile.run(bot, message, cmd, prefix, args, webshot, Log);
-      } catch(e) {
-          console.log(e.stack);
+      let urlimagen = args[0];
+      let args2 = message.content.slice(cmd.lenght).trim().split(' | ');
+      let args3 = message.content.slice(args2.lenght).trim().split(' | ');
+      let toptext = args2[1];
+      let bottomtext = args3[2];
+      if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext) {
+        try {
+            let commandFile = require(`./bp/desmotivacion.js`);
+            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot, Log);
+        } catch(e) {
+            console.log(e.stack);
+        }
       }
+      if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext && ' | ' && bottomtext) {
+        try {
+            let commandFile = require(`./bp/desmotivacion.js`);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log);
+        } catch(e) {
+            console.log(e.stack);
+        }
+      }
+      /*if (cmd === `${prefix}desmotivacion` && toptext) {
+        try {
+            let commandFile = require(`./bp/desmotivacion.js`);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log);
+        } catch(e) {
+            console.log(e.stack);
+        }
+      }*/
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name}`);
       Log(bot, message, args);
     }
