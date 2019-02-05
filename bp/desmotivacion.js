@@ -8,7 +8,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   for (var i in barra) {
     if (message.content.toLowerCase().includes(barra[i].toLowerCase())) bOTTOM = true;
   }
-  let bottomtext = args3;
+  let bottomtext = args3[2];
   if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext] \n2- >desmotivacion [url] [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
   if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
   if (!bottomtext) return bottomtext = '';
