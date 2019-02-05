@@ -234,7 +234,7 @@ bot.on("message", message => {
       if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot, Log);
+            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, Log);
         } catch(e) {
             console.log(e.stack);
         }
@@ -242,7 +242,7 @@ bot.on("message", message => {
       if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext && ' | ' && bottomtext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, Log);
         } catch(e) {
             console.log(e.stack);
         }
