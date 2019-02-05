@@ -1,5 +1,6 @@
 //>desmotivacion [url] | [toptext]
-exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot, Log) => {
+exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext, Log) => {
+  let webshot = require('node-webshot');
   message.channel.startTyping();
   console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
   //Log(bot, message, args);
@@ -18,7 +19,8 @@ exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext,
 }
 
 //>desmotivacion [url] | [toptext] | [bottomtext]
-exports.run = async (bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log) => {
+exports.run = async (bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, Log) => {
+  let webshot = require('node-webshot');
   message.channel.startTyping();
   console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
   //Log(bot, message, args);
