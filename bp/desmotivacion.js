@@ -1,7 +1,7 @@
 exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let barra = ' | ';
   let urlimagen = args[0];
-  let espaciador = [' ', ' | ';
+  let espaciador = [' ', ' | '];
   let args2 = message.content.slice(cmd.lenght).trim().split(espaciador);
   let args3 = message.content.slice(args2.lenght).trim().split(barra);
   let toptext = args2[1];
