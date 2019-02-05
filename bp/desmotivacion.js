@@ -1,7 +1,7 @@
 exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let barra = ' | ';
-  let urlimagen = args[0].split(barra);
-  let args2 = message.content.slice(cmd.lenght).trim().split(urlimagen);
+  let urlimagen = args[0];
+  let args2 = message.content.slice(cmd.lenght).trim().split(barra);
   let args3 = message.content.slice(args2.lenght).trim().split(barra);
   let toptext = args2[1];
   let bottomtext = args3[1];
@@ -11,7 +11,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let verifyurl = ['http://', 'https://', '.png', '.jpg', '.gif', '.bmp'];
   let foundurl = false;
   for (var i in verifyurl) {
-    if (args.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
+    if (urlimagen.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
   }
   if (foundurl === false) {
       if (cmd === `${prefix}desmotivacion` && toptext) {
