@@ -11,7 +11,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let verifyurl = ['http://', 'https://', '.png', '.jpg', '.gif', '.bmp'];
   let foundurl = false;
   for (var i in verifyurl) {
-    if (urlimagen.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
+    if (args.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
   }
   if (foundurl === false) {
       if (cmd === `${prefix}desmotivacion` && toptext) {
