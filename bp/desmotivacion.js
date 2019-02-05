@@ -2,7 +2,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let barra = ' | ';
   let urlimagen = args[0];
   let args2 = message.content.slice(cmd.lenght).trim().split(urlimagen);
-  let args3 = message.content.slice(barra.lenght).trim().split(barra);
+  let args3 = message.content.slice(barra.lenght).trim().split(args2);
   let toptext = args2[1];
   let bottomtext = args3[2];
   let verifyurl = ['http://', 'https://', '.png', '.jpg', '.gif', '.bmp'];
