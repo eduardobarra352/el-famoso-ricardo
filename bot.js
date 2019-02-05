@@ -226,23 +226,27 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}desmotivacion`) {
+      let barra = ' | ';
       let urlimagen = args[0];
-      let args2 = message.content.slice(cmd.lenght).trim().split(' | ');
-      let args3 = message.content.slice(args2.lenght).trim().split(' | ');
+      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
+      let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let toptext = args2[1];
       let bottomtext = args3[2];
-      if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext) {
+      if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext] \n2- >desmotivacion [url] | [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
+      if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
+      if (!bottomtext) return bottomtext = '';
+      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, Log);
+            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext);
         } catch(e) {
             console.log(e.stack);
         }
       }
-      if (cmd === `${prefix}desmotivacion` && urlimagen && ' | ' && toptext && ' | ' && bottomtext) {
+      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext && barra && bottomtext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, Log);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext);
         } catch(e) {
             console.log(e.stack);
         }
@@ -255,7 +259,6 @@ bot.on("message", message => {
             console.log(e.stack);
         }
       }*/
-      console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name}`);
       Log(bot, message, args);
     }
     if (cmd === `${prefix}esqeletin`) {
