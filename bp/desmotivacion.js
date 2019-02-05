@@ -1,12 +1,11 @@
 exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let barra = ' | ';
   let urlimagen = args[0];
-  let args2 = message.content.slice(cmd.lenght).trim().split(urlimagen);
+  let args2 = message.content.slice(cmd.lenght).trim().split(barra);
   let args3 = message.content.slice(args2.lenght).trim().split(barra);
-  let args4 = message.content.slice(args3.lenght).trim().split(barra);
-  let toptext = args3[1];
-  let bottomtext = args4[2];
-  if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext] \n2- >desmotivacion [url] [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
+  let toptext = args2[1];
+  let bottomtext = args3[1];
+  if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext] \n2- >desmotivacion [url] | [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
   if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
   if (!bottomtext) return bottomtext = '';
   let verifyurl = ['http://', 'https://', '.png', '.jpg', '.gif', '.bmp'];
@@ -63,7 +62,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
       }
   }
   else {
-      if (cmd === `${prefix}desmotivacion` && urlimagen && toptext) {
+      if (cmd === `${prefix}desmotivacion` && barra && urlimagen && toptext) {
         if(foundurl) {
           message.channel.startTyping();
           console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
@@ -85,7 +84,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
           message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
         }
     }
-      if (cmd === `${prefix}desmotivacion` && urlimagen && toptext && barra && bottomtext) {
+      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext && barra && bottomtext) {
         if(foundurl) {
           message.channel.startTyping();
           console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
