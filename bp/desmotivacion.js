@@ -13,12 +13,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   for (var i in verifyurl) {
     if (urlimagen.toLowerCase().includes(verifyurl[i].toLowerCase())) foundurl = true;
   }
-  let bOTTOM = false;
-  for (var i in barra) {
-    if (message.content.toLowerCase().includes(barra[i].toLowerCase())) bOTTOM = true;
-  }
   if (foundurl === false) {
-    if (bOTTOM === false) {
       if (cmd === `${prefix}desmotivacion` && toptext) {
         let imagen = message.attachments.first().url;
         if (imagen) {
@@ -42,8 +37,6 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
           message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
         }
       }
-    }
-    else {
       if (cmd === `${prefix}desmotivacion` && toptext && barra && bottomtext) {
         let imagen = message.attachments.first().url;
         if (imagen) {
@@ -67,10 +60,8 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
           message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
         }
       }
-    }
   }
   else {
-    if (bOTTOM === false) {
       if (cmd === `${prefix}desmotivacion` && urlimagen && toptext) {
         if(foundurl) {
           message.channel.startTyping();
@@ -92,9 +83,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
         else {
           message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
         }
-      }
     }
-    else {
       if (cmd === `${prefix}desmotivacion` && urlimagen && toptext && barra && bottomtext) {
         if(foundurl) {
           message.channel.startTyping();
@@ -117,7 +106,6 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
           message.reply(":x: noexiste la imagen/url, reintente.,.,.,");
         }
       }
-    }
   }
   //message.channel.send({ file: ("./img/desmotivacion.png") });
   //\n https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/desmotivacion.png
