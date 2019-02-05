@@ -2,7 +2,7 @@
 exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot, Log) => {
   message.channel.startTyping();
   console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
-  Log(bot, message, args);
+  //Log(bot, message, args);
   var options = {
         siteType: 'html',
         defaultWhiteBackground: true,
@@ -21,7 +21,7 @@ exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext,
 exports.run = async (bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log) => {
   message.channel.startTyping();
   console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
-  Log(bot, message, args);
+  //Log(bot, message, args);
   var options = {
         siteType: 'html',
         defaultWhiteBackground: true,
