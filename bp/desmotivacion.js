@@ -4,7 +4,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   let args2 = message.content.slice(cmd.lenght).trim().split(urlimagen);
   let args3 = message.content.slice(args2.lenght).trim().split(barra);
   let toptext = args2[1].split(barra);
-  let bottomtext = args3[1];
+  let bottomtext = args3[1].split(args2);
   if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext] \n2- >desmotivacion [url] [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
   if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
   if (!bottomtext) return bottomtext = '';
