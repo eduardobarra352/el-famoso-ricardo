@@ -12,7 +12,7 @@ exports.run = async (bot, message, cmd, prefix, args, webshot, Log) => {
   }
   if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext] \n2- >desmotivacion [url] [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
   if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
-  if (cmd === `${prefix}desmotivacion ${urlimagen}` && toptext) {
+  if (cmd === `${prefix}desmotivacion` && urlimagen === `${verifyurl}` && toptext) {
     bottomtext = '';
     if(foundurl) {
       message.channel.startTyping();
