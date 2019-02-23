@@ -18,7 +18,6 @@ exports.run = async (bot, message, cmd, prefix, args, args2, urlimagen, toptext,
 
 //>desmotivacion [url] | [toptext] | [bottomtext]
 exports.run = async (bot, message, cmd, prefix, args, args2, args3, urlimagen2, toptext2, bottomtext2, webshot) => {
-  let webshot = require('node-webshot');
   message.channel.startTyping();
   console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
   var options = {
