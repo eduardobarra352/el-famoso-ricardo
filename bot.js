@@ -225,7 +225,7 @@ bot.on("message", message => {
             //\n https://cdn.discordapp.com/attachments/415365025121697792/478043122169937920/tus.png
           }
     }
-    if (cmd === `${prefix}desmotivacion`) {
+    /*if (cmd === `${prefix}desmotivacion`) {
       let webshot = require('node-webshot');
       let barra = ' | ';
       let urlimagen = args[0];
@@ -266,7 +266,7 @@ bot.on("message", message => {
         }
       }
       Log(bot, message, args);
-    }
+    }*/
     if (cmd === `${prefix}esqeletin`) {
         let esqsay = args.join(' ');
         if (!args[0]) return message.reply("```>esqeletin [texto]```");
