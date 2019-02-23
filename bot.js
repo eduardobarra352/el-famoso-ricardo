@@ -226,6 +226,7 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}desmotivacion`) {
+      let webshot = require('node-webshot');
       let barra = ' | ';
       let urlimagen = args[0];
       let urlimagen2 = args[0];
@@ -238,7 +239,7 @@ bot.on("message", message => {
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext] \n2- >desmotivacion [url] | [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (!bottomtext) return bottomtext = ' | ';
-      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext) {
+      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext && !bottomtext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
             commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot);
@@ -254,14 +255,14 @@ bot.on("message", message => {
             console.log(e.stack);
         }
       }
-      /*if (cmd === `${prefix}desmotivacion` && toptext) {
+      if (cmd === `${prefix}desmotivacion` && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, webshot);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, toptext, webshot);
         } catch(e) {
             console.log(e.stack);
         }
-      }*/
+      }
       Log(bot, message, args);
     }
     if (cmd === `${prefix}esqeletin`) {
