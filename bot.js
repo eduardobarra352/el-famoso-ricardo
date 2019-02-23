@@ -237,7 +237,7 @@ bot.on("message", message => {
       let bottomtext2 = args3[2];
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext] \n2- >desmotivacion [url] | [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
-      if (!bottomtext) return bottomtext = '';
+      if (!bottomtext) return bottomtext = ' | ';
       if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
@@ -257,7 +257,7 @@ bot.on("message", message => {
       /*if (cmd === `${prefix}desmotivacion` && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext, webshot, Log);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, webshot);
         } catch(e) {
             console.log(e.stack);
         }
