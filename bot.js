@@ -228,25 +228,28 @@ bot.on("message", message => {
     if (cmd === `${prefix}desmotivacion`) {
       let barra = ' | ';
       let urlimagen = args[0];
+      let urlimagen2 = args[0];
       let args2 = message.content.slice(cmd.lenght).trim().split(barra);
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let toptext = args2[1];
       let bottomtext = args3[2];
+      let toptext2 = args2[1];
+      let bottomtext2 = args3[2];
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext] \n2- >desmotivacion [url] | [toptext] | [bottomtext] \n3- >desmotivacion [toptext] \n <imagen> \n4- >desmotivacion [toptext] | [bottomtext] \n <imagen>```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (!bottomtext) return bottomtext = '';
       if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext);
+            commandFile.run(bot, message, cmd, prefix, args, args2, urlimagen, toptext, webshot);
         } catch(e) {
             console.log(e.stack);
         }
       }
-      if (cmd === `${prefix}desmotivacion` && urlimagen && barra && toptext && barra && bottomtext) {
+      if (cmd === `${prefix}desmotivacion` && urlimagen2 && barra && toptext2 && barra && bottomtext2) {
         try {
             let commandFile = require(`./bp/desmotivacion.js`);
-            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen, toptext, bottomtext);
+            commandFile.run(bot, message, cmd, prefix, args, args2, args3, urlimagen2, toptext2, bottomtext2, webshot);
         } catch(e) {
             console.log(e.stack);
         }
