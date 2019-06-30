@@ -16,6 +16,7 @@ const play = ` | >help`;
 //bot en conexión
 bot.on("ready", () => {
     console.log(`${bot.user.username} is online! `);
+    setInterval(function(){ console.log("t"); }, 10000);
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
