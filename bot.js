@@ -143,7 +143,6 @@ bot.on("message", message => {
           const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.videos = videos;
           collector.once('collect', function(m) {
-              message.delete();
               message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
           });
           Log(bot, message, args);
