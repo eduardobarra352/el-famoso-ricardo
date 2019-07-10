@@ -154,7 +154,7 @@ bot.on("message", message => {
         gis(buscar, resultados);
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-            res = JSON.parse(res);
+            res = JSON.stringify(res, null, '  ');
             res = res.videos.slice(0, 2);
             let resp = '';
             for(var i in res) {
