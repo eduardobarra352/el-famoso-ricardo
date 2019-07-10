@@ -137,15 +137,15 @@ bot.on("message", message => {
             resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
-          message.channel.send(resp).then(msg => msg.delete(15000));
+          message.channel.send(resp).then(msg => msg.delete(30000));
           message.channel.stopTyping();
           const filtro = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
-          const collector = message.channel.createMessageCollector(filtro);
+          const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.videos = videos;
           collector.once('collect', function(m) {
               message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
           });
-          setTimeout(()=>{ delete filtro; delete collector; message.channel.send("se tardo mucho q gil jajajd").then(msg => msg.delete(3000)); },15000);
+          setTimeout(()=>{ message.channel.send("se tardo mucho q gil jajajd").then(msg => msg.delete(3000)); },30000);
         });
     }
     if (cmd === `${prefix}sans`) {
