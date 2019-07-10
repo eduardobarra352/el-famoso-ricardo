@@ -3,6 +3,7 @@ const bot = new Discord.Client({ disableEveryone: true });
 const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
 const yt = require('yt-search');
+const gis = require('g-i-s');
 const opus = require('node-opus');
 const opusscript = require('opusscript');
 const ffmpegbinaries = require('ffmpeg-binaries');
