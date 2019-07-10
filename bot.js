@@ -162,7 +162,6 @@ bot.on("message", message => {
             let resp = '';
             try {
                 let embed;
-                let maximo = res.length + 1;
                 for(var i in res) {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
@@ -170,19 +169,6 @@ bot.on("message", message => {
                     .addField("Resultados:", "1-10")
                     .setImage(res[i].url);
                     message.channel.send(embed);
-                }
-                res = res.slice(maximo-1, maximo+1);
-                filtrar(res, embed);
-                function filtrar(res, embed) {
-                    const viejoembed = message.embeds[0];
-                    const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
-                    const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
-                    collector.res = res;
-                    collector.once('collect', function(m) {
-                        const nuevoembed = new Discord.RichEmbed(viejoembed).setImage([this.res[parseInt(m.content)-1].url]);
-                        maximo = res.length + 1;
-                        message.channel.send(nuevoembed);
-                    });
                 }
             }
             catch(e) {
