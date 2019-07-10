@@ -258,7 +258,7 @@ bot.on("message", message => {
       let toptext = args2[1];
       let bottomtext = '';
       if ([barra, "|"].includes(args2[1], -100)) {
-        console.log(args2[]);
+        console.log(args2);
         let args3 = message.content.slice(args2.lenght).trim().split(barra);
         bottomtext = args3[1];
       }
