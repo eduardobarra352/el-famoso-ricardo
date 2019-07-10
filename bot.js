@@ -125,6 +125,24 @@ bot.on("message", message => {
             message.channel.send(`se ha borrado ${args[0]} mensajes, omg soi un **destructor** _ricardo_.`).then(msg => msg.delete(4000));
         });
     }
+    if (cmd === `${prefix}yt`) {
+        yt(args.join(' '), function(err, res){
+          if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+          let videos = res.video.slice(0, 10);
+          let resp = '';
+          for(var i in videos) {
+            resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
+          }
+          resp += `eliga el número del video q qieres lel: **1-${videos.length}**`;
+          message.channel.send(resp);
+          const filtro = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
+          const collector = message.channel.createMessageCollector(filtro);
+          collector.videos = videos;
+          collector.once('collect', function(m) {
+              message.channel.send([this.videos[parseInt(m.content)-1].url]);
+          });
+        });
+    }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
         console.log(`${prefix}sans usado por: ${message.author.tag} en el server ${message.guild.name}`);
