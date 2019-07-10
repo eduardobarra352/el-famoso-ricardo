@@ -150,8 +150,10 @@ bot.on("message", message => {
         });
     }
     if (cmd === `${prefix}img`) {
-        gis(args.join(' '), logResults);
+        let imagenes = args.join(' ');
+        gis(imagenes, logResults);
         function logResults(r) {
+            r = JSON.parse(r);
             console.log(r.url);
         }
     }
