@@ -231,9 +231,9 @@ bot.on("message", message => {
       let urlimagen = args[0];
       let space = urlimagen + ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
-      let args3 = Math.ceil(args2.length/2);
-      let toptext = args2;
-      let bottomtext = args2.slice(args3);
+      let toptext = args2[1];
+      let args3 = Math.ceil(toptext.length/2);
+      let bottomtext = toptext.slice(args3);
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       message.channel.startTyping();
