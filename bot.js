@@ -149,6 +149,12 @@ bot.on("message", message => {
           Log(bot, message, args);
         });
     }
+    if (cmd === `${prefix}img`) {
+        gis(args.join(' '), logResults);
+        function logResults(r) {
+            console.log(r.url);
+        }
+    }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
         console.log(`${prefix}sans usado por: ${message.author.tag} en el server ${message.guild.name}`);
