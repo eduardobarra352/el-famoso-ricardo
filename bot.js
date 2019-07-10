@@ -164,8 +164,8 @@ bot.on("message", message => {
             for(var i in res) {
                 embed = new Discord.RichEmbed()
                 .setColor("#40f230")
-                .setTitle("Resultados:")
                 .setAuthor(message.author.username, message.author.avatarURL)
+                .addField("Resultados:", "1-10")
                 .setImage(res[i].url);
             }
             message.channel.send(embed);
