@@ -171,7 +171,7 @@ bot.on("message", message => {
                     .setImage(res[i].url);
                     message.channel.send(embed);
                 }
-                res = res.slice(maximo, maximo);
+                res = res.slice(maximo-1, maximo+1);
                 filtrar(res, embed);
                 function filtrar(res, embed) {
                     const viejoembed = message.embeds[0];
