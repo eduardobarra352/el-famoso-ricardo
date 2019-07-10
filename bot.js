@@ -152,9 +152,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}img`) {
         let imagenes = args.join(' ');
         gis(imagenes, logResults);
-        function logResults(r) {
-            r = JSON.parse(r);
-            console.log(r.url);
+        function logResults(err, res) {
+            if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+            console.log(res);
         }
     }
     if (cmd === `${prefix}sans`) {
