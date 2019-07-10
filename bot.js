@@ -153,6 +153,7 @@ bot.on("message", message => {
         if (!args[0]) return message.reply("```>img [lo q qieras buscar]```");
         let buscar = args.join(' ');
         gis(buscar, resultados);
+        message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
@@ -163,11 +164,12 @@ bot.on("message", message => {
             for(var i in res) {
                 embed = new Discord.RichEmbed()
                 .setColor("#40f230")
+                .setTitle("Resultados:")
                 .setAuthor(message.author.username, message.author.avatarURL)
-                .addField("Resultados:")
                 .setImage(res[i].url);
             }
             message.channel.send(embed);
+            message.channel.stopTyping();
         }
     }
     if (cmd === `${prefix}sans`) {
