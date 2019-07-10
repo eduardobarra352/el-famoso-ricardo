@@ -157,13 +157,17 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(0, 2);
-            console.log(res);
+            res = res.slice(0, 1);
             let resp = '';
+            let embed;
             for(var i in res) {
-                resp += `${res[i].url}\n`;
+                embed = new Discord.RichEmbed()
+                .setColor("#40f230")
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .addField("Resultados:")
+                .setImage(res[i].url);
             }
-            message.channel.send(resp);
+            message.channel.send(embed);
         }
     }
     if (cmd === `${prefix}sans`) {
