@@ -154,9 +154,13 @@ bot.on("message", message => {
         gis(buscar, resultados);
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-            let imagenes = res.url;
-            imagenes = imagenes[0];
-            message.channel.send(imagenes);
+            res = JSON.parse(res);
+            res = res.videos.slice(0, 2);
+            let resp = '';
+            for(var i in res) {
+                resp += `${res[i].url}\n`;
+            }
+            message.channel.send(resp);
         }
     }
     if (cmd === `${prefix}sans`) {
