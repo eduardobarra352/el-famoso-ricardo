@@ -230,12 +230,12 @@ bot.on("message", message => {
     if (cmd === `${prefix}desmotivacion`) {
       let barra = ' | ';
       let urlimagen = args[0];
-      checkURL(urlimagen);
       let space = urlimagen + ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
       let toptext = args2[1];
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
+      if (urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
@@ -390,11 +390,6 @@ bot.on("message", message => {
         //}
     }
 });
-function checkURL(url) {
-    if (url.match(/\.(jpeg|jpg|gif|png)$/) == null) {
-        message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-    }
-}
 
 function Log(bot, message, args) {
     let thumbnail = message.guild.displayAvatarURL;
