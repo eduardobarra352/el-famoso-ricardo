@@ -127,6 +127,8 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}yt`) {
         if (!args[0]) return message.reply("```>yt [nombre de video pss]```");
+        message.channel.startTyping();
+        console.log(`${prefix}yt usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         yt(args.join(' '), function(err, res){
           if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
           let videos = res.videos.slice(0, 10);
@@ -134,14 +136,16 @@ bot.on("message", message => {
           for(var i in videos) {
             resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
           }
-          resp += `\neliga el número del video q qieres lel: **1-${videos.length}**`;
-          message.channel.send(resp);
+          resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
+          message.channel.send(resp).then(msg => msg.delete(15000));
+          message.channel.stopTyping();
           const filtro = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
           const collector = message.channel.createMessageCollector(filtro);
           collector.videos = videos;
           collector.once('collect', function(m) {
               message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
           });
+          setTimeout(()=>{ delete filtro; delete collector; message.channel.send("se tardo mucho q gil jajajd").then(msg => msg.delete(3000)); },15000);
         });
     }
     if (cmd === `${prefix}sans`) {
