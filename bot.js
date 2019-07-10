@@ -232,15 +232,12 @@ bot.on("message", message => {
       let space = urlimagen + ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
       let toptext = args2[1];
-      if (args2.some(el => el > 1)) {
+      let bottomtext = '';
+      if (args2.some(n => n > 1)) {
         let args3 = Math.ceil(toptext.length/2);
-        let bottomtext = toptext.slice(args3);
+        bottomtext = toptext.slice(args3);
         toptext = toptext.slice(0, args3);
       }
-      else {
-          let bottomtext = '';
-      }
-      let pee;
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       message.channel.startTyping();
