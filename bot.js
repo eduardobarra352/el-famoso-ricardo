@@ -227,10 +227,11 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}desmotivacion`) {
-      let barra = ' | ';
+      //let barra = ' | ';
       let urlimagen = args[0];
+      let space = urlimagen + ' ';
       //let urlimagen2 = args[0];
-      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
+      let args2 = message.content.slice(cmd.lenght).trim().split(space);
       //let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let toptext = args2[1];
       /*let bottomtext = args3[2];
