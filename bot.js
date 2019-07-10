@@ -126,9 +126,10 @@ bot.on("message", message => {
         });
     }
     if (cmd === `${prefix}yt`) {
+        if (!args[0]) return message.reply("```>yt [nombre de video pss]```");
         yt(args.join(' '), function(err, res){
           if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          let videos = res.video.slice(0, 10);
+          let videos = res.videos.slice(0, 10);
           let resp = '';
           for(var i in videos) {
             resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
