@@ -234,6 +234,7 @@ bot.on("message", message => {
       let toptext = args2[1];
       let bottomtext = '';
       if (toptext > args2) {
+        console.log(args2);
         let args3 = Math.ceil(toptext.length/2);
         bottomtext = toptext.slice(args3);
         toptext = toptext.slice(0, args3);
