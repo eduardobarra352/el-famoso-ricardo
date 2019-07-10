@@ -143,9 +143,10 @@ bot.on("message", message => {
           const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.videos = videos;
           collector.once('collect', function(m) {
+              message.delete();
               message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
           });
-          setTimeout(()=>{ message.channel.send("se tardo mucho q gil jajajd").then(msg => msg.delete(3000)); },30000);
+          Log(bot, message, args);
         });
     }
     if (cmd === `${prefix}sans`) {
