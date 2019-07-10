@@ -83,6 +83,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}playing`) {
         bot.user.setPresence({ game: { name:  `>help`, type: 1 } });
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":no_entry: eres bastantePENDJ opara aser esto sinpermisos");
         let pl = args.join(' ');
         if (!args[0]) return message.reply("```>playing [TextXD]```");
         if (!pl) return console.log(`${prefix}playing usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
@@ -229,12 +230,8 @@ bot.on("message", message => {
     if (cmd === `${prefix}desmotivacion`) {
       let barra = ' | ';
       let urlimagen = args[0];
+      checkURL(urlimagen);
       let space = urlimagen + ' ';
-      var img = new Image();
-      img.onerror = function(){
-        message.reply(":x: noexiste la imagen porlo q se, sigale..,,,");
-      }
-      img.src = urlimagen;
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
       toptext = args2[1];
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
@@ -393,6 +390,11 @@ bot.on("message", message => {
         //}
     }
 });
+function checkURL(url) {
+    if (url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+        console.log("url si");
+    }
+}
 
 function Log(bot, message, args) {
     let thumbnail = message.guild.displayAvatarURL;
