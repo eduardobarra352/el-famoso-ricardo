@@ -158,7 +158,9 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(0, 1);
+            let data = res;
+            let nivel = 1;
+            res = res.slice(0, nivel);
             let resp = '';
             try {
                 let embed;
@@ -170,6 +172,22 @@ bot.on("message", message => {
                     .setImage(res[i].url);
                     message.channel.send(embed);
                 }
+                nivel += 1;
+                const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
+                const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
+                collector.res = res;
+                collector.once('collect', function(m) {
+                    res = res.slice(nivel-1, nivel);
+                    for(var i = 0; i < res.length; i++) {
+                        let nuevoembed = new Discord.RichEmbed(embed)
+                        .setColor("#40f230")
+                        .setAuthor(message.author.username, message.author.avatarURL)
+                        .addField("Resultados:", nivel + "-10")
+                        .setImage([this.res[parseInt(m.content)-1].url]);
+                        message.channel.send(embed);
+                    }
+                    nivel += 1;
+                });
             }
             catch(e) {
                 console.log(e.stack);
