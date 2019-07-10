@@ -227,9 +227,8 @@ bot.on("message", message => {
           }
     }
     if (cmd === `${prefix}desmotivacion`) {
-      let barra = ' | ';
       let urlimagen = args[0];
-      let args2 = message.content.slice(cmd.lenght).trim().split(barra);
+      let args2 = message.content.slice(cmd.lenght).trim().split(urlimagen);
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
