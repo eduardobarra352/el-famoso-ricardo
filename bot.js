@@ -229,18 +229,18 @@ bot.on("message", message => {
     if (cmd === `${prefix}desmotivacion`) {
       let barra = ' | ';
       let urlimagen = args[0];
-      let urlimagen2 = args[0];
+      //let urlimagen2 = args[0];
       let args2 = message.content.slice(cmd.lenght).trim().split(barra);
-      let args3 = message.content.slice(args2.lenght).trim().split(barra);
+      //let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let toptext = args2[1];
-      let bottomtext = args3[2];
+      /*let bottomtext = args3[2];
       let toptext2 = args2[1];
       let bottomtext2 = args3[2];
       let toptext3 = args[0];
-      let bottomtext3 = args2[1];
+      let bottomtext3 = args2[1];*/
       if (!args[0]) return message.reply("```1- >desmotivacion [url] | [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
-      if (!bottomtext) return bottomtext = ' | ';
+      //if (!bottomtext) return bottomtext = ' | ';
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
