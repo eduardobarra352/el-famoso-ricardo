@@ -173,11 +173,11 @@ bot.on("message", message => {
                     message.channel.send(embed);
                 }
                 nivel += 1;
+                res = res.slice(nivel-1, nivel);
                 const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
-                    res = res.slice(nivel-1, nivel);
                     for(var i = 0; i < res.length; i++) {
                         let nuevoembed = new Discord.RichEmbed(embed)
                         .setColor("#40f230")
