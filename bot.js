@@ -156,6 +156,7 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = res.slice(0, 2);
+            console.log(res);
             let resp = '';
             for(var i in res) {
                 resp += `${res[i].url}\n`;
