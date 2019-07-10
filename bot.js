@@ -160,13 +160,34 @@ bot.on("message", message => {
             res = JSON.parse(res);
             res = res.slice(0, 1);
             let resp = '';
-            for(var i in res) {
-                let embed = new Discord.RichEmbed()
-                .setColor("#40f230")
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .addField("Resultados:", "1-10")
-                .setImage(res[i].url);
-                message.channel.send(embed);
+            try {
+                let embed;
+                let maximo = res.length + 1;
+                for(var i in res) {
+                    embed = new Discord.RichEmbed()
+                    .setColor("#40f230")
+                    .setAuthor(message.author.username, message.author.avatarURL)
+                    .addField("Resultados:", "1-10")
+                    .setImage(res[i].url);
+                    message.channel.send(embed);
+                }
+                res = res.slice(maximo, maximo);
+                filtrar(res, embed);
+                function filtrar(res, embed) {
+                    const viejoembed = message.embeds[0];
+                    const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
+                    const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
+                    collector.res = res;
+                    collector.once('collect', function(m) {
+                        const nuevoembed = new Discord.RichEmbed(viejoembed).setImage([this.res[parseInt(m.content)-1].url]);
+                        maximo = res.length + 1;
+                        message.channel.send(nuevoembed);
+                    });
+                }
+            }
+            catch(e) {
+                console.log(e.stack);
+                message.channel.send(":x: error ultra desconocido :spy:...sigale intentando ñ");
             }
             message.channel.stopTyping();
         }
