@@ -150,18 +150,20 @@ bot.on("message", message => {
         });
     }
     if (cmd === `${prefix}img`) {
+        if (!args[0]) return message.reply("```>img [lo q qieras buscar]```");
         let buscar = args.join(' ');
         gis(buscar, resultados);
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
-            res = res.slice(0, 2);
+            res = JSON.parse(res);
+            //res = res.slice(0, 2);
             console.log(res);
             let resp = '';
-            for(var i in res) {
+            /*for(var i in res) {
                 resp += `${res[i].url}\n`;
             }
-            message.channel.send(resp);
+            message.channel.send(resp);*/
         }
     }
     if (cmd === `${prefix}sans`) {
