@@ -150,11 +150,13 @@ bot.on("message", message => {
         });
     }
     if (cmd === `${prefix}img`) {
-        let imagenes = args.join(' ');
-        gis(imagenes, logResults);
-        function logResults(err, res) {
+        let buscar = args.join(' ');
+        gis(buscar, resultados);
+        function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-            console.log(res);
+            let imagenes = res.url;
+            imagenes = imagenes[0];
+            message.channel.send(imagenes);
         }
     }
     if (cmd === `${prefix}sans`) {
