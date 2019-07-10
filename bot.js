@@ -258,8 +258,9 @@ bot.on("message", message => {
       let toptext = args2[1];
       let bottomtext = '';
       if ([barra, "|"].includes(args2[1], -100)) {
+        console.log(args2[]);
         let args3 = message.content.slice(args2.lenght).trim().split(barra);
-        bottomtext = args3[2];
+        bottomtext = args3[1];
       }
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
