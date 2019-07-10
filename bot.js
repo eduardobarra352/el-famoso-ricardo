@@ -233,7 +233,7 @@ bot.on("message", message => {
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
       let toptext = args2[1];
       let bottomtext = '';
-      if (args2.length > 0) {
+      if (args2.length > 1) {
         console.log(toptext);
         console.log(args2);
         let args3 = Math.ceil(toptext.length/2);
