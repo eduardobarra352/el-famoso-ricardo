@@ -231,7 +231,8 @@ bot.on("message", message => {
       let urlimagen = args[0];
       let space = urlimagen + ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
-      let toptext = args2[1];
+      let toptext = [];
+      toptext = args2[1];
       let bottomtext = '';
       if (args2.length > 1) {
         console.log(toptext);
