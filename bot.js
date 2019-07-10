@@ -160,10 +160,10 @@ bot.on("message", message => {
             //res = res.slice(0, 2);
             console.log(res);
             let resp = '';
-            /*for(var i in res) {
+            for(var i in res) {
                 resp += `${res[i].url}\n`;
             }
-            message.channel.send(resp);*/
+            message.channel.send(resp);
         }
     }
     if (cmd === `${prefix}sans`) {
