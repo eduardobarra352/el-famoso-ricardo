@@ -134,13 +134,13 @@ bot.on("message", message => {
           for(var i in videos) {
             resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
           }
-          resp += `eliga el número del video q qieres lel: **1-${videos.length}**`;
+          resp += `\neliga el número del video q qieres lel: **1-${videos.length}**`;
           message.channel.send(resp);
           const filtro = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
           const collector = message.channel.createMessageCollector(filtro);
           collector.videos = videos;
           collector.once('collect', function(m) {
-              message.channel.send([this.videos[parseInt(m.content)-1].url]);
+              message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
           });
         });
     }
