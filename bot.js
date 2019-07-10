@@ -233,7 +233,7 @@ bot.on("message", message => {
       checkURL(urlimagen);
       let space = urlimagen + ' ';
       let args2 = message.content.slice(cmd.lenght).trim().split(space);
-      toptext = args2[1];
+      let toptext = args2[1];
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       message.channel.startTyping();
@@ -391,8 +391,8 @@ bot.on("message", message => {
     }
 });
 function checkURL(url) {
-    if (url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-        console.log("url si");
+    if (url.match(/\.(jpeg|jpg|gif|png)$/) == null) {
+        message.reply(":x: imagen posiblemente malito, sigale,,.-..");
     }
 }
 
