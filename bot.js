@@ -162,7 +162,7 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(minim, nivel);
+            res = res.slice(nivel);
             let resp = '';
             try {
                 for(var i in res) {
@@ -173,12 +173,12 @@ bot.on("message", message => {
                     .setImage(res[i].url);
 		    if (minim == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                const filtro = m => nivel > 0 || nivel < 10 && !isNaN(m.content) && m.content < 11 && m.content > 0;
+                const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 10 && m.content < 11 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel = m;
-                    minim = m-1;
+                    minim = m+1;
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },1000);
                 });
