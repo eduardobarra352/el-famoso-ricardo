@@ -246,7 +246,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}resize`) {
 	var Attachment = (message.attachments).array();
-    	console.log(Attachment);
+    	console.log(Attachment.url);
 	message.channel.send({ file: (Attachment)});
     }
     if (cmd === `famoso`) {
