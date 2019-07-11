@@ -173,23 +173,15 @@ bot.on("message", message => {
                     .setImage(res[i].url);
                     if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                const filtro = m => minim > 0 || nivel < 10 || minim < 9 || nivel > 0 && ["next", "prev"].includes(m.content);
+                const filtro = m => minim > 0 || nivel < 10 && !isNaN(m.content) && m.content < res.length+2 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     message.delete();
-                    if (m.content.includes("next")) {
-                        nivel += 1;
-                        minim += 1;
-                        gis(buscar, resultados);
-                        setTimeout(()=>{ msgid.edit(embed); },500);
-                    }
-                    if (m.content.includes("prev")) {
-                        nivel -= 1;
-                        minim -= 1;
-                        gis(buscar, resultados);
-                        setTimeout(()=>{ msgid.edit(embed); },500);
-                    }
+                    nivel = m;
+                    minim = m-1;
+                    gis(buscar, resultados);
+                    setTimeout(()=>{ msgid.edit(embed); },500);
                 });
             }
             catch(e) {
