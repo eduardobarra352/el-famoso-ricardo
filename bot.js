@@ -169,8 +169,8 @@ bot.on("message", message => {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
-                    .addField("Resultados:", nivel + "-50")
-		    .setImage(res[i].url);
+		    .setImage(res[i].url)
+                    .addField("Resultados:", nivel + "-50");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
                 const filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
