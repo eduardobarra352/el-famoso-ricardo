@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fs = require('fs');
 const bot = new Discord.Client({ disableEveryone: true });
 const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
@@ -247,8 +248,21 @@ bot.on("message", message => {
         console.log(`${prefix}leave usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
-    if (cmd === `${prefix}resize`) {
-	//
+    if (cmd === `${prefix}jpg`) {
+	if (message.attachments.size > 0) {
+	    message.channel.startTyping();
+	    jimp.read(message.attachments.first().url, (err, jpeg) => {
+  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+  		jpeg
+    		.resize(256, 256) // resize
+    		.quality(60) // set JPEG quality
+    		.write('jpg.jpg'); // save
+	    });
+	}
+  	// brain.jpg doesn't exist until the second callback from above is run.
+  	await msg.channel.send({ files: [ "jpg.jpg" ] });
+        fs.unlinkSync('jpg.jpg');
+	message.channel.stopTyping();
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
