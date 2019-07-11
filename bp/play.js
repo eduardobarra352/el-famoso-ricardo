@@ -25,6 +25,7 @@ const yt = require('yt-search');
 //}
 
 exports.run = async (bot, message, args, opus, activo) => {
+        var timer;
         if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
         if (message.guild.me.voiceChannel) return message.channel.send("uy pero ya estoi en elcanal de voz jej");
         if (!args[0]) return message.reply("```>play [url]```");
@@ -35,6 +36,13 @@ exports.run = async (bot, message, args, opus, activo) => {
         let dispatcher = await connection.playStream(ytdl(args[0], { filter: "audioonly" }));
         message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
         console.log(`>play usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
+        clearTimeout(timer);
+        timer = setTimeout(()=>{ 
+                if (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 1) {
+                        message.guild.me.voiceChannel.leave();
+                        message.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
+                }
+        },15000);
         //const data = opus.activo.get(message.guild.id) || {};
         //if (!data.connection) data.connection = await message.member.voiceChannel.join();
         //if (!data.queue) data.queue = [];
@@ -50,14 +58,4 @@ exports.run = async (bot, message, args, opus, activo) => {
         //  message.channel.send(`:notes: Se ha añadido al video **${info.title}** a la lista lel | Idea de: **${message.author.id}**`);
         //}
         //opus.activo.set(message.guild.id, data);
-        //yt(args.join(' '), function(err, res){
-        //  if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-        //  let videos = res.video.slice(0, 10);
-        //  let resp = '';
-        //  for(var i in videos) {
-        //    resp += `**${parseInt(i)+1}**- **${videos[i].title}** \n`;
-        //  }
-        //  resp += `eliga el número del video q qieres lel: **1-${videos.lenght}**`;
-        //  message.channel.send(resp);
-        //});
 }
