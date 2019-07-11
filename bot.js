@@ -168,12 +168,13 @@ bot.on("message", message => {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
-                    .addField("Resultados:", "1-10")
+                    .addField("Resultados:", nivel + "-10")
                     .setImage(res[i].url);
                     message.channel.send(embed);
                 }
                 nivel += 1;
                 res = res.slice(nivel-1, nivel);
+                console.log(res);
                 const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
