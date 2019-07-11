@@ -155,6 +155,7 @@ bot.on("message", message => {
         gis(buscar, resultados);
         let nivel = 1;
         let minim = 0;
+	let veces = 0;
         let embed;
         let msgid;
         message.channel.startTyping();
@@ -162,24 +163,26 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(nivel);
-	    console.log(res);
+            res = res.slice(minim, nivel);
             try {
-                /*embed = new Discord.RichEmbed()
-                .setColor("#40f230")
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .addField("Resultados:", nivel + "-10")
-                .setImage(res[nivel].url);
-		if (minim == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
-                const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 10 && m.content < 11 && m.content > 0;
+                for(var i in nivel) {
+                    embed = new Discord.RichEmbed()
+                    .setColor("#40f230")
+                    .setAuthor(message.author.username, message.author.avatarURL)
+                    .addField("Resultados:", nivel + "-50")
+                    .setImage(res[i].url);
+		    if (veces == 0 && !message.embeds) { message.channel.send(embed).then(msg => msgid = msg); }
+                }
+                const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 50 && m.content < 51 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel = m;
-                    minim = m+1;
+                    minim = m-1;
+		    veces = veces+1;
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },1000);
-                });*/
+                });
             }
             catch(e) {
                 console.log(e.stack);
