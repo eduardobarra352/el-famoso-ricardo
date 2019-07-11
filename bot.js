@@ -173,7 +173,7 @@ bot.on("message", message => {
                     .setImage(res[i].url);
                     if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg.id); }
                 }
-                const filtro = m => !isNaN(m.content) && ["next"].includes(m.content);
+                const filtro = m => !isNaN(m.content) && ["next", "sig"].includes(m.content);
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
