@@ -245,15 +245,8 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	function attachIsImage(msgAttach) {
-   	   var url = msgAttach.url;
-           return url;
-	}
-	if (message.attachments.size > 0) {
-    		if (message.attachments.every(attachIsImage)){
-        		message.channel.send({ file: (url)});
-   	 	}
-	}
+	var Attachment = (message.attachments).array();
+	Attachment[0].url;
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
