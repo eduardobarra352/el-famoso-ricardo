@@ -265,7 +265,7 @@ bot.on("message", message => {
 	    });
 	}
 	else {
-	    let imagen = attach[0].url;
+	    let imagen = attach[0];
 	    console.log(imagen);
 	}
 	message.channel.stopTyping();
