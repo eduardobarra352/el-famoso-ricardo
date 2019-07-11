@@ -169,20 +169,23 @@ bot.on("message", message => {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
-                    .addField("Resultados:", nivel + "-50");
-		    setTimeout(()=>{ embed.setImage(res[i].url); },1000);
+                    .addField("Resultados:", nivel + "-50")
+		    .setImage(res[i].url);
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 50 && m.content < 51 && m.content > 0;
+                const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 50 && m.content < 50+1 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
-                collector.once('collect', function(m) {
+                collector.on('collect', m => {
                     nivel = m;
                     minim = m-1;
 		    veces = veces+1;
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },1000);
                 });
+		collector.on('end', m => {
+		    setTimeout(()=>{ embed.setFooter('pep'); },2000);
+		});
             }
             catch(e) {
                 console.log(e.stack);
