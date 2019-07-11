@@ -252,7 +252,7 @@ bot.on("message", message => {
 	}
 	function attachIsImage(msgAttach) {
    	 var url = msgAttach.url;
-         return url.indexOf("png", url.length - "png".length) !== -1;
+         return url;
 	}    
     }
     if (cmd === `famoso`) {
