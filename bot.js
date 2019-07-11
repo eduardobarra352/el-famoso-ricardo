@@ -351,6 +351,7 @@ bot.on("message", message => {
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       bottomtext = args3[1];
       if (bottomtext == undefined) { bottomtext = ''; }
+      if (["|", " | "].includes(args[1])) return toptext = args2.slice(cmd.length, barra);
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
@@ -462,7 +463,7 @@ bot.on("message", message => {
         bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = ${cmd}`);
     }
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
