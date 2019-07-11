@@ -154,14 +154,15 @@ bot.on("message", message => {
         let buscar = args.join(' ');
         gis(buscar, resultados);
         let nivel = 1;
+        let minim = 0;
         let embed = new Discord.RichEmbed();
-        let nuevoembed;
+        let nuevoembed = new Discord.RichEmbed();
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(0, nivel);
+            res = res.slice(minim, nivel);
             let resp = '';
             try {
                 for(var i in res) {
@@ -177,6 +178,7 @@ bot.on("message", message => {
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel += 1;
+                    minim += 1;
                     gis(buscar, resultados);
                 });
             }
