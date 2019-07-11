@@ -173,27 +173,23 @@ bot.on("message", message => {
                     .setImage(res[i].url);
                     if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                //avanzar
-                const filtro = m => minim > 0 || nivel < 10 && ["next", "sig"].includes(m.content);
+                const filtro = m => minim > 0 || nivel < 10 || minim < 9 || nivel > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
-                collector.once('collect', function() {
-                    message.delete(500);
-                    nivel += 1;
-                    minim += 1;
-                    gis(buscar, resultados);
-                    setTimeout(()=>{ msgid.edit(embed); },500);
-                });
-                //retroceder
-                const filtro2 = v => minim < 9 || nivel > 1 && ["prev", "atras"].includes(v.content);
-                const collector2 = message.channel.createMessageCollector(filtro2, { time: 30000 });
-                collector2.res = res;
-                collector2.once('collect', function() {
-                    message.delete(500);
-                    nivel -= 1;
-                    minim -= 1;
-                    gis(buscar, resultados);
-                    setTimeout(()=>{ msgid.edit(embed); },500);
+                collector.once('collect', function(m) {
+                    message.delete();
+                    if (["next", "sig"].includes(m.content)) {
+                        nivel += 1;
+                        minim += 1;
+                        gis(buscar, resultados);
+                        setTimeout(()=>{ msgid.edit(embed); },500);
+                    }
+                    if (["prev", "atras"].includes(m.content)) {
+                        nivel -= 1;
+                        minim -= 1;
+                        gis(buscar, resultados);
+                        setTimeout(()=>{ msgid.edit(embed); },500);
+                    }
                 });
             }
             catch(e) {
