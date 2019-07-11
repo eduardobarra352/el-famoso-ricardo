@@ -162,10 +162,10 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            //res = res.slice(nivel);
-            let resp = '';
+            res = res.slice(nivel);
+	    console.log(res);
             try {
-                embed = new Discord.RichEmbed()
+                /*embed = new Discord.RichEmbed()
                 .setColor("#40f230")
                 .setAuthor(message.author.username, message.author.avatarURL)
                 .addField("Resultados:", nivel + "-10")
@@ -179,7 +179,7 @@ bot.on("message", message => {
                     minim = m+1;
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },1000);
-                });
+                });*/
             }
             catch(e) {
                 console.log(e.stack);
