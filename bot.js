@@ -172,9 +172,9 @@ bot.on("message", message => {
                     .setAuthor(message.author.username, message.author.avatarURL)
                     .addField("Resultados:", nivel + "-10")
                     .setImage(res[i].url);
-                    if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg); }
+                    if (minim == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                const filtro = m => minim > 0 || nivel < 10 && !isNaN(m.content) && m.content < altura && m.content > 0;
+                const filtro = m => nivel > 0 || nivel < 10 && !isNaN(m.content) && m.content < altura && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
