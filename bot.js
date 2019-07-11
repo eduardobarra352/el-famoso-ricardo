@@ -165,7 +165,7 @@ bot.on("message", message => {
             res = res.slice(nivel);
             let resp = '';
             try {
-                for(var i in res; i = nivel) {
+                for(var i in nivel) {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
