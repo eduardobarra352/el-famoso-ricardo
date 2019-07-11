@@ -171,16 +171,16 @@ bot.on("message", message => {
                     .setAuthor(message.author.username, message.author.avatarURL)
                     .addField("Resultados:", nivel + "-10")
                     .setImage(res[i].url);
-		    if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg); }
+		    if (minim == 0 && message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg; setTimeout(()=>{ msg.setFooter('seacabo eltiempo') },15000)); }
                 }
                 const filtro = m => nivel > 0 || nivel < 10 && !isNaN(m.content) && m.content < 11 && m.content > 0;
-                const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
+                const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel = m;
-                    if (minim > 1) { minim = m-1; } else { minim = 1; }
+                    minim = m-1;
                     gis(buscar, resultados);
-                    setTimeout(()=>{ msgid.edit(embed); },500);
+                    setTimeout(()=>{ msgid.edit(embed); },1000);
                 });
             }
             catch(e) {
