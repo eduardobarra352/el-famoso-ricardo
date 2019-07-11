@@ -158,7 +158,8 @@ bot.on("message", message => {
 	let veces = 0;
         let embed;
         let msgid;
-	let miid;
+	let filtro;
+	let collector;
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -174,8 +175,8 @@ bot.on("message", message => {
                     .addField("Resultados:", nivel + "-50");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
-                let filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
-                let collector = message.channel.createMessageCollector(filtro, { time: 15000 });
+                filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
+                collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.on('collect', m => {
 	            if (nivel > 0 || nivel < 51) {
@@ -187,7 +188,7 @@ bot.on("message", message => {
 		    }
                 });
 		collector.on('end', m => {
-		    setTimeout(()=>{ embed.setFooter('pep'); msgid.edit(embed); },2000);
+		    setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
 		});
             }
             catch(e) {
