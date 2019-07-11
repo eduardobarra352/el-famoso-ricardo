@@ -244,7 +244,17 @@ bot.on("message", message => {
         console.log(`${prefix}leave usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
-
+    if (cmd === `${prefix}resize`) {
+	if (message.attachments.size > 0) {
+    		if (message.attachments.every(attachIsImage)){
+        		message.channel.send({ file: (attachIsImage)});
+   	 	}
+	}
+	function attachIsImage(msgAttach) {
+   	 var url = msgAttach.url;
+         return url.indexOf("png", url.length - "png".length) !== -1;
+	}    
+    }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
