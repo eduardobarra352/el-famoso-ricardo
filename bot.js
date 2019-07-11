@@ -266,6 +266,7 @@ bot.on("message", message => {
 	    });
 	}
 	else {
+	    if (!args[0] && message.attachments.size < 0) return message.reply("```>jpg [url] o <imagen>```");
 	    let urlimagen = args[0];
 	    message.channel.startTyping();
 	    if (urlimagen.match(/\.(jpeg|jpg|png|bmp)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
