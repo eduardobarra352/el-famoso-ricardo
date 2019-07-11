@@ -179,7 +179,7 @@ bot.on("message", message => {
                     nivel += 1;
                     minim += 1;
                     gis(buscar, resultados);
-                    setTimeout(()=>{ m.message.edit(embed); },2000);
+                    setTimeout(()=>{ m.edit(embed); },2000);
                 });
             }
             catch(e) {
