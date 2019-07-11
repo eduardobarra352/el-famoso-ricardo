@@ -155,8 +155,7 @@ bot.on("message", message => {
         gis(buscar, resultados);
         let nivel = 1;
         let minim = 0;
-        let embed = new Discord.RichEmbed();
-        let nuevoembed = new Discord.RichEmbed();
+        let embed;
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -166,20 +165,21 @@ bot.on("message", message => {
             let resp = '';
             try {
                 for(var i in res) {
-                    nuevoembed = new Discord.RichEmbed(embed)
+                    embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
                     .addField("Resultados:", nivel + "-10")
                     .setImage(res[i].url);
-                    message.channel.send(embed);
+                    if (minim == 0) { message.channel.send(embed); }
                 }
-                const filtro = m => !isNaN(m.content) && m.content < res.length+1 && m.content > 0;
+                const filtro = m => !isNaN(m.content) && m.content < res.length+2 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel += 1;
                     minim += 1;
                     gis(buscar, resultados);
+                    setTimeout(()=>{ m.message.edit(embed); },2000);
                 });
             }
             catch(e) {
