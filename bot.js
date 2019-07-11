@@ -171,7 +171,7 @@ bot.on("message", message => {
                     .setAuthor(message.author.username, message.author.avatarURL)
 		    .setImage(res[i].url)
                     .addField("Resultados:", nivel + "-50");
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
+		    if (veces == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
                 const filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
