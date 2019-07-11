@@ -156,6 +156,7 @@ bot.on("message", message => {
         let nivel = 1;
         let minim = 0;
         let embed;
+        let msgid;
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -170,16 +171,16 @@ bot.on("message", message => {
                     .setAuthor(message.author.username, message.author.avatarURL)
                     .addField("Resultados:", nivel + "-10")
                     .setImage(res[i].url);
-                    if (minim == 0) { message.channel.send(embed); }
+                    if (minim == 0) { message.channel.send(embed).then(msg => msgid = msg.id); }
                 }
-                const filtro = m => !isNaN(m.content) && m.content < res.length+2 && m.content > 0;
+                const filtro = m => !isNaN(m.content) && ["next"].includes(m.content);
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
                 collector.once('collect', function(m) {
                     nivel += 1;
                     minim += 1;
                     gis(buscar, resultados);
-                    setTimeout(()=>{ m.edit(embed); },2000);
+                    setTimeout(()=>{ msgid.edit(embed); },2000);
                 });
             }
             catch(e) {
