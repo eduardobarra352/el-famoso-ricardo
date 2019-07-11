@@ -258,7 +258,7 @@ bot.on("message", message => {
     		.resize(256, 256)
     		.quality(10)
     		.write('jpeg.jpg');
-	    }).then( message.channel.send({ files: ("jpeg.jpg")}) );
+	    }).then( message.channel.send({ files: ["jpeg.jpg"]}) );
 	}
 	message.channel.stopTyping();
     }
