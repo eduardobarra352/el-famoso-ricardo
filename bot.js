@@ -252,11 +252,10 @@ bot.on("message", message => {
 	if (message.attachments.size > 0) {
 	    message.channel.startTyping();
 	    let imagen = message.attachments.first().url;
-	    console.log(message.attachments);
 	    jimp.read(imagen, (err, jpeg) => {
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
-    		.resize(256, 256)
+    		.resize(message.attachments.width, message.attachments.height)
     		.quality(10)
     		.write('jpeg.jpg');
 		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
