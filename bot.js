@@ -260,19 +260,19 @@ bot.on("message", message => {
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
     		.resize(anchura, altura)
-    		.quality(2)
+    		.quality(1)
     		.write('jpeg.jpg');
 		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
 	    });
 	}
 	else {
 	    let urlimagen = args[0];
+	    message.channel.startTyping();
 	    if (urlimagen.match(/\.(jpeg|jpg|png|bmp)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
 	    jimp.read(urlimagen, (err, jpeg) => {
-		message.channel.startTyping();
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
-    		.quality(2)
+    		.quality(1)
     		.write('jpeg.jpg');
 		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
 	    });
