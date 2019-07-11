@@ -250,6 +250,7 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
+	if (!args[0]) return message.reply("```>jpg [url] o <imagen>```");
 	if (message.attachments.size > 0) {
 	    message.channel.startTyping();
 	    let imagen = message.attachments.first().url;
@@ -259,14 +260,22 @@ bot.on("message", message => {
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
     		.resize(anchura, altura)
-    		.quality(4)
+    		.quality(2)
     		.write('jpeg.jpg');
 		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
 	    });
 	}
 	else {
-	    let imagen = attach[0];
-	    console.log(imagen);
+	    let urlimagen = args[0];
+	    if (urlimagen.match(/\.(jpeg|jpg|png|bmp)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+	    jimp.read(urlimagen, (err, jpeg) => {
+		message.channel.startTyping();
+  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+  		jpeg
+    		.quality(2)
+    		.write('jpeg.jpg');
+		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+	    });
 	}
 	message.channel.stopTyping();
     }
