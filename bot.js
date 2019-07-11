@@ -177,7 +177,7 @@ bot.on("message", message => {
                 const filtro = m => minim > 0 && nivel < 10 && ["next", "sig"].includes(m.content);
                 const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
                 collector.res = res;
-                collector.once('collect', function(m) {
+                collector.once('collect', function() {
                     nivel += 1;
                     minim += 1;
                     gis(buscar, resultados);
@@ -185,16 +185,16 @@ bot.on("message", message => {
                     message.delete(500);
                 });
                 //retroceder
-                const filtro2 = m => minim < 9 && nivel > 1 && ["prev", "atras"].includes(m.content);
+                /*const filtro2 = m => minim < 9 && nivel > 1 && ["prev", "atras"].includes(m.content);
                 const collector2 = message.channel.createMessageCollector(filtro2, { time: 30000 });
                 collector2.res = res;
-                collector2.once('collect', function(m) {
+                collector2.once('collect', function() {
                     nivel -= 1;
                     minim -= 1;
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },500);
                     message.delete(500);
-                });
+                });*/
             }
             catch(e) {
                 console.log(e.stack);
