@@ -260,7 +260,7 @@ bot.on("message", message => {
     		.write('jpg.jpg');
 	    });
 	}
-  	await message.channel.send({ files: [ "jpg.jpg" ] });
+  	message.channel.send({ files: ("jpg.jpg") });
         fs.unlinkSync('jpg.jpg');
 	message.channel.stopTyping();
     }
