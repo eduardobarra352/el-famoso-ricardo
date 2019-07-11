@@ -281,6 +281,36 @@ bot.on("message", message => {
 	}
 	message.channel.stopTyping();
     }
+    if (cmd === `${prefix}pstize`) {
+	if (args.includes("help")) return message.reply("```>pstize [url] o <imagen>```");
+	if (!args[0] && !message.attachments.size) return message.reply("```>pstize [url] o <imagen>```");
+	if (message.attachments.size > 0) {
+	    message.channel.startTyping();
+	    let imagen = message.attachments.first().url;
+	    let anchura = message.attachments.first().width;
+	    let altura = message.attachments.first().height;
+	    jimp.read(imagen, (err, pstize) => {
+  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+  		pstize
+		.posterize(20)
+    		.write('posterize.png');
+		setTimeout(()=>{ message.channel.send({ file: ("posterize.png")}) },2000);
+	    });
+	}
+	else {
+	    let urlimagen = args[0];
+	    message.channel.startTyping();
+	    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+	    jimp.read(urlimagen, (err, pstize) => {
+  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+  		pstize
+		.posterize(20)
+    		.write('posterize.png');
+		setTimeout(()=>{ message.channel.send({ file: ("posterize.png")}) },2000);
+	    });
+	}
+	message.channel.stopTyping();
+    }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
