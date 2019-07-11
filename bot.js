@@ -4,6 +4,7 @@ const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
 const yt = require('yt-search');
 const gis = require('g-i-s');
+const jimp = require('jimp');
 const opus = require('node-opus');
 const opusscript = require('opusscript');
 const ffmpegbinaries = require('ffmpeg-binaries');
@@ -197,6 +198,7 @@ bot.on("message", message => {
             }
             message.channel.stopTyping();
         }
+	Log(bot, message, args);
     }
     if (cmd === `${prefix}sans`) {
         message.channel.send("gaming");
