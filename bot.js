@@ -188,6 +188,7 @@ bot.on("message", message => {
 		collector.on('end', m => {
 		    setTimeout(()=>{ embed.setFooter('pep'); msgid.edit(embed); },2000);
 		});
+		filtro = '';
             }
             catch(e) {
                 console.log(e.stack);
