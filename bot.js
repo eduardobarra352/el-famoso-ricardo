@@ -162,17 +162,15 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
-            res = res.slice(nivel);
+            //res = res.slice(nivel);
             let resp = '';
             try {
-                for(var i in nivel) {
-                    embed = new Discord.RichEmbed()
-                    .setColor("#40f230")
-                    .setAuthor(message.author.username, message.author.avatarURL)
-                    .addField("Resultados:", nivel + "-10")
-                    .setImage(res[i].url);
-		    if (minim == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
-                }
+                embed = new Discord.RichEmbed()
+                .setColor("#40f230")
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .addField("Resultados:", nivel + "-10")
+                .setImage(res[nivel].url);
+		if (minim == 0 && !message.embeds[0]) { message.channel.send(embed).then(msg => msgid = msg); }
                 const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 10 && m.content < 11 && m.content > 0;
                 const collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
