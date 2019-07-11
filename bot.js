@@ -351,7 +351,7 @@ bot.on("message", message => {
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       bottomtext = args3[1];
       if (bottomtext == undefined) { bottomtext = ''; }
-      if (["|", " | "].includes(args[1])) return toptext = toptext.slice(cmd.lenght).trim().split(barra);
+      if (["|", " | "].includes(toptext)) return toptext = toptext.slice(barra);
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
