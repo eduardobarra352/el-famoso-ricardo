@@ -178,13 +178,12 @@ bot.on("message", message => {
                 let collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.on('collect', m => {
-		    miid = m.id;
 	            if (nivel > 0 || nivel < 51) {
 			    nivel = m;
 			    minim = m-1;
 			    veces = veces+1;
 			    gis(buscar, resultados);
-			    setTimeout(()=>{ msgid.edit(embed); miid.delete(); },1000);
+			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
 		    }
                 });
 		collector.on('end', m => {
