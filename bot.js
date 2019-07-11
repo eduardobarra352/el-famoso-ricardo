@@ -181,7 +181,6 @@ bot.on("message", message => {
                     if (minim > 1) { minim = m-1; } else { minim = 1; }
                     gis(buscar, resultados);
                     setTimeout(()=>{ msgid.edit(embed); },500);
-                    m.delete();
                 });
             }
             catch(e) {
