@@ -350,7 +350,7 @@ bot.on("message", message => {
       let bottomtext = '';
       let args3 = message.content.slice(args2.lenght).trim().split(barra);
       let args4 = toptext.slice(cmd.lenght).trim().split(barra);
-      if (args4 > 0) return toptext = args4[0];
+      toptext = args4[0];
       bottomtext = args3[1];
       if (bottomtext == undefined) { bottomtext = ''; }
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
