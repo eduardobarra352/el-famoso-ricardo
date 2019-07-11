@@ -161,6 +161,7 @@ bot.on("message", message => {
         let msgid;
 	let filtro;
 	let collector;
+	var timer;
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -180,17 +181,20 @@ bot.on("message", message => {
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.on('collect', m => {
+		    clearTimeout(timer);
 	            if (nivel > 0 || nivel < 51) {
 			    nivel = m;
 			    minim = m-1;
 			    veces = veces+1;
 			    gis(buscar, resultados);
 			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+			    timer = setTimeout(()=>{
+				    collector.on('end', m => {
+		    			setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+				    });
+		  	    },15000);
 		    }
                 });
-		collector.on('end', m => {
-		    setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
-		});
             }
             catch(e) {
                 console.log(e.stack);
