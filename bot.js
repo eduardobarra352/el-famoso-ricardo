@@ -166,11 +166,13 @@ bot.on("message", message => {
             res = res.slice(minim, nivel);
             try {
                 for(var i in res) {
-                    embed = new Discord.RichEmbed()
-                    .setColor("#40f230")
-                    .setAuthor(message.author.username, message.author.avatarURL)
-                    .addField("Resultados:", nivel + "-50")
-                    .setImage(res[i].url);
+		    setTimeout(()=>{
+                        embed = new Discord.RichEmbed()
+                        .setColor("#40f230")
+                        .setAuthor(message.author.username, message.author.avatarURL)
+                        .addField("Resultados:", nivel + "-50")
+                        .setImage(res[i].url);
+	            },1000);
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
                 const filtro = m => !isNaN(m.content) && nivel > 0 || nivel < 50 && m.content < 51 && m.content > 0;
