@@ -182,7 +182,7 @@ bot.on("message", message => {
 			    minim = m-1;
 			    veces = veces+1;
 			    gis(buscar, resultados);
-			    setTimeout(()=>{ msgid.edit(embed); },1000);
+			    setTimeout(()=>{ msgid.edit(embed); message.delete(); },1000);
 		    }
                 });
 		collector.on('end', m => {
