@@ -6,6 +6,7 @@ const ytdl = require('ytdl-core');
 const yt = require('yt-search');
 const gis = require('g-i-s');
 const jimp = require('jimp');
+const isUrl = require('is-url');
 const opus = require('node-opus');
 const opusscript = require('opusscript');
 const ffmpegbinaries = require('ffmpeg-binaries');
@@ -355,7 +356,7 @@ bot.on("message", message => {
       if (bottomtext == undefined) { bottomtext = ''; }
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
-      if (urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+      if (isUrl(urlimagen) == false || urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
