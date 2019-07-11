@@ -251,16 +251,16 @@ bot.on("message", message => {
     if (cmd === `${prefix}jpg`) {
 	if (message.attachments.size > 0) {
 	    message.channel.startTyping();
-	    jimp.read(message.attachments.first().url, (err, jpeg) => {
+	    let imagen = message.attachments.first().url;
+	    jimp.read(imagen, (err, jpeg) => {
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
-    		.resize(256, 256) // resize
-    		.quality(60) // set JPEG quality
-    		.write('jpg.jpg'); // save
+    		.resize(256, 256)
+    		.quality(10)
+    		.write('jpg.jpg');
 	    });
 	}
-  	// brain.jpg doesn't exist until the second callback from above is run.
-  	await msg.channel.send({ files: [ "jpg.jpg" ] });
+  	await message.channel.send({ files: [ "jpg.jpg" ] });
         fs.unlinkSync('jpg.jpg');
 	message.channel.stopTyping();
     }
