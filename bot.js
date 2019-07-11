@@ -270,7 +270,7 @@ bot.on("message", message => {
 	else {
 	    let urlimagen = args[0];
 	    message.channel.startTyping();
-	    if (urlimagen.match(/\.(jpeg|jpg|png|bmp)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+	    if (isUrl(urlimagen) == false || urlimagen.match(/\.(jpeg|jpg|png|bmp)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
 	    jimp.read(urlimagen, (err, jpeg) => {
   		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
   		jpeg
