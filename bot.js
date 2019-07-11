@@ -257,11 +257,10 @@ bot.on("message", message => {
   		jpeg
     		.resize(256, 256)
     		.quality(10)
-    		.write('jpg.jpg');
+    		.write('jpeg.jpg');
+		message.channel.send({ files: ("jpeg.jpg") });
 	    });
 	}
-  	message.channel.send({ files: ("jpg.jpg") });
-        fs.unlinkSync('jpg.jpg');
 	message.channel.stopTyping();
     }
     if (cmd === `famoso`) {
