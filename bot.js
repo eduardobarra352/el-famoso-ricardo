@@ -250,7 +250,7 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	if (!args[0]) return message.reply("```>jpg [url] o <imagen>```");
+	if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
 	if (message.attachments.size > 0) {
 	    message.channel.startTyping();
 	    let imagen = message.attachments.first().url;
