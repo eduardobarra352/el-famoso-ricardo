@@ -246,7 +246,9 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}resize`) {
 	var Attachment = (message.attachments).array();
-	Attachment[0].url;
+	Attachment = Attachment[0].url;
+	console.log(Attachment);
+	message.channel.send({ file: (Attachment)});
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
