@@ -288,7 +288,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}resize`) {
 	message.channel.fetchMessages({ limit: 10 })
-  	.then(messages => console.log(`recibi ${messages} imagen`))
+  	.then(messages => console.log(`${messages.filter(m => m.author.id} messages`))
   	.catch(console.error);
     }
     if (cmd === `famoso`) {
