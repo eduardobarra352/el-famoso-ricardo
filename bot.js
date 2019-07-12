@@ -289,10 +289,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}resize`) {
 	let imagen;
 	let imagensize;
-	message.channel.fetchMessages({ limit: 10 })
-  	.then(messages => { var Attachment = (messages.attachments).array(); console.log(Attachment); })
-  	.catch(console.error);
-	//message.channel.send({ files: [imagen] });
+	console.log(attach);
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
