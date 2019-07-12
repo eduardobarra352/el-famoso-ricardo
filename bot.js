@@ -37,6 +37,7 @@ bot.on("message", message => {
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
+    if (!attach.imagen) attach.imagen = [];
 
     if (cmd === `${prefix}invite`) {
         message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
@@ -256,7 +257,7 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("url") && attach.get("guild") == message.channel.id) { 
+	    if (attach.get("url") && attach.get("guild") == message.channel.id && !args[0]) { 
 		setTimeout(()=>{
 			let urlimagen = attach.get("url");
 			message.channel.startTyping();
@@ -267,6 +268,7 @@ bot.on("message", message => {
 				.write('jpeg.jpg');
 				setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
 			});
+			message.channel.stopTyping();
 		},2000);
 	    }
 	    else {
@@ -304,9 +306,9 @@ bot.on("message", message => {
 	    Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	if (attach.get("url") && attach.get("guild") == message.channel.id) { 
+	if (attach.get("url") && attach.get("guild") == message.channel.id && !args[0]) { 
 		message.channel.startTyping();
-		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); },2000);
+		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); message.channel.stopTyping(); },2000);
 	}
 	else { 
 		if (!args[0] && !message.attachments.size) return message.reply("```>resize [url] o <imagen>```");
@@ -576,9 +578,13 @@ bot.on("message", message => {
     if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.id); }
     
     function AttachImagen (url, guild) {
-	attach.set("url", url);
-	attach.set("guild", guild);
-	console.log(guild);
+	/*attach.set("url", url);
+	attach.set("guild", guild);*/
+	attach.imagen.push({
+		url: url,
+		guild: guild
+	});
+	console.log(attach.imagen);
     }
 });
 
