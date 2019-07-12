@@ -38,7 +38,7 @@ bot.on("message", message => {
     let cmd = args.shift().toLowerCase();
 	
     let attach;
-    message.fetchMessages({ limit: 10 })
+    message.channel.fetchMessages({ limit: 10 })
     .then(messages => { attach = (messages.attachments).array(); });
 
     if (cmd === `${prefix}invite`) {
