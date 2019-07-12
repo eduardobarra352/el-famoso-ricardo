@@ -16,6 +16,7 @@ const activo = new Map();
 const ownerID = process.env.ownerID;
 const guildID = process.env.serverID;
 const play = ` | >help`;
+const attach = new Map();
 
 //bot en conexión
 bot.on("ready", () => {
@@ -288,8 +289,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}resize`) {
 	let imagen;
 	let imagensize;
-        message.channel.fetchMessages({ limit: 10 })
-        .then(messages => console.log((messages.attachments).array()));
+	if (attach.get("url")) { message.channel.send({ file: (attach.get("url"))}); }
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
@@ -520,6 +520,7 @@ bot.on("message", message => {
         //    }
         //}
     }
+    if (message.attachments.size > 0) { attach.set("url", message.attachments.first().url) }
 });
 
 function Log(bot, message, args) {
