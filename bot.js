@@ -36,7 +36,10 @@ bot.on("message", message => {
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
-    let attach = (message.attachments).array();
+	
+    let attach;
+    message.fetchMessages({ limit: 10 })
+    .then(messages => { attach = (messages.attachments).array(); });
 
     if (cmd === `${prefix}invite`) {
         message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
