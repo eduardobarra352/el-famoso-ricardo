@@ -186,6 +186,7 @@ bot.on("message", message => {
                     .addField("Resultados:", nivel + "-50")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
+		    attach.set("url", decodeURI(res[i].url));
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
@@ -255,47 +256,82 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
-	if (!args[0] && !message.attachments.size) return message.reply("```>jpg [url] o <imagen>```");
-	if (message.attachments.size > 0) {
-	    message.channel.startTyping();
-	    let imagen = message.attachments.first().url;
-	    let anchura = message.attachments.first().width;
-	    let altura = message.attachments.first().height;
-	    jimp.read(imagen, (err, jpeg) => {
-  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-  		jpeg
-    		.resize(anchura, altura)
-    		.quality(1)
-    		.write('jpeg.jpg');
-		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-	    });
+	    if (attach.get("url")) { 
+		let urlimagen = attach.get("url");
+		message.channel.startTyping();
+		jimp.read(urlimagen, (err, jpeg) => {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			jpeg
+			.quality(1)
+			.write('jpeg.jpg');
+			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+		});
+	    }
+	    else {
+		if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
+		if (!args[0] && !message.attachments.size) return message.reply("```>jpg [url] o <imagen>```");
+		if (message.attachments.size > 0) {
+		    message.channel.startTyping();
+		    let imagen = message.attachments.first().url;
+		    let anchura = message.attachments.first().width;
+		    let altura = message.attachments.first().height;
+		    jimp.read(imagen, (err, jpeg) => {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			jpeg
+			.resize(anchura, altura)
+			.quality(1)
+			.write('jpeg.jpg');
+			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+		    });
+		}
+		else {
+		    let urlimagen = args[0];
+		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+		    attach.set("url", urlimagen);
+		    message.channel.startTyping();
+		    jimp.read(urlimagen, (err, jpeg) => {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			jpeg
+			.quality(1)
+			.write('jpeg.jpg');
+			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+		    });
+		}
+	    }
+	    message.channel.stopTyping();
+	    Log(bot, message, args);
+    }
+    if (cmd === `${prefix}resize`) {
+	if (attach.get("url")) { 
+		message.channel.send({ file: (attach.get("url"))}); 
 	}
-	else {
-	    let urlimagen = args[0];
-	    message.channel.startTyping();
-	    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-	    jimp.read(urlimagen, (err, jpeg) => {
-  		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-  		jpeg
-    		.quality(1)
-    		.write('jpeg.jpg');
-		setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-	    });
+	else { 
+		if (!args[0] && !message.attachments.size) return message.reply("```>resize [url] o <imagen>```");
+		if (message.attachments.size > 0) {
+		    message.channel.startTyping();
+		    let imagen = message.attachments.first().url;
+		    jimp.read(imagen, (err, jpeg) => {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			jpeg
+			.write('resize.png');
+			setTimeout(()=>{ message.channel.send({ file: ("resize.png")}) },2000);
+		    });
+		}
+		else {
+		    let urlimagen = args[0];
+		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+		    attach.set("url", urlimagen);
+		    message.channel.startTyping();
+		    jimp.read(urlimagen, (err, jpeg) => {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			jpeg
+			.write('resize.png');
+			setTimeout(()=>{ message.channel.send({ file: ("resize.png")}) },2000);
+		    });
+		}
 	}
 	message.channel.stopTyping();
 	Log(bot, message, args);
-    }
-    if (cmd === `${prefix}resize`) {
-	let imagen;
-	let imagensize;
-	if (attach.get("url")) { 
-		message.channel.send({ file: (attach.get("url"))}); 
-	} 
-	else { 
-		if (!args[0]) return message.reply("```>resize [url] o <imagen>```");
-		attach.set("url", args[0]);
-	}
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
@@ -330,7 +366,7 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}barrato`) {
-        message.channel.send("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png **mi contraparte pero a la ves _loqieromucho_ __ATM__**");
+        message.channel.send("**mi contraparte pero a la ves _loqieromucho_ __ATM__**", { file: ("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png")});
         console.log(`${prefix}barrato usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
@@ -373,6 +409,7 @@ bot.on("message", message => {
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (isUrl(urlimagen) == false || urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+      attach.set("url", urlimagen);
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
@@ -417,15 +454,16 @@ bot.on("message", message => {
         message.channel.startTyping();
         console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
-        let barratoemoji = message.guild.emojis.find('name', "barrato");
+	let barratoemoji = '';
+        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); }
         var number = 5;
         var random = Math.floor (Math.random() * (number - 4 + 3)) + 1;
         switch (random) {
-            case 1: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} no eres **QL** uff tesalvastes bb :baby_symbol: :skull:`); break;
-            case 2: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif detecto qls cerca mio pero no se qien ${barratoemoji} :skull: :coffin: TM`); break;
-            case 3: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} me uele a que loeres perote qiero asi q no :heart:XD :skull:`); break;
-            case 4: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} mmmmm :sos:pechoso :skull: :tm:`); break;
-            case 5: message.channel.send(`https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif ${message.author} UN **QL** tienes 5 segundos para correr SJXASJSA :skull: :coffin: :man_dancing: adjunto`); break;
+            case 1: message.channel.send(`${message.author} no eres **QL** uff tesalvastes bb :baby_symbol: :skull:`, { file: ("https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif")}); break;
+            case 2: message.channel.send(`detecto qls cerca mio pero no se qien ${barratoemoji} :skull: :coffin: TM`, { file: ("https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif")}); break;
+            case 3: message.channel.send(`${message.author} me uele a que loeres perote qiero asi q no :heart:XD :skull:`, { file: ("https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif")}); break;
+            case 4: message.channel.send(`${message.author} mmmmm :sos:pechoso :skull: :tm:`, { file: ("https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif")}); break;
+            case 5: message.channel.send(`${message.author} UN **QL** tienes 5 segundos para correr SJXASJSA :skull: :coffin: :man_dancing: adjunto`, { file: ("https://img00.deviantart.net/09d5/i/2005/074/6/5/a_skull_animation_by_crazyfuck.gif")}); break;
         }
         message.channel.stopTyping();
     }
@@ -433,21 +471,27 @@ bot.on("message", message => {
         message.channel.startTyping();
         console.log(`${prefix}famosisimo usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
-        let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
-        let famosaemoji = message.guild.emojis.find('name', "famosaricarda");
-        let shrekardoemoji = message.guild.emojis.find('name', "olacomoestan");
-        let putqemoji = message.guild.emojis.find('name', "putq");
-        let barratoemoji = message.guild.emojis.find('name', "barrato");
-        let meemputasemoji = message.guild.emojis.find('name', "meemputas");
+	let famosoemoji = '';
+	let famosaemoji = '';
+	let shrekardoemoji = '';
+	let putqemoji = '';
+	let barratoemoji = '';
+	let meemputasemoji = '';
+        if(message.guild.emojis.find('name', "famosoricardo")) { famosoemoji = message.guild.emojis.find('name', "famosoricardo"); }
+        if (message.guild.emojis.find('name', "famosaricarda")) { famosaemoji = message.guild.emojis.find('name', "famosaricarda"); }
+        if (message.guild.emojis.find('name', "olacomoestan")) { shrekardoemoji = message.guild.emojis.find('name', "olacomoestan"); }
+        if (message.guild.emojis.find('name', "putq")) { putqemoji = message.guild.emojis.find('name', "putq"); }
+        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); }
+        if (message.guild.emojis.find('name', "meemputas")) { meemputasemoji = message.guild.emojis.find('name', "meemputas"); }
         var number = 6;
         var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
         switch (random) {
-            case 1: message.channel.send(`${message.author}, te identificas con el famoso ricardo omg ${famosoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669540088217601/enlarge.png`); break;
-            case 2: message.channel.send(`${message.author}, te identificas con la famosa ricarda jsjsj ${famosaemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669584103112725/enlarge.png`); break;
-            case 3: message.channel.send(`${message.author}, te identificas con el famoso _**s h r e k a r d o**_ OLACOMOestan ${shrekardoemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669637194743834/enlarge.png`); break;
-            case 4: message.channel.send(`${message.author}, te identificas con el _acaca_ __**PUTQ**__ ono ${putqemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669679670591488/enlarge.png`); break;
-            case 5: message.channel.send(`${message.author}, te identificas con el barratisimo :b:arrato ${barratoemoji} https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png`); break;
-            case 6: message.channel.send(`${message.author}, te identificas con Frida:tm: ME EMPUTQS DXDDJXJD ${meemputasemoji} https://cdn.discordapp.com/attachments/394255759539437568/478669913871876124/enlarge.png`); break;
+            case 1: message.channel.send(`${message.author}, te identificas con el famoso ricardo omg ${famosoemoji}`, { file: ("https://cdn.discordapp.com/attachments/394255759539437568/478669540088217601/enlarge.png")}); break;
+            case 2: message.channel.send(`${message.author}, te identificas con la famosa ricarda jsjsj ${famosaemoji}`, { file: ("https://cdn.discordapp.com/attachments/394255759539437568/478669584103112725/enlarge.png")}); break;
+            case 3: message.channel.send(`${message.author}, te identificas con el famoso _**s h r e k a r d o**_ OLACOMOestan ${shrekardoemoji}`, { file: ("https://cdn.discordapp.com/attachments/394255759539437568/478669637194743834/enlarge.png")}); break;
+            case 4: message.channel.send(`${message.author}, te identificas con el _acaca_ __**PUTQ**__ ono ${putqemoji}`, { file: ("https://cdn.discordapp.com/attachments/394255759539437568/478669679670591488/enlarge.png")}); break;
+            case 5: message.channel.send(`${message.author}, te identificas con el barratisimo :b:arrato ${barratoemoji}`, { file: ("https://media.discordapp.net/attachments/360843373889847298/394934845505011713/emote.png")}); break;
+            case 6: message.channel.send(`${message.author}, te identificas con Frida:tm: ME EMPUTQS DXDDJXJD ${meemputasemoji}`, { file: ("https://cdn.discordapp.com/attachments/394255759539437568/478669913871876124/enlarge.png")}); break;
         }
         message.channel.stopTyping();
     }
