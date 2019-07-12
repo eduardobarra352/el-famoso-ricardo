@@ -293,9 +293,7 @@ bot.on("message", message => {
   	.then(messages => messages.filter(m => imagensize = m.attachments.size))
 	.then(messages2 => messages2.filter(m2 => imagen = m2.attachments.url))
   	.catch(console.error);
-	if (imagensize > 0) {
-	    message.channel.send({ files: [imagen] });
-	}
+	message.channel.send({ files: [imagen] });
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
