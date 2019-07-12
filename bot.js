@@ -286,6 +286,11 @@ bot.on("message", message => {
 	message.channel.stopTyping();
 	Log(bot, message, args);
     }
+    if (cmd === `${prefix}resize`) {
+	message.channel.fetchMessages({ limit: 1 })
+  	.then(messages => console.log(`recibi ${messages.attachments.size} imagen, url: ${messages.attachments.url}`))
+  	.catch(console.error);
+    }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
         message.react(famosoemoji);
