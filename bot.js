@@ -147,7 +147,8 @@ bot.on("message", message => {
 	    var titulo = tituloriginal.substring(0, limitetitulo) + '...';
             var autororiginal = videos[i].author;
 	    var limiteautor = 17;
-            var autor = autororiginal.substring(0, limiteautor) + '...';
+	    console.log(autororiginal);
+            var autor /*= autororiginal.substring(0, limiteautor) + '...'*/;
             resp += `**${parseInt(i)+1}**- **${titulo}** ``${autor}`` | ``${videos[i].timestamp}``\n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
