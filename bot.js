@@ -257,9 +257,9 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("url") && attach.get("guild") == message.channel.id && !args[0]) { 
+	    if (attach.imagen.get("url") && attach.imagen.guild.get(message.channel.id) && !args[0]) { 
 		setTimeout(()=>{
-			let urlimagen = attach.get("url");
+			let urlimagen = attach.imagen.get("url");
 			message.channel.startTyping();
 			jimp.read(urlimagen, (err, jpeg) => {
 				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -306,9 +306,9 @@ bot.on("message", message => {
 	    Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	if (attach.get("url") && attach.get("guild") == message.channel.id && !args[0]) { 
+	if (attach.imagen.get("url") && attach.imagen.guild.get(message.channel.id) && !args[0]) { 
 		message.channel.startTyping();
-		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); message.channel.stopTyping(); },2000);
+		setTimeout(()=> { message.channel.send({ file: (attach.imagen.get("url"))}); message.channel.stopTyping(); },2000);
 	}
 	else { 
 		if (!args[0] && !message.attachments.size) return message.reply("```>resize [url] o <imagen>```");
