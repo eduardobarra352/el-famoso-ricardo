@@ -289,7 +289,13 @@ bot.on("message", message => {
     if (cmd === `${prefix}resize`) {
 	let imagen;
 	let imagensize;
-	if (attach.get("url")) { message.channel.send({ file: (attach.get("url"))}); } else { message.reply("```>resize [url] o <imagen>```"); }
+	if (attach.get("url")) { 
+		message.channel.send({ file: (attach.get("url"))}); 
+	} 
+	else { 
+		if (!args[0]) return message.reply("```>resize [url] o <imagen>```");
+		attach.set("url", args[0]);
+	}
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
