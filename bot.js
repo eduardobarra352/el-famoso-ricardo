@@ -179,10 +179,11 @@ bot.on("message", message => {
             res = res.slice(minim, nivel);
             try {
                 for(var i in res) {
+		    var url = decodeURI(res[i].url);
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
-		    .setImage(res[i].url)
+		    .setImage(url)
                     .addField("Resultados:", nivel + "-50");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
