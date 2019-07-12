@@ -290,7 +290,7 @@ bot.on("message", message => {
 	let imagen;
 	let imagensize;
 	message.channel.fetchMessages({ limit: 10 })
-  	.then(messages => console.log((messages.attachments).array()))
+  	.then(messages => { var Attachment = messages.array(); console.log(Attachment); })
   	.catch(console.error);
 	//message.channel.send({ files: [imagen] });
     }
