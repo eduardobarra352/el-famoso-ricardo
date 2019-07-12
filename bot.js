@@ -150,9 +150,9 @@ bot.on("message", message => {
 	    console.log(autor);
             //autor = autororiginal.substring(0, limiteautor) + '...';
 		  //**${titulo}** ``${autor}``
-            resp += `**${parseInt(i)+1}**-  | ``${videos[i].timestamp}``\n`;
+            resp += "**${parseInt(i)+1}**- ``${videos[i].timestamp}``\n";
           }
-          resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
+          resp += "\neliga el número del video q qieres mm: **1-${videos.length}**";
           message.channel.send(resp).then(msg => msg.delete(30000));
           message.channel.stopTyping();
           const filtro = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
