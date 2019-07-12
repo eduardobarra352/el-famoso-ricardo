@@ -186,7 +186,7 @@ bot.on("message", message => {
                     .addField("Resultados:", nivel + "-50")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
-	            AttachImagen(decodeURI(res[i].url), message.channel.name);
+	            AttachImagen(decodeURI(res[i].url), message.channel.id);
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
@@ -256,7 +256,7 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("url") && attach.get("guild") == message.channel.name) { 
+	    if (attach.get("url") && attach.get("guild") == message.channel.id) { 
 		setTimeout(()=>{
 			let urlimagen = attach.get("url");
 			message.channel.startTyping();
@@ -289,7 +289,7 @@ bot.on("message", message => {
 		else {
 		    let urlimagen = args[0];
 		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-	            AttachImagen(urlimagen, message.channel.name);
+	            AttachImagen(urlimagen, message.channel.id);
 		    message.channel.startTyping();
 		    jimp.read(urlimagen, (err, jpeg) => {
 			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -304,7 +304,7 @@ bot.on("message", message => {
 	    Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	if (attach.get("url") && attach.get("guild") == message.channel.name) { 
+	if (attach.get("url") && attach.get("guild") == message.channel.id) { 
 		message.channel.startTyping();
 		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); },2000);
 	}
@@ -323,7 +323,7 @@ bot.on("message", message => {
 		else {
 		    let urlimagen = args[0];
 		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-		    attach.set("url", urlimagen);
+		    AttachImagen(urlimagen, message.channel.id);
 		    message.channel.startTyping();
 		    jimp.read(urlimagen, (err, jpeg) => {
 			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -412,7 +412,7 @@ bot.on("message", message => {
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (isUrl(urlimagen) == false || urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-      AttachImagen(urlimagen, message.channel.name);
+      AttachImagen(urlimagen, message.channel.id);
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
@@ -573,11 +573,12 @@ bot.on("message", message => {
         //    }
         //}
     }
-    if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.name); }
+    if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.id); }
     
     function AttachImagen (url, guild) {
 	attach.set("url", url);
 	attach.set("guild", guild);
+	console.log(guild);
     }
 });
 
