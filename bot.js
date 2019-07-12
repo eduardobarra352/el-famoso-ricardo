@@ -290,7 +290,7 @@ bot.on("message", message => {
 	let imagensize;
 	let attach;
         message.channel.fetchMessages({ limit: 10 })
-        .then(messages => { attach = (messages.attachments).array(); });
+        .then(messages => attach = (messages.attachments).array());
 	console.log(attach);
     }
     if (cmd === `famoso`) {
