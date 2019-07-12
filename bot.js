@@ -292,7 +292,7 @@ bot.on("message", message => {
 	message.channel.fetchMessages({ limit: 10 })
   	.then(messages => messages.filter(m => { imagen = m.attachments.url;
 	//imagensize = messages.array().attachments.length;
-	console.log(messages.array().attachments)}))
+	console.log((messages.attachments).array())}))
   	.catch(console.error);
 	//message.channel.send({ files: [imagen] });
     }
