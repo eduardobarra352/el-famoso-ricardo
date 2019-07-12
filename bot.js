@@ -139,7 +139,7 @@ bot.on("message", message => {
         console.log(`${prefix}yt usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         yt(args.join(' '), function(err, res){
           if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          let videos = res.videos.slice(0, 10);
+          let videos = res.videos/*.slice(0, 10)*/;
           let resp = '';
 	  console.log(videos);
           for(var i in videos) {
