@@ -139,18 +139,12 @@ bot.on("message", message => {
         console.log(`${prefix}yt usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         yt(args.join(' '), function(err, res){
           if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          let videos = res.videos/*.slice(0, 10)*/;
+          let videos = res.videos.slice(0, 10);
           let resp = '';
-	  console.log(videos);
           for(var i in videos) {
             var titulo = videos[i].title;
 	    var limitetitulo = 30;
 	    titulo = titulo.substring(0, limitetitulo) + '...';
-            var autor = videos[i].author;
-	    var limiteautor = 17;
-	    //console.log(autor);
-            //autor = autororiginal.substring(0, limiteautor) + '...';
-		  //``${autor}``
             resp += `**${parseInt(i)+1}**- **${titulo}** \`\`${videos[i].timestamp}\`\`\n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
