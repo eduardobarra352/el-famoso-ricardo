@@ -142,14 +142,15 @@ bot.on("message", message => {
           let videos = res.videos.slice(0, 10);
           let resp = '';
           for(var i in videos) {
-            var tituloriginal = videos[i].title;
+            var titulo = videos[i].title;
 	    var limitetitulo = 30;
-	    var titulo = tituloriginal.substring(0, limitetitulo) + '...';
-            var autororiginal = videos[i].author;
+	    titulo = titulo.substring(0, limitetitulo) + '...';
+            var autor = videos[i].author;
 	    var limiteautor = 17;
-	    console.log(autororiginal);
-            var autor /*= autororiginal.substring(0, limiteautor) + '...'*/;
-            resp += `**${parseInt(i)+1}**- **${titulo}** ``${autor}`` | ``${videos[i].timestamp}``\n`;
+	    console.log(autor);
+            //autor = autororiginal.substring(0, limiteautor) + '...';
+		  //**${titulo}** ``${autor}``
+            resp += `**${parseInt(i)+1}**-  | ``${videos[i].timestamp}``\n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
           message.channel.send(resp).then(msg => msg.delete(30000));
