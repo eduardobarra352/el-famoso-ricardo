@@ -179,12 +179,12 @@ bot.on("message", message => {
             res = res.slice(minim, nivel);
             try {
                 for(var i in res) {
-		    var url = decodeURI(res[i].url);
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
-		    .setImage(url)
-                    .addField("Resultados:", nivel + "-50");
+		    .setImage(decodeURI(res[i].url))
+                    .addField("Resultados:", nivel + "-50")
+		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
