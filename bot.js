@@ -287,9 +287,15 @@ bot.on("message", message => {
 	Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
+	let imagen;
+	let imagensize;
 	message.channel.fetchMessages({ limit: 10 })
-  	.then(messages => console.log(`${messages.filter(m => m.attachments.size)} imagenes`))
+  	.then(messages => messages.filter(m => imagensize = m.attachments.size))
+	.then(messages2 => messages2.filter(m2 => imagen = m2.attachments.url))
   	.catch(console.error);
+	if (imagensize > 0) {
+	    message.channel.send({ files: [imagen] });
+	}
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
