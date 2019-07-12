@@ -287,7 +287,7 @@ bot.on("message", message => {
 	Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	message.channel.fetchMessages({ limit: 1 })
+	message.channel.fetchMessages({ limit: 10 })
   	.then(messages => console.log(`recibi ${messages} imagen`))
   	.catch(console.error);
     }
