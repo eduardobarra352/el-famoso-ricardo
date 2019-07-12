@@ -29,7 +29,7 @@ bot.on("ready", () => {
 
 bot.on("message", message => {
 
-    if (message.author.bot) return undefined;
+    //if (message.author.bot) return undefined;
 
     //variantes
     const prefix = '>';
@@ -289,7 +289,7 @@ bot.on("message", message => {
     if (cmd === `${prefix}resize`) {
 	let imagen;
 	let imagensize;
-	if (attach.get("url")) { message.channel.send({ file: (attach.get("url"))}); }
+	if (attach.get("url")) { message.channel.send({ file: (attach.get("url"))}); } else { message.reply("```>resize [url] o <imagen>```"); }
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
