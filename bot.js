@@ -186,7 +186,7 @@ bot.on("message", message => {
                     .addField("Resultados:", nivel + "-50")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
-		    attach.set("url", decodeURI(res[i].url));
+	            AttachImagen(decodeURI(res[i].url), message.channel.name);
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
@@ -256,16 +256,18 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("url")) { 
-		let urlimagen = attach.get("url");
-		message.channel.startTyping();
-		jimp.read(urlimagen, (err, jpeg) => {
-			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-			jpeg
-			.quality(1)
-			.write('jpeg.jpg');
-			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-		});
+	    if (attach.get("url") && attach.get("guild") == message.channel.name) { 
+		setTimeout(()=>{
+			let urlimagen = attach.get("url");
+			message.channel.startTyping();
+			jimp.read(urlimagen, (err, jpeg) => {
+				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+				jpeg
+				.quality(1)
+				.write('jpeg.jpg');
+				setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+			});
+		},2000);
 	    }
 	    else {
 		if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
@@ -287,7 +289,7 @@ bot.on("message", message => {
 		else {
 		    let urlimagen = args[0];
 		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-		    attach.set("url", urlimagen);
+	            AttachImagen(urlimagen, message.channel.name);
 		    message.channel.startTyping();
 		    jimp.read(urlimagen, (err, jpeg) => {
 			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -302,8 +304,9 @@ bot.on("message", message => {
 	    Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	if (attach.get("url")) { 
-		message.channel.send({ file: (attach.get("url"))}); 
+	if (attach.get("url") && attach.get("guild") == message.channel.name) { 
+		message.channel.startTyping();
+		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); },2000);
 	}
 	else { 
 		if (!args[0] && !message.attachments.size) return message.reply("```>resize [url] o <imagen>```");
@@ -409,7 +412,7 @@ bot.on("message", message => {
       if (!args[0]) return message.reply("```1- >desmotivacion [url] [toptext]```");
       if (!toptext) return message.reply(":x: no sepudo leer lawea, siga intentando g");
       if (isUrl(urlimagen) == false || urlimagen.match(/\.(jpeg|jpg|gif|png)$/) == null) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-      attach.set("url", urlimagen);
+      AttachImagen(urlimagen, message.channel.name);
       message.channel.startTyping();
       console.log(`${prefix}desmotivacion usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
       var options = {
@@ -525,7 +528,7 @@ bot.on("message", message => {
         bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = ${cmd}`);
     }
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
@@ -570,7 +573,12 @@ bot.on("message", message => {
         //    }
         //}
     }
-    if (message.attachments.size > 0) { attach.set("url", message.attachments.first().url) }
+    if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.name); }
+    
+    function AttachImagen (url, guild) {
+	attach.set("url", url);
+	attach.set("guild", guild);
+    }
 });
 
 function Log(bot, message, args) {
