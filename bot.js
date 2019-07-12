@@ -36,10 +36,6 @@ bot.on("message", message => {
     let msg = message.content.toLowerCase();
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
-	
-    let attach;
-    message.channel.fetchMessages({ limit: 10 })
-    .then(messages => { attach = (messages.attachments).array(); });
 
     if (cmd === `${prefix}invite`) {
         message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
@@ -292,6 +288,9 @@ bot.on("message", message => {
     if (cmd === `${prefix}resize`) {
 	let imagen;
 	let imagensize;
+	let attach;
+        message.channel.fetchMessages({ limit: 10 })
+        .then(messages => { attach = (messages.attachments).array(); });
 	console.log(attach);
     }
     if (cmd === `famoso`) {
