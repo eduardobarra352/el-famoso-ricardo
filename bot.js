@@ -289,7 +289,7 @@ bot.on("message", message => {
 	let imagen;
 	let imagensize;
         message.channel.fetchMessages({ limit: 10 })
-        .then(messages => console.log((messages.MessageAttachment).array()));
+        .then(messages => console.log(messages.MessageAttachment));
     }
     if (cmd === `famoso`) {
         let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
