@@ -371,6 +371,7 @@ bot.on("message", message => {
 	if (message.guild.emojis.find('name', "phineas")) {
             phineasemoji = message.guild.emojis.find('name', "phineas");
 	    message.react(phineasemoji);
+	}
     }
 
     if (cmd === `${prefix}gaming`) {
