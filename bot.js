@@ -59,6 +59,12 @@ bot.on("message", message => {
         console.log(`"<" usado por: ${message.author.tag} en el server ${message.guild.name}`);
         if (args[0]) return message.reply("es para el otro lado XDSJ");
     }
+    if (message.content) {
+	    let reurl = msg[0];
+	    if (isUrl(reurl) == true) {
+		    AttachImagen(reurl, message.channel.id);
+	    }
+    }
 
     //comandos de prefix
     if (cmd === `${prefix}famoso`) {
@@ -228,7 +234,7 @@ bot.on("message", message => {
                 activo: activo
             }
             let commandFile = require(`./bp/play.js`);
-            commandFile.run(bot, message, args, opus, activo);
+            commandFile.run(bot, message, args, opus);
         } catch(e) {
             console.log(e.stack);
         }
@@ -340,20 +346,31 @@ bot.on("message", message => {
 	Log(bot, message, args);
     }
     if (cmd === `famoso`) {
-        let famosoemoji = message.guild.emojis.find('name', "famosoricardo");
-        message.react(famosoemoji);
+        let famosoemoji;
+	if (message.guild.emojis.find('name', "famosoricardo")) {
+	    famosoemoji = message.guild.emojis.find('name', "famosoricardo");
+            message.react(famosoemoji);
+	}
     }
     if (cmd === `famosa`) {
-        let famosaemoji = message.guild.emojis.find('name', "famosaricarda");
-        message.react(famosaemoji);
+        let famosaemoji;
+	if (message.guild.emojis.find('name', "famosaricarda")) {
+            famosaemoji = message.guild.emojis.find('name', "famosaricarda");
+	    message.react(famosaemoji);
+        }
     }
     if (cmd === `barrato`) {
-        let barratoemoji = message.guild.emojis.find('name', "barrato");
-        message.react(barratoemoji);
+        let barratoemoji;
+	if (message.guild.emojis.find('name', "barrato")) {
+            barratoemoji = message.guild.emojis.find('name', "barrato");
+	    message.react(barratoemoji);
+	}
     }
     if (cmd === `phineas`) {
-        let phineasemoji = message.guild.emojis.find('name', "phineas");
-        message.react(phineasemoji);
+        let phineasemoji;
+	if (message.guild.emojis.find('name', "phineas")) {
+            phineasemoji = message.guild.emojis.find('name', "phineas");
+	    message.react(phineasemoji);
     }
 
     if (cmd === `${prefix}gaming`) {
