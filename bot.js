@@ -25,12 +25,6 @@ bot.on("ready", () => {
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
-    setInterval(function(){
-          if (bot.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 2) {
-              bot.guild.me.voiceChannel.leave();
-              bot.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
-          }
-    },5000);
 });
 
 bot.on("message", message => {
@@ -610,7 +604,12 @@ bot.on("message", message => {
 		guild: guild
 	});
     }
-	
+    setTimeout(()=>{
+          if (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 2) {
+              message.guild.me.voiceChannel.leave();
+              message.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
+          }
+    },5000);
 });
 
 function Log(bot, message, args) {
