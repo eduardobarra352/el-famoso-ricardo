@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const yt = require('yt-search');
+const isUrl = require('is-url');
 
 //function finish(bot, opus, dispatcher) {
 //  let fetched = opus.activo.get(dispatcher.guildID);
@@ -31,10 +32,11 @@ exports.run = async (bot, message, args, opus) => {
         let validate = await ytdl.validateURL(args[0]);
         if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
         let info = await ytdl.getInfo(args[0]);
+        const streamOptions = { seek: 0, volume: 1 }; 
         let connection = message.member.voiceChannel.join()
         .then(voiceConnection => {
         const stream = ytdl(args[0], { filter : 'audioonly' });
-        const streamDispatcher = voiceConnection.playStream(stream);
+        const streamDispatcher = voiceConnection.playStream(stream, streamOptions);
         })
         .catch(console.error);
         message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
