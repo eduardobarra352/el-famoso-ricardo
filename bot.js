@@ -38,6 +38,7 @@ bot.on("message", message => {
     let args = message.content.slice(prefix.lenght).trim().split(' ');
     let cmd = args.shift().toLowerCase();
     if (!attach.imagen) attach.imagen = [];
+    AttachImagen(0, 0);
 
     if (cmd === `${prefix}invite`) {
         message.channel.send("https://discordapp.com/api/oauth2/authorize?client_id=476139360870334464&permissions=8&scope=bot");
@@ -307,9 +308,9 @@ bot.on("message", message => {
 	    	  Log(bot, message, args);
     }
     if (cmd === `${prefix}resize`) {
-	if (attach.get("url") && attach.get("guild", message.channel.id) && !args[0]) { 
+	if (attach.imagen[attach.imagen.length-1].guild == message.channel.id && !args[0]) { 
 		message.channel.startTyping();
-		setTimeout(()=> { message.channel.send({ file: (attach.get("url"))}); message.channel.stopTyping(); },2000);
+		setTimeout(()=> { message.channel.send({ file: (attach.imagen[attach.imagen.length-1].url)}); message.channel.stopTyping(); },2000);
 	}
 	else { 
 		if (!args[0] && !message.attachments.size) return message.reply("```>resize [url] o <imagen>```");
