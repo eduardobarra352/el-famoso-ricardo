@@ -257,50 +257,53 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("guild", message.channel.id) && !args[0]) { 
-		setTimeout(()=>{
-			let urlimagen = attach.imagen[attach.imagen.length-1].url;
-			message.channel.startTyping();
-			jimp.read(urlimagen, (err, jpeg) => {
+	    let attlevel = attach.imagen;
+	    for(var i in attlevel) {
+		    if (attlevel[i].guild == message.channel.id && !args[0]) { 
+			setTimeout(()=>{
+				let urlimagen = attlevel[attlevel.length-1].url;
+				message.channel.startTyping();
+				jimp.read(urlimagen, (err, jpeg) => {
+					if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+					jpeg
+					.quality(1)
+					.write('jpeg.jpg');
+					setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+				});
+				message.channel.stopTyping();
+			},2000);
+		    }
+		    else {
+			if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
+			if (!args[0] && !message.attachments.size) return message.reply("```>jpg [url] o <imagen>```");
+			if (message.attachments.size > 0) {
+			    message.channel.startTyping();
+			    let imagen = message.attachments.first().url;
+			    let anchura = message.attachments.first().width;
+			    let altura = message.attachments.first().height;
+			    jimp.read(imagen, (err, jpeg) => {
+				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+				jpeg
+				.resize(anchura, altura)
+				.quality(1)
+				.write('jpeg.jpg');
+				setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
+			    });
+			}
+			else {
+			    let urlimagen = args[0];
+			    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+			    AttachImagen(urlimagen, message.channel.id);
+			    message.channel.startTyping();
+			    jimp.read(urlimagen, (err, jpeg) => {
 				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 				jpeg
 				.quality(1)
 				.write('jpeg.jpg');
 				setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-			});
-			message.channel.stopTyping();
-		},2000);
-	    }
-	    else {
-		if (args.includes("help")) return message.reply("```>jpg [url] o <imagen>```");
-		if (!args[0] && !message.attachments.size) return message.reply("```>jpg [url] o <imagen>```");
-		if (message.attachments.size > 0) {
-		    message.channel.startTyping();
-		    let imagen = message.attachments.first().url;
-		    let anchura = message.attachments.first().width;
-		    let altura = message.attachments.first().height;
-		    jimp.read(imagen, (err, jpeg) => {
-			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-			jpeg
-			.resize(anchura, altura)
-			.quality(1)
-			.write('jpeg.jpg');
-			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-		    });
-		}
-		else {
-		    let urlimagen = args[0];
-		    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-	            AttachImagen(urlimagen, message.channel.id);
-		    message.channel.startTyping();
-		    jimp.read(urlimagen, (err, jpeg) => {
-			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-			jpeg
-			.quality(1)
-			.write('jpeg.jpg');
-			setTimeout(()=>{ message.channel.send({ file: ("jpeg.jpg")}) },2000);
-		    });
-		}
+			    });
+			}
+		    }
 	    }
 	    message.channel.stopTyping();
 	    Log(bot, message, args);
@@ -584,7 +587,6 @@ bot.on("message", message => {
 		url: url,
 		guild: guild
 	});
-	console.log(attach.get("url"/*, attach.imagen[attach.imagen.length-1].url*/));
     }
 	
 });
