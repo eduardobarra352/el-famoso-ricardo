@@ -257,9 +257,9 @@ bot.on("message", message => {
         Log(bot, message, args);
     }
     if (cmd === `${prefix}jpg`) {
-	    if (attach.get("url") && attach.get("guild", message.channel.id) && !args[0]) { 
+	    if (attach.get("guild", message.channel.id) && !args[0]) { 
 		setTimeout(()=>{
-			let urlimagen = attach.get("url");
+			let urlimagen = attach.imagen[attach.imagen.length-1].url;
 			message.channel.startTyping();
 			jimp.read(urlimagen, (err, jpeg) => {
 				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -584,8 +584,7 @@ bot.on("message", message => {
 		url: url,
 		guild: guild
 	});
-	let urlattach = attach.imagen.length-1;
-	console.log(attach.imagen[urlattach].url);
+	console.log(attach.get("url", attach.imagen[attach.imagen.length-1].url));
     }
 	
 });
