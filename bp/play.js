@@ -24,7 +24,7 @@ const yt = require('yt-search');
 //  });
 //}
 
-exports.run = async (bot, message, args, opus, activo) => {
+exports.run = async (bot, message, args, opus) => {
         var timer;
         if (!message.member.voiceChannel) return message.channel.send(":x: No estas en un canal de voz, porfa lentra™");
         if (message.guild.me.voiceChannel) return message.channel.send("uy pero ya estoi en elcanal de voz jej");
@@ -32,13 +32,15 @@ exports.run = async (bot, message, args, opus, activo) => {
         let validate = await ytdl.validateURL(args[0]);
         if (!validate) return message.reply(":no_entry: El Url es incorrecto o no es existente u.u");
         let info = await ytdl.getInfo(args[0]);
-        let connection = await message.member.voiceChannel.join();
-        let dispatcher = await connection.playStream(ytdl(args[0], { filter: "audioonly" }));
+        let connection = message.member.voiceChannel.join()
+                .then(voiceconnection => {
+                let dispatcher = voiceconnection.playStream(ytdl(args[0], { filter: "audioonly" }));
+        }).catch(console.error);
         message.channel.send(`:musical_note: Ahorita escuchando: **${info.title}**`);
         console.log(`>play usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         clearTimeout(timer);
         timer = setTimeout(()=>{ 
-                if (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 1) {
+                if (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 2) {
                         message.guild.me.voiceChannel.leave();
                         message.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
                 }
