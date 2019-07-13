@@ -584,7 +584,7 @@ bot.on("message", message => {
 		url: url,
 		guild: guild
 	});
-	let urlattach = attach.imagen.length;
+	let urlattach = attach.imagen.length-1;
 	console.log(attach.imagen[urlattach].url);
     }
 	
