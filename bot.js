@@ -357,7 +357,6 @@ bot.on("message", message => {
 	var timer;
 	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          	res = JSON.stringify(body, null, '  ');
 		res = JSON.parse(res);
 		console.log(res);
     	  }
