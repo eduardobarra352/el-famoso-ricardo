@@ -358,8 +358,8 @@ bot.on("message", message => {
 	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
           	res = JSON.stringify(body, null, '  ');
-		res = JSON.parse(res);
-		res = res.slice(minim, nivel);
+		/*res = JSON.parse(res);
+		res = res.slice(minim, nivel);*/
 		console.log(res);
     	  }
 	});
