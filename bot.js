@@ -353,8 +353,11 @@ bot.on("message", message => {
 	let filtro;
 	let collector;
 	var timer;
-	resultados = JSON.stringify(resultados, null, '  ');
-	console.log(resultados);
+	fs.readFile(resultados, function read(err, data) {
+    		if (err) throw err;
+    		var content = data;
+    		console.log(content);
+	});
         /*message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
