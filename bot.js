@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
+const request = require('request');
 const bot = new Discord.Client({ disableEveryone: true });
 const FFMPEG = require('ffmpeg');
 const ytdl = require('ytdl-core');
@@ -353,10 +354,12 @@ bot.on("message", message => {
 	let filtro;
 	let collector;
 	var timer;
-	fs.readFile(resultados, function read(err, data) {
-    		if (err) throw err;
-    		var content = data;
-    		console.log(content);
+	request({
+    		url: resultados,
+    		json: true
+	}, function (error, response, body) { if (!error && response.statusCode === 200) {
+        	console.log(body) // Print the json response
+    		}
 	});
         /*message.channel.startTyping();
         function resultados(err, res) {
