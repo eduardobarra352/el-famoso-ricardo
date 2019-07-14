@@ -60,7 +60,7 @@ bot.on("message", message => {
         if (args[0]) return message.reply("es para el otro lado XDSJ");
     }
     if (message.content) {
-	    let reurl = msg[0];
+	    let reurl = cmd[0];
 	    if (isUrl(reurl) == true) {
 		    AttachImagen(reurl, message.channel.id);
 	    }
@@ -162,6 +162,7 @@ bot.on("message", message => {
           collector.videos = videos;
           collector.once('collect', function(m) {
               message.channel.send('https://youtube.com'+[this.videos[parseInt(m.content)-1].url]);
+	      AttachImagen('https://i.ytimg.com/vi/'+[this.videos[parseInt(m.content)-1].videoId]+'/hqdefault.jpg', message.channel.id);
           });
           Log(bot, message, args);
         });
