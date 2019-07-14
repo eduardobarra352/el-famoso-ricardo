@@ -354,8 +354,6 @@ bot.on("message", message => {
 	let collector;
 	var timer;
 	resultados = JSON.stringify(resultados, null, '  ');
-	resultados = JSON.parse(resultados);
-	resultados = resultados.slice(minim, nivel);
 	console.log(resultados);
         /*message.channel.startTyping();
         function resultados(err, res) {
