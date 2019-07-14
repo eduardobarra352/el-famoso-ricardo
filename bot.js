@@ -62,6 +62,11 @@ bot.on("message", message => {
     if (message.content) {
 	    let reurl = cmd[0];
 	    if (isUrl(reurl) == true) {
+		    if (ytdl.validateURL(reurl)) { 
+			    let attachidvideo = ytdl.getURLVideoID(reurl);
+			    AttachImagen('https://i.ytimg.com/vi/'+attachidvideo+'/hqdefault.jpg', message.channel.id);
+			    return; 
+		    } 
 		    AttachImagen(reurl, message.channel.id);
 	    }
     }
@@ -151,7 +156,7 @@ bot.on("message", message => {
           for(var i in videos) {
             var titulo = videos[i].title;
 	    var limitetitulo = 30;
-	    titulo = titulo.substring(0, limitetitulo) + '...';
+	    if (titulo.length > 29) titulo = titulo.substring(0, limitetitulo) + '...';
             resp += `**${parseInt(i)+1}**- **${titulo}** \`\`${videos[i].timestamp}\`\`\n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
