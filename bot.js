@@ -198,7 +198,7 @@ bot.on("message", message => {
 		    .setImage(decodeURI(res[i].url))
                     .addField("Resultados:", nivel + "-50")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
+		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter('se termino los resultados,,'); msgid.edit(embed); } },16000)); }
 	            AttachImagen(decodeURI(res[i].url), message.channel.id);
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
@@ -345,7 +345,6 @@ bot.on("message", message => {
 	}
     }
     if (cmd === `${prefix}undiscovered`) {
-	let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?access_token='+process.env.datoken;
 	let res;
         let nivel = 1;
         let minim = 0;
@@ -355,9 +354,10 @@ bot.on("message", message => {
 	let filtro;
 	let collector;
 	var timer;
+	let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?offset='+minim+'&limit='+nivel+'&access_token='+process.env.datoken;
 	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-		res = JSON.parse(res);
+		res = JSON.stringify(body, null, '  ');
 		console.log(res);
     	  }
 	});
