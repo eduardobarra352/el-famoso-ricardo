@@ -192,7 +192,7 @@ bot.on("message", message => {
 		    .setImage(decodeURI(res[i].url))
                     .addField("Resultados:", nivel + "-50")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg); }
+		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
 	            AttachImagen(decodeURI(res[i].url), message.channel.id);
                 }
                 filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
