@@ -232,41 +232,6 @@ bot.on("message", message => {
         console.log(`${prefix}sans usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
-    if (cmd === `${prefix}play`) {
-        try {
-            let opus = {
-                ownerID: ownerID,
-                activo: activo
-            }
-            let commandFile = require(`./bp/play.js`);
-            commandFile.run(bot, message, args, opus);
-        } catch(e) {
-            console.log(e.stack);
-        }
-        console.log(`${prefix}play usado por: ${message.author.tag} en el server ${message.guild.name}`);
-        Log(bot, message, args);
-    }
-    //if (cmd === `${prefix}queue`) {
-    //    try {
-    //        let opus = {
-    //            activo: activo
-    //        }
-    //        let commandFile = require(`./bp/queue.js`);
-    //        commandFile.run(bot, message, args, opus, activo);
-    //    } catch(e) {
-    //        console.log(e.stack);
-    //    }
-    //}
-    if (cmd === `${prefix}leave`) {
-        try {
-            let commandFile = require(`./bp/leave.js`);
-            commandFile.run(bot, message, args, opus);
-        } catch(e) {
-            console.log(e.stack);
-        }
-        console.log(`${prefix}leave usado por: ${message.author.tag} en el server ${message.guild.name}`);
-        Log(bot, message, args);
-    }
     if (cmd === `${prefix}jpg`) {
 		if (attach.imagen[attach.imagen.length-1].guild == message.channel.id && !args[0]) { 
 			setTimeout(()=>{
@@ -378,7 +343,64 @@ bot.on("message", message => {
 	    message.react(phineasemoji);
 	}
     }
-
+    if (cmd === `${prefix}undiscovered`) {
+	let resultados = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?access_token='+process.env.datoken;
+        let nivel = 1;
+        let minim = 0;
+	let veces = 0;
+        let embed;
+        let msgid;
+	let filtro;
+	let collector;
+	var timer;
+	resultados = JSON.stringify(resultados, null, '  ');
+	resultados = JSON.parse(resultados);
+	resultados = resultados.slice(minim, nivel);
+	console.log(resultados);
+        /*message.channel.startTyping();
+        function resultados(err, res) {
+            if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+            res = JSON.stringify(res, null, '  ');
+            res = JSON.parse(res);
+            res = res.slice(minim, nivel);
+            try {
+                for(var i in res) {
+                    embed = new Discord.RichEmbed()
+                    .setColor("#40f230")
+                    .setAuthor(message.author.username, message.author.avatarURL)
+		    .setImage(decodeURI(res[i].url))
+                    .addField("Resultados:", nivel + "-50")
+		    .setFooter("escribe un numero para ver los otros resultados o.o");
+		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
+	            AttachImagen(decodeURI(res[i].url), message.channel.id);
+                }
+                filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
+                collector = message.channel.createMessageCollector(filtro, { time: 15000 });
+                collector.res = res;
+                collector.on('collect', m => {
+		    clearTimeout(timer);
+	            if (nivel > 0 || nivel < 51) {
+			    nivel = m;
+			    minim = m-1;
+			    veces = veces+1;
+			    gis(buscar, resultados);
+			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+			    timer = setTimeout(()=>{
+				    collector.on('end', m => {
+		    			setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+				    });
+		  	    },15000);
+		    }
+                });
+            }
+            catch(e) {
+                console.log(e.stack);
+                message.channel.send(":x: error ultra desconocido :spy:...sigale intentando ñ");
+            }
+            message.channel.stopTyping();
+        }
+	Log(bot, message, args);*/
+    }
     if (cmd === `${prefix}gaming`) {
         message.channel.send("sans");
         console.log(`${prefix}gaming usado por: ${message.author.tag} en el server ${message.guild.name}`);
