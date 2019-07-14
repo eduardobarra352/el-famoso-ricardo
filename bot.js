@@ -358,7 +358,18 @@ bot.on("message", message => {
 	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 		res = JSON.stringify(body, null, '  ');
-		console.log(res);
+		console.log(res.results[0]);
+		/*for(var i in res) {
+                    embed = new Discord.RichEmbed()
+                    .setColor("#40f230")
+		    .setTitle(res.results[i])
+                    .setAuthor(message.author.username, message.author.avatarURL)
+		    .setImage(decodeURI(res[i].url))
+                    .addField("Resultados:", nivel + "-10")
+		    .setFooter("escribe un numero para ver los otros resultados o.o");
+		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
+	            AttachImagen(decodeURI(res[i].url), message.channel.id);
+                }*/
     	  }
 	});
         /*message.channel.startTyping();
