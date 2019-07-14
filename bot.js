@@ -59,17 +59,15 @@ bot.on("message", message => {
         console.log(`"<" usado por: ${message.author.tag} en el server ${message.guild.name}`);
         if (args[0]) return message.reply("es para el otro lado XDSJ");
     }
-    if (message.content) {
-	    let reurl = cmd[0];
-	    if (isUrl(reurl) == true) {
-		    if (ytdl.validateURL(reurl)) { 
-			    let attachidvideo = ytdl.getURLVideoID(reurl);
-			    AttachImagen('https://i.ytimg.com/vi/'+attachidvideo+'/hqdefault.jpg', message.channel.id);
-		    } 
-		    else {
-		    	AttachImagen(reurl, message.channel.id);
-		    }
-	    }
+    let reurl = cmd[0];
+    if (isUrl(reurl) == true) {
+	if (ytdl.validateURL(reurl)) { 
+		let attachidvideo = ytdl.getURLVideoID(reurl);
+		AttachImagen('https://i.ytimg.com/vi/'+attachidvideo+'/hqdefault.jpg', message.channel.id);
+        } 
+	else {
+		AttachImagen(reurl, message.channel.id);
+	}
     }
 
     //comandos de prefix
@@ -604,19 +602,11 @@ bot.on("message", message => {
     if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.id); }
     
     function AttachImagen (url, guild) {
-	/*attach.set("url", url);
-	attach.set("guild", guild);*/
 	attach.imagen.push({
 		url: url,
 		guild: guild
 	});
     }
-    setTimeout(()=>{
-          if (message.guild.me.voiceChannel && message.guild.me.voiceChannel.members.size < 2) {
-              message.guild.me.voiceChannel.leave();
-              message.channel.send(":runner: Saliendo del canal de voz,,,").then(msg => msg.delete(2000));
-          }
-    },5000);
 });
 
 function Log(bot, message, args) {
