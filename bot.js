@@ -65,9 +65,10 @@ bot.on("message", message => {
 		    if (ytdl.validateURL(reurl)) { 
 			    let attachidvideo = ytdl.getURLVideoID(reurl);
 			    AttachImagen('https://i.ytimg.com/vi/'+attachidvideo+'/hqdefault.jpg', message.channel.id);
-			    return; 
 		    } 
-		    AttachImagen(reurl, message.channel.id);
+		    else {
+		    	AttachImagen(reurl, message.channel.id);
+		    }
 	    }
     }
 
