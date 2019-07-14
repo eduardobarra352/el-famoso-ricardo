@@ -345,7 +345,8 @@ bot.on("message", message => {
 	}
     }
     if (cmd === `${prefix}undiscovered`) {
-	let resultados = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?access_token='+process.env.datoken;
+	let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?access_token='+process.env.datoken;
+	let res;
         let nivel = 1;
         let minim = 0;
 	let veces = 0;
@@ -354,12 +355,13 @@ bot.on("message", message => {
 	let filtro;
 	let collector;
 	var timer;
-	request({
-    		url: resultados,
-    		json: true
-	}, function (error, response, body) { if (!error && response.statusCode === 200) {
-        	console.log(body) // Print the json response
-    		}
+	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
+		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+          	res = JSON.stringify(body, null, '  ');
+		res = JSON.parse(res);
+		res = res.slice(minim, nivel);
+		console.log(res);
+    	  }
 	});
         /*message.channel.startTyping();
         function resultados(err, res) {
