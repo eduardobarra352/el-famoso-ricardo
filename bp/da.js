@@ -157,7 +157,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         r = JSON.stringify(b, null, '  ');
         r = JSON.parse(r);
         limite = r.stats;
-        limite = JSON.parse(limite);
+        limite = JSON.stringify(limite, null, '  ');
         console.log(limite);
         console.log(limite.user_deviations);
         limite = limite.user_deviations;
