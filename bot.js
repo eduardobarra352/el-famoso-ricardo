@@ -26,6 +26,13 @@ bot.on("ready", () => {
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
+    //setInterval(function(){
+	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
+  		console.log('error:', err);
+  		console.log('statusCode:', response);
+  		console.log('body:', body);
+	});
+    //}, 3600000);
 });
 
 bot.on("message", message => {
