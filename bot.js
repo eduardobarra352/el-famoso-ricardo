@@ -359,18 +359,18 @@ bot.on("message", message => {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 		res = JSON.stringify(body, null, '  ');
 		res = JSON.parse(res);
-		console.log(res.results[0].title);
-		/*for(var i in res) {
+		for(var i in res) {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
-		    .setTitle(res.results[i])
+		    .setTitle(res.results[i].title)
+	            .setURL(res.results[i].url)
                     .setAuthor(message.author.username, message.author.avatarURL)
-		    .setImage(decodeURI(res[i].url))
+		    .setImage(res.results[i].content.src)
                     .addField("Resultados:", nivel + "-10")
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
-	            AttachImagen(decodeURI(res[i].url), message.channel.id);
-                }*/
+	            AttachImagen(res.results[i].content.src, message.channel.id);
+                }
     	  }
 	});
         /*message.channel.startTyping();
