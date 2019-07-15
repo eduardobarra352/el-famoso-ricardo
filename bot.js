@@ -388,27 +388,27 @@ bot.on("message", message => {
 				    .setURL(res.results[i].url)
 				    .setAuthor(message.author.username, message.author.avatarURL)
 				    .setImage(imagenart)
-				    .addField("Resultados:", (minim+1) + "-10")
+				    .addField("Resultados:", (minim+1) + "-100")
 				    .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },16000)); }
+				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },31000)); }
 				    try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
 				}
 				EmbedArt(0);
-				filtro = m => !isNaN(m.content) && m.content < 10+1 && m.content > 0;
-				collector = message.channel.createMessageCollector(filtro, { time: 15000 });
+				filtro = m => !isNaN(m.content) && m.content < 100+1 && m.content > 0;
+				collector = message.channel.createMessageCollector(filtro, { time: 30000 });
 				collector.res = res;
 				collector.on('collect', m => {
 				    clearTimeout(timer);
-				    if (m > 0 || m < 11) {
+				    if (m > 0 || m < 101) {
 					    minim = m-1;
 					    veces = veces+1;
 					    resultados();
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
 					    timer = setTimeout(()=>{
 						    collector.on('end', m => {
-							setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
+							setTimeout(()=>{'se termino los resultados,,'); msgid.edit(embed); },2000);
 						    });
-					    },15000);
+					    },30000);
 				    }
 				});
 			}
@@ -594,7 +594,7 @@ bot.on("message", message => {
         bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = ${cmd}`);
     }
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Música jijij (beta porq puedecontener errores sorri): \n>play \n>leave```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Seccion "arte" (deviantart(nuevos comandos pronto,,)): \n>undiscovered```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
