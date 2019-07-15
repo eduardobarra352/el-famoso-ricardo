@@ -358,7 +358,6 @@ bot.on("message", message => {
 	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 		res = JSON.stringify(body, null, '  ');
-		console.log(res);
 		res = JSON.parse(res);
 		function EmbedArt (i) {
                     embed = new Discord.RichEmbed()
@@ -368,8 +367,8 @@ bot.on("message", message => {
                     .setAuthor(message.author.username, message.author.avatarURL)
 		    .setImage(res.results[i].content.src)
                     .addField("Resultados:", nivel + "-10")
-		    .setFooter("escribe un numero para ver los otros resultados o.o");
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
+		    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
+		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
 	            AttachImagen(res.results[i].content.src, message.channel.id);
                 }
 		EmbedArt(minim);
