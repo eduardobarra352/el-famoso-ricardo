@@ -92,14 +92,16 @@ exports.run = async (bot, message, args, AttachImagen) => {
           let tituloart = ''; 
           let authorname = '';
           let authorpic = '';
+          let arturl;
           function EmbedArt (i) {
               try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
               try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
+              try { arturl = res.results[i].url; } catch(e) { console.log(e); }
               try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
               embed = new Discord.RichEmbed()
               .setColor("#40f230")
               .setTitle(tituloart)
-              .setURL(res.results[i].url)
+              .setURL(arturl)
               .setAuthor(message.author.username, message.author.avatarURL)
               .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
               .setImage(imagenart)
