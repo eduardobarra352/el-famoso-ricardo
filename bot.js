@@ -374,13 +374,15 @@ bot.on("message", message => {
 				res = JSON.stringify(body, null, '  ');
 				res = JSON.parse(res);
 				function EmbedArt (i) {
+				    let imagenart = '';
+				    if (res.results[i].content.src) imagenart = res.results[i].content.src; 
 				    embed = new Discord.RichEmbed()
 				    .setColor("#40f230")
 				    .setTitle(res.results[i].title)
 				    .setURL(res.results[i].url)
 				    .setAuthor(message.author.username, message.author.avatarURL)
-				    .setImage(res.results[i].content.src)
-				    .addField("Resultados:", nivel + "-10")
+				    .setImage(imagenart)
+				    .addField("Resultados:", (minim+1) + "-10")
 				    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
 				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
 				    AttachImagen(res.results[i].content.src, message.channel.id);
@@ -392,7 +394,7 @@ bot.on("message", message => {
 				collector.on('collect', m => {
 				    clearTimeout(timer);
 				    if (m > 0 || m < 11) {
-					    minim = m;
+					    minim = m-1;
 					    veces = veces+1;
 					    resultados();
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
