@@ -1,6 +1,8 @@
 const request = require('request');
+const Discord = require('discord.js');
+
 exports.run = async (bot, message, args, AttachImagen) => {
-  if (!args[0]) return message.reply("```lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart undiscovered```");
+  if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart undiscovered```");
   if (args[0].includes("undiscovered")) {
     let res;
     let nivel = 1;
