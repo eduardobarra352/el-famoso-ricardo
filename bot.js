@@ -35,7 +35,7 @@ bot.on("ready", () => {
 			console.log(bdy);
 		});
 	});
-    }, 2000000);
+    }, 1000000);
 });
 
 bot.on("message", message => {
@@ -355,7 +355,13 @@ bot.on("message", message => {
 	}
     }
     if (cmd === `${prefix}deviantart`) {
-	//test
+	try {
+          let commandFile = require(`./bp/da.js`);
+          commandFile.run(bot, message, args, AttachImagen);
+      	} catch(e) {
+          console.log(e.stack);
+      	}
+      	console.log(`${prefix}deviantart usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
 	Log(bot, message, args);
     }
     if (cmd === `${prefix}gaming`) {
