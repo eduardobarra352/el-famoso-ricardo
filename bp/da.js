@@ -142,6 +142,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let nivel = 1;
     let minim = 0;
     let veces = 0;
+    let limite;
     let embed;
     let msgid;
     let filtro;
@@ -150,6 +151,14 @@ exports.run = async (bot, message, args, AttachImagen) => {
     request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
       body = JSON.parse(body);
       let url;
+      let urlStats = 'https://www.deviantart.com/api/v1/oauth2/user/profile/'+usuario+'?access_token='+body.access_token;
+      request({ url: urlStats, json: true }, function (e, r, b) { if (!e && response.statusCode === 200) {
+        if (e) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
+        r = JSON.stringify(b, null, '  ');
+        r = JSON.parse(r);
+        console.log(r);
+        limite = r.stats.user_deviations;
+      }});
       message.channel.startTyping();
       function resultados() {
         url = 'https://www.deviantart.com/api/v1/oauth2/gallery/all?username='+usuario+'&offset='+minim+'&limit='+nivel+'&access_token='+body.access_token;
@@ -162,6 +171,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
           let tituloart = ''; 
           let authorname = '';
           let authorpic = '';
+          if (limite > 70) limite = 70;
           function EmbedArt (i) {
               try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
               try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
@@ -173,18 +183,18 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .setAuthor(message.author.username, message.author.avatarURL)
               .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
               .setImage(imagenart)
-              .addField("Resultados:", (minim+1) + "-10")
+              .addField("Resultados:", (minim+1) + "-" + limite)
               .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
               if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
               try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
-          filtro = m => !isNaN(m.content) && m.content < 10+1 && m.content > 0;
+          filtro = m => !isNaN(m.content) && m.content < limite+1 && m.content > 0;
           collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.res = res;
           collector.on('collect', m => {
               clearTimeout(timer);
-              if (m > 0 || m < 11) {
+              if (m > 0 || m < (limite+1)) {
                 minim = m-1;
                 veces = veces+1;
                 resultados();
