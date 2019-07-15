@@ -26,7 +26,7 @@ bot.on("ready", () => {
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
-    setInterval(function(){
+    //setInterval(function(){
 	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
   		let accesotokeado = JSON.parse(body);
 		accesotokeado = accesotokeado.access_token;
@@ -35,7 +35,7 @@ bot.on("ready", () => {
 			console.log(bdy);
 		});
 	});
-    }, 1000000);
+    //}, 1000000);
 });
 
 bot.on("message", message => {
