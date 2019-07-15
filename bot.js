@@ -34,7 +34,7 @@ bot.on("ready", () => {
 			console.log(bdy);
 		});
 	});
-    }, 3500000);
+    }, 2500000);
 });
 
 bot.on("message", message => {
@@ -373,19 +373,24 @@ bot.on("message", message => {
 				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 				res = JSON.stringify(body, null, '  ');
 				res = JSON.parse(res);
+				let imagenart = '';
+			        let tituloart = ''; 
+				let authorname = '';
+			        let authorpic = '';
 				function EmbedArt (i) {
-				    let imagenart = '';
-				    if (res.results[i].content.src) imagenart = res.results[i].content.src; 
+				    try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
+				    try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
+				    try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
 				    embed = new Discord.RichEmbed()
 				    .setColor("#40f230")
-				    .setTitle(res.results[i].title)
+				    .setTitle(tituloart)
 				    .setURL(res.results[i].url)
 				    .setAuthor(message.author.username, message.author.avatarURL)
 				    .setImage(imagenart)
 				    .addField("Resultados:", (minim+1) + "-10")
-				    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
-				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
-				    AttachImagen(res.results[i].content.src, message.channel.id);
+				    .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
+				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },16000)); }
+				    try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
 				}
 				EmbedArt(0);
 				filtro = m => !isNaN(m.content) && m.content < 10+1 && m.content > 0;
@@ -400,7 +405,7 @@ bot.on("message", message => {
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
 					    timer = setTimeout(()=>{
 						    collector.on('end', m => {
-							setTimeout(()=>{ embed.setFooter(res.results[minim].author.username+' | se termino los resultados,,', res.results[minim].author.usericon); msgid.edit(embed); },2000);
+							setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
 						    });
 					    },15000);
 				    }
