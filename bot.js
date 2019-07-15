@@ -30,8 +30,8 @@ bot.on("ready", () => {
 	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
   		let accesotokeado = JSON.parse(body);
 		accesotokeado = accesotokeado.access_token;
-		request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, response, body) {
-			console.log(response);
+		request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, res, bdy) {
+			console.log(bdy);
 		});
 	});
     //}, 3500000);
