@@ -29,7 +29,7 @@ bot.on("ready", () => {
     //setInterval(function(){
 	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
 		body = JSON.stringify(body, null, '  ');
-		console.log(body.Respuesta);
+		console.log(response.statusCode);
 	});
     //}, 3600000);
 });
