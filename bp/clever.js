@@ -6,7 +6,7 @@ exports.run = async (bot, message, args, Log) => {
  if (!input) return message.reply("```>di [intenta hablarle owo]```");
  message.channel.startTyping();
  if (!args[0]) return console.log(`>di usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
- let clbt = new Cleverbot('3hvWzi38KHKHHY0y', 'vdAjTZR6qfnxKmJOX9cSotqjD5K1qzxK');
+ /*let clbt = new Cleverbot('3hvWzi38KHKHHY0y', 'vdAjTZR6qfnxKmJOX9cSotqjD5K1qzxK');
  clbt.setNick('Ricardo');
  clbt.create(function (err, session) {
    clbt.ask(input, function (err, response) {
@@ -16,5 +16,5 @@ exports.run = async (bot, message, args, Log) => {
          console.log(`>di usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${input}"`);
          Log(bot, message, args);
        });
-   });
+   });*/
 }
