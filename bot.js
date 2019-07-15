@@ -385,7 +385,7 @@ bot.on("message", message => {
 				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
 				    AttachImagen(res.results[i].content.src, message.channel.id);
 				}
-				EmbedArt(minim);
+				EmbedArt(0);
 				filtro = m => !isNaN(m.content) && m.content < 10+1 && m.content > 0;
 				collector = message.channel.createMessageCollector(filtro, { time: 15000 });
 				collector.res = res;
@@ -409,49 +409,7 @@ bot.on("message", message => {
 		resultados();
 		message.channel.stopTyping();
 	});
-        /*message.channel.startTyping();
-        function resultados(err, res) {
-            if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-            res = JSON.stringify(res, null, '  ');
-            res = JSON.parse(res);
-            res = res.slice(minim, nivel);
-            try {
-                for(var i in res) {
-                    embed = new Discord.RichEmbed()
-                    .setColor("#40f230")
-                    .setAuthor(message.author.username, message.author.avatarURL)
-		    .setImage(decodeURI(res[i].url))
-                    .addField("Resultados:", nivel + "-50")
-		    .setFooter("escribe un numero para ver los otros resultados o.o");
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
-	            AttachImagen(decodeURI(res[i].url), message.channel.id);
-                }
-                filtro = m => !isNaN(m.content) && m.content < 50+1 && m.content > 0;
-                collector = message.channel.createMessageCollector(filtro, { time: 15000 });
-                collector.res = res;
-                collector.on('collect', m => {
-		    clearTimeout(timer);
-	            if (nivel > 0 || nivel < 51) {
-			    nivel = m;
-			    minim = m-1;
-			    veces = veces+1;
-			    gis(buscar, resultados);
-			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
-			    timer = setTimeout(()=>{
-				    collector.on('end', m => {
-		    			setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
-				    });
-		  	    },15000);
-		    }
-                });
-            }
-            catch(e) {
-                console.log(e.stack);
-                message.channel.send(":x: error ultra desconocido :spy:...sigale intentando ñ");
-            }
-            message.channel.stopTyping();
-        }
-	Log(bot, message, args);*/
+	Log(bot, message, args);
     }
     if (cmd === `${prefix}gaming`) {
         message.channel.send("sans");
