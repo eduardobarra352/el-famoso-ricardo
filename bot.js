@@ -30,7 +30,7 @@ bot.on("ready", () => {
 	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
 		let accesotokeado = JSON.stringify(body, null, '  ');
 		accesotokeado = JSON.parse(accesotokeado);
-		console.log(accesotokeado.access_token);
+		console.log(accesotokeado);
 	});
     //}, 3600000);
 });
