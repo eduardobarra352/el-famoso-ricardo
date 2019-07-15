@@ -55,8 +55,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 resultados();
                 setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
                 timer = setTimeout(()=>{
-                  collector.on('end', m => {
-                setTimeout(()=>{ try { authorname = res.results[minim].author.username; authorpic = res.results[minim].author.usericon; } catch(e) { console.log(e); } embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
+                  collector.on('end', v => {
+                setTimeout(()=>{ try { authorname = res.results[v].author.username; authorpic = res.results[v].author.usericon; } catch(e) { console.log(e); } embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
                   });
                 },30000);
               }
@@ -123,7 +123,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 resultados();
                 setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
                 timer = setTimeout(()=>{
-                  collector.on('end', m => {
+                  collector.on('end', v => {
                 setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
                   });
                 },30000);
