@@ -28,9 +28,9 @@ bot.on("ready", () => {
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
     //setInterval(function(){
 	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
-		let accesotokeado = JSON.stringify(body, null, '  ');
-		accesotokeado = JSON.parse(accesotokeado);
-		console.log(accesotokeado.Respuesta);
+		body = JSON.stringify(body, null, '  ');
+		body = JSON.parse(body);
+		console.log(body.Respuesta);
 	});
     //}, 3600000);
 });
