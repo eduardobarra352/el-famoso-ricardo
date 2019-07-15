@@ -391,7 +391,7 @@ bot.on("message", message => {
 				collector.res = res;
 				collector.on('collect', m => {
 				    clearTimeout(timer);
-				    if (nivel > 0 || nivel < 11) {
+				    if (m > 0 || m < 11) {
 					    minim = m;
 					    veces = veces+1;
 					    resultados();
