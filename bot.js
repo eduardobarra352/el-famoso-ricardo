@@ -391,7 +391,7 @@ bot.on("message", message => {
 				    .setImage(imagenart)
 				    .addField("Resultados:", (minim+1) + "-100")
 				    .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },31000)); }
+				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
 				    try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
 				}
 				EmbedArt(0);
@@ -407,7 +407,7 @@ bot.on("message", message => {
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
 					    timer = setTimeout(()=>{
 						    collector.on('end', m => {
-							setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+							setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
 						    });
 					    },30000);
 				    }
