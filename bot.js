@@ -35,7 +35,7 @@ bot.on("ready", () => {
 			console.log(bdy);
 		});
 	});
-    }, 2500000);
+    }, 2000000);
 });
 
 bot.on("message", message => {
@@ -387,7 +387,7 @@ bot.on("message", message => {
 				    .setTitle(tituloart)
 				    .setURL(res.results[i].url)
 				    .setAuthor(message.author.username, message.author.avatarURL)
-			            .setThumbnail('./img/deviantart.png')
+			            .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
 				    .setImage(imagenart)
 				    .addField("Resultados:", (minim+1) + "-100")
 				    .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
