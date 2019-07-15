@@ -359,6 +359,7 @@ bot.on("message", message => {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 		res = JSON.stringify(body, null, '  ');
 		res = JSON.parse(res);
+		console.log(res);
 		function EmbedArt (i) {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
