@@ -27,11 +27,15 @@ bot.on("ready", () => {
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
     //setInterval(function(){
-	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
-		body = JSON.parse(body);
-		console.log(body.access_token);
+	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
+  		console.log('error:', error);
+  		console.log('statusCode:', response.body);
+  		console.log('body:', body);
+		/*request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, response, body) {
+			console.log(response.body.access_json);
+		});*/
 	});
-    //}, 3600000);
+    //}, 3500000);
 });
 
 bot.on("message", message => {
@@ -360,25 +364,28 @@ bot.on("message", message => {
 	let filtro;
 	let collector;
 	var timer;
-	let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?offset='+minim+'&limit='+nivel+'&access_token='+process.env.datoken;
-	request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
-		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-		res = JSON.stringify(body, null, '  ');
-		res = JSON.parse(res);
-		function EmbedArt (i) {
-                    embed = new Discord.RichEmbed()
-                    .setColor("#40f230")
-		    .setTitle(res.results[i].title)
-	            .setURL(res.results[i].url)
-                    .setAuthor(message.author.username, message.author.avatarURL)
-		    .setImage(res.results[i].content.src)
-                    .addField("Resultados:", nivel + "-10")
-		    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
-		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
-	            AttachImagen(res.results[i].content.src, message.channel.id);
-                }
-		EmbedArt(minim);
-    	  }
+	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
+		body = JSON.parse(body);
+		let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?offset='+minim+'&limit='+nivel+'&access_token='+body.access_token;
+		request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
+			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+			res = JSON.stringify(body, null, '  ');
+			res = JSON.parse(res);
+			function EmbedArt (i) {
+			    embed = new Discord.RichEmbed()
+			    .setColor("#40f230")
+			    .setTitle(res.results[i].title)
+			    .setURL(res.results[i].url)
+			    .setAuthor(message.author.username, message.author.avatarURL)
+			    .setImage(res.results[i].content.src)
+			    .addField("Resultados:", nivel + "-10")
+			    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
+			    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
+			    AttachImagen(res.results[i].content.src, message.channel.id);
+			}
+			EmbedArt(minim);
+    	  	}
+		});
 	});
         /*message.channel.startTyping();
         function resultados(err, res) {
