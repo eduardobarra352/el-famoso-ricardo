@@ -27,8 +27,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
           let tituloart = ''; 
           let authorname = '';
           let authorpic = '';
-          let authornamefinal = '';
-          let authorpicfinal = '';
           function EmbedArt (i) {
               try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
               try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
@@ -44,7 +42,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
               if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
               try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
-              if (veces > 0) { try { authornamefinal = res.results[i].author.username; authorpicfinal = res.results[i].author.usericon; } catch(e) { console.log(e); } }
           }
           EmbedArt(0);
           filtro = m => !isNaN(m.content) && m.content < 100+1 && m.content > 0;
@@ -59,7 +56,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
                 timer = setTimeout(()=>{
                   collector.on('end', v => {
-                setTimeout(()=>{ embed.setFooter(authornamefinal+' | se termino los resultados,,', authorpicfinal); msgid.edit(embed); },2000);
+                setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
                   });
                 },30000);
               }
