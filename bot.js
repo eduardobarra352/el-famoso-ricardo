@@ -28,12 +28,11 @@ bot.on("ready", () => {
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
     //setInterval(function(){
 	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
-  		console.log('error:', error);
-  		console.log('statusCode:', response.body);
-  		console.log('body:', body);
-		/*request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, response, body) {
-			console.log(response.body.access_json);
-		});*/
+  		let accesotokeado = JSON.parse(body);
+		accesotokeado = accesotokeado.access_token;
+		request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, response, body) {
+			console.log(response);
+		});
 	});
     //}, 3500000);
 });
