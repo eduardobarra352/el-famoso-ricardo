@@ -26,7 +26,7 @@ bot.on("ready", () => {
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
-    //setInterval(function(){
+    setInterval(function(){
 	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
   		let accesotokeado = JSON.parse(body);
 		accesotokeado = accesotokeado.access_token;
@@ -34,7 +34,7 @@ bot.on("ready", () => {
 			console.log(bdy);
 		});
 	});
-    //}, 3500000);
+    }, 3500000);
 });
 
 bot.on("message", message => {
@@ -365,26 +365,49 @@ bot.on("message", message => {
 	var timer;
 	request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
 		body = JSON.parse(body);
-		let url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?offset='+minim+'&limit='+nivel+'&access_token='+body.access_token;
-		request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
-			if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-			res = JSON.stringify(body, null, '  ');
-			res = JSON.parse(res);
-			function EmbedArt (i) {
-			    embed = new Discord.RichEmbed()
-			    .setColor("#40f230")
-			    .setTitle(res.results[i].title)
-			    .setURL(res.results[i].url)
-			    .setAuthor(message.author.username, message.author.avatarURL)
-			    .setImage(res.results[i].content.src)
-			    .addField("Resultados:", nivel + "-10")
-			    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
-			    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
-			    AttachImagen(res.results[i].content.src, message.channel.id);
+		let url;
+		message.channel.startTyping();
+		function resultados() {
+			url = 'https://www.deviantart.com/api/v1/oauth2/browse/undiscovered?offset='+minim+'&limit='+nivel+'&access_token='+body.access_token;
+			request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
+				if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+				res = JSON.stringify(body, null, '  ');
+				res = JSON.parse(res);
+				function EmbedArt (i) {
+				    embed = new Discord.RichEmbed()
+				    .setColor("#40f230")
+				    .setTitle(res.results[i].title)
+				    .setURL(res.results[i].url)
+				    .setAuthor(message.author.username, message.author.avatarURL)
+				    .setImage(res.results[i].content.src)
+				    .addField("Resultados:", nivel + "-10")
+				    .setFooter(res.results[i].author.username+" | escribe un numero para ver los otros resultados o.o", res.results[i].author.usericon);
+				    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter(res.results[i].author.username+' | se termino los resultados,,', res.results[i].author.usericon); msgid.edit(embed); },16000)); }
+				    AttachImagen(res.results[i].content.src, message.channel.id);
+				}
+				EmbedArt(minim);
+				filtro = m => !isNaN(m.content) && m.content < 10+1 && m.content > 0;
+				collector = message.channel.createMessageCollector(filtro, { time: 15000 });
+				collector.res = res;
+				collector.on('collect', m => {
+				    clearTimeout(timer);
+				    if (nivel > 0 || nivel < 11) {
+					    nivel = m;
+					    veces = veces+1;
+					    resultados();
+					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+					    timer = setTimeout(()=>{
+						    collector.on('end', m => {
+							setTimeout(()=>{ embed.setFooter(res.results[minim].author.username+' | se termino los resultados,,', res.results[minim].author.usericon); msgid.edit(embed); },2000);
+						    });
+					    },15000);
+				    }
+				});
 			}
-			EmbedArt(minim);
-    	  	}
-		});
+			});
+		}
+		resultados();
+		message.channel.stopTyping();
 	});
         /*message.channel.startTyping();
         function resultados(err, res) {
