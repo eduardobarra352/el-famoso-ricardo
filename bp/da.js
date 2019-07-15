@@ -159,8 +159,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
         limite = r.stats;
         limite = JSON.stringify(limite, null, '  ');
         limite = JSON.parse(limite);
-        console.log(limite);
-        console.log(limite.user_deviations);
         limite = limite.user_deviations;
       }});
       message.channel.startTyping();
@@ -175,7 +173,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
           let tituloart = ''; 
           let authorname = '';
           let authorpic = '';
-          if (limite == undefined) limite = 10;
           if (limite > 70) limite = 70;
           function EmbedArt (i) {
               try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
