@@ -387,6 +387,7 @@ bot.on("message", message => {
 				    .setTitle(tituloart)
 				    .setURL(res.results[i].url)
 				    .setAuthor(message.author.username, message.author.avatarURL)
+			            .setThumbnail('./img/deviantart.png')
 				    .setImage(imagenart)
 				    .addField("Resultados:", (minim+1) + "-100")
 				    .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
