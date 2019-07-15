@@ -406,7 +406,7 @@ bot.on("message", message => {
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
 					    timer = setTimeout(()=>{
 						    collector.on('end', m => {
-							setTimeout(()=>{'se termino los resultados,,'); msgid.edit(embed); },2000);
+							setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
 						    });
 					    },30000);
 				    }
