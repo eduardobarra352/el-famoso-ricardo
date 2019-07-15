@@ -359,7 +359,7 @@ bot.on("message", message => {
 		if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 		res = JSON.stringify(body, null, '  ');
 		res = JSON.parse(res);
-		for(var i in res) {
+		function EmbedArt (i) {
                     embed = new Discord.RichEmbed()
                     .setColor("#40f230")
 		    .setTitle(res.results[i].title)
@@ -371,6 +371,7 @@ bot.on("message", message => {
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },16000)); }
 	            AttachImagen(res.results[i].content.src, message.channel.id);
                 }
+		EmbedArt(minim);
     	  }
 	});
         /*message.channel.startTyping();
