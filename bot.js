@@ -392,7 +392,7 @@ bot.on("message", message => {
 				collector.on('collect', m => {
 				    clearTimeout(timer);
 				    if (nivel > 0 || nivel < 11) {
-					    nivel = m;
+					    minim = m;
 					    veces = veces+1;
 					    resultados();
 					    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
