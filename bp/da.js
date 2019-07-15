@@ -2,7 +2,7 @@ const request = require('request');
 const Discord = require('discord.js');
 
 exports.run = async (bot, message, args, AttachImagen) => {
-  if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart undiscovered```");
+  if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart undiscovered \n>deviantart gallery [nombre de usuario]```");
   if (args[0].includes("undiscovered")) {
     let res;
     let nivel = 1;
@@ -56,7 +56,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
                 timer = setTimeout(()=>{
                   collector.on('end', m => {
-                setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
+                setTimeout(()=>{ try { authorname = res.results[minim+1].author.username; authorpic = res.results[minim+1].author.usericon; } catch(e) { console.log(e); } embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
                   });
                 },30000);
               }
