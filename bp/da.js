@@ -158,8 +158,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
         r = JSON.parse(r);
         let stats = JSON.stringify(r.stats, null, '  ');
         stats = JSON.parse(stats);
-        console.log(stats);
         limite = stats.user_deviations;
+        console.log(limite);
       }});
       message.channel.startTyping();
       function resultados() {
