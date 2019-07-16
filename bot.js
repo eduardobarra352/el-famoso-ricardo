@@ -157,7 +157,7 @@ bot.on("message", message => {
     }
     if (cmd === `${prefix}yt`) {
         if (!args[0]) return message.reply("```>yt [nombre de video pss]```");
-	let responsable = message.author.id;
+	let responsable = message.author;
         message.channel.startTyping();
         console.log(`${prefix}yt usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
         yt(args.join(' '), function(err, res){
@@ -173,7 +173,7 @@ bot.on("message", message => {
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
           message.channel.send(resp).then(msg => msg.delete(30000));
           message.channel.stopTyping();
-          const filtro = m => !isNaN(m.author.id.get(responsable).content) && m.author.id.get(responsable).content < videos.length+1 && m.author.id.get(responsable).content > 0;
+          const filtro = m => !isNaN(m.author.get(responsable).content) && m.author.get(responsable).content < videos.length+1 && m.author.get(responsable).content > 0;
           const collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.videos = videos;
           collector.once('collect', function(m) {
@@ -187,7 +187,7 @@ bot.on("message", message => {
         if (!args[0]) return message.reply("```>img [lo q qieras buscar]```");
         let buscar = args.join(' ');
         gis(buscar, resultados);
-	let responsable = message.author.id;
+	let responsable = message.author;
         let nivel = 1;
         let minim = 0;
 	let veces = 0;
@@ -213,7 +213,7 @@ bot.on("message", message => {
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter('se termino los resultados,,'); msgid.edit(embed); } },16000)); }
 	            AttachImagen(decodeURI(res[i].url), message.channel.id);
                 }
-                filtro = m => !isNaN(m.author.id.get(responsable).content) && m.author.id.get(responsable).content < 50+1 && m.author.id.get(responsable).content > 0;
+                filtro = m => !isNaN(m.author.get(responsable).content) && m.author.get(responsable).content < 50+1 && m.author.get(responsable).content > 0;
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.on('collect', m => {
