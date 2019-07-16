@@ -1,5 +1,6 @@
 const request = require('request');
 const Discord = require('discord.js');
+const fs = require('fs');
 
 exports.run = async (bot, message, args, AttachImagen) => {
   if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart popular [opcional: algo q buscar] \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```");
@@ -46,7 +47,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .addField("Resultados:", (minim+1) + "-100")
               .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
               if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-              try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
+              try { request(res.results[i].content.src).pipe(fs.createWriteStream('doodle.png')).then(setTimeout(()=>{ AttachImagen('doodle.png', message.channel.id)},2000)); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
           filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
@@ -112,7 +113,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .addField("Resultados:", (minim+1) + "-100")
               .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
               if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-              try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
+              try { request(res.results[i].content.src).pipe(fs.createWriteStream('doodle.png')).then(setTimeout(()=>{ AttachImagen('doodle.png', message.channel.id)},2000)); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
           filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
@@ -180,7 +181,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .addField("Resultados:", (minim+1) + "-100")
               .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
               if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-              try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
+              try { request(res.results[i].content.src).pipe(fs.createWriteStream('doodle.png')).then(setTimeout(()=>{ AttachImagen('doodle.png', message.channel.id)},2000)); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
           filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
@@ -259,7 +260,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 .addField("Resultados:", (minim+1) + "-" + limite)
                 .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
                 if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-                try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
+                try { request(res.results[i].content.src).pipe(fs.createWriteStream('doodle.png')).then(setTimeout(()=>{ AttachImagen('doodle.png', message.channel.id)},2000)); } catch(e) { console.log(e); }
                 if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
             }
             EmbedArt(0);
