@@ -164,7 +164,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
             if (err) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
             res = JSON.stringify(body, null, '  ');
             res = JSON.parse(res);
-            if (res.has_more == false && res.next_offset == null) { message.channel.send(":x: usuario no existente, opuede ser q no tenga arte subido,,"); message.channel.stopTyping(); return; }
+            if (res.has_more == false && res.next_offset == null && veces == 0) { message.channel.send(":x: usuario no existente, opuede ser q no tenga arte subido,,"); message.channel.stopTyping(); return; }
             let imagenart = '';
             let tituloart = ''; 
             let authorname = '';
@@ -185,6 +185,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
                 if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
                 try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
+                if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
             }
             EmbedArt(0);
             filtro = m => !isNaN(m.content) && m.content < limite+1 && m.content > 0;
