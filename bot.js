@@ -14,6 +14,7 @@ const ffmpegbinaries = require('ffmpeg-binaries');
 const webshot = require('node-webshot');
 const avconv = require('avconv');
 const activo = new Map();
+const botid = process.env.botID;
 const ownerID = process.env.ownerID;
 const guildID = process.env.serverID;
 const play = ` | >help`;
@@ -538,7 +539,11 @@ bot.on("message", message => {
         }
     }
     if (message.channel.type === "dm") {
-        bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`);
+        if (botid != message.author.id) {
+		let imagenattach = '';
+		if (message.attachments.size > 0) imagenattach = ', {file: ('+message.attachments.first().url+')}';
+		bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}` imagenattach);
+	}
     }
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Seccion "arte" (deviantart(nuevos comandos pronto,,)): \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```');
