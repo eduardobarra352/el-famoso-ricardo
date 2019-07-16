@@ -538,7 +538,7 @@ bot.on("message", message => {
         }
     }
     if (message.channel.type === "dm") {
-        bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = ${cmd}`);
+        bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n`\`\`${cmd}`\`\``);
     }
     if (cmd === `${prefix}help`) {
         message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Seccion "arte" (deviantart(nuevos comandos pronto,,)): \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```');
@@ -549,9 +549,8 @@ bot.on("message", message => {
     //comandos especiales y administracion
     if (cmd === `${prefix}${code}`) {
         let status = args[0];
-        //let realize = args[1];
-        //let dammi = args[2];
-        //var mention = message.mentions.users.first();
+        let dammi = args[1];
+        let realize = args[2];
         message.delete();
         if (cmd === `${prefix}${code}` && status === 'online') {
             bot.user.setStatus(`Online`);
@@ -572,19 +571,19 @@ bot.on("message", message => {
             message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
         }
-        //if (cmd === `${prefix}${code}` && status === 'send') {
-        //    message.delete();
-        //    try {
-        //        if (cmd === `${prefix}${code}` && status === 'send' && realize === mention && dammi) {
-        //            mention.sendMessage(dammi);
-        //            message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
-        //        }
-        //    }
-        //    catch (err) {
-        //        console.log(err);
-        //        bot.guilds.get(guildID).channels.get("482387992837881858").send(err);
-        //    }
-        //}
+        if (args[0].includes('send')) {
+            message.delete();
+            if (!isNaN(dammi) && realize) {
+                try {
+		    bot.users.get(dammi).send(realize);
+                    message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
+		}
+		catch (err) {
+                    console.log(err);
+                    bot.guilds.get(guildID).channels.get("482387992837881858").send(err);
+                }
+            }
+        }
     }
     if (message.attachments.size > 0) { AttachImagen(message.attachments.first().url, message.channel.id); }
     
