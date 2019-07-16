@@ -156,10 +156,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         if (e) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
         r = JSON.stringify(b, null, '  ');
         r = JSON.parse(r);
-        limite = r.stats;
-        limite = JSON.stringify(limite, null, '  ');
-        limite = JSON.parse(limite);
-        limite = limite.user_deviations;
+        limite = r.stats.user_deviations;
       }});
       message.channel.startTyping();
       function resultados() {
