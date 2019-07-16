@@ -16,6 +16,7 @@ const avconv = require('avconv');
 const activo = new Map();
 const botid = process.env.botID;
 const ownerID = process.env.ownerID;
+const ownerTAG = process.env.ownerTAG;
 const guildID = process.env.serverID;
 const play = ` | >help`;
 const attach = new Map();
@@ -541,8 +542,8 @@ bot.on("message", message => {
     if (message.channel.type === "dm") {
         if (botid != message.author.id) {
 		let imagenattach = '';
-		if (message.attachments.size > 0) imagenattach = ', {file: ('+message.attachments.first().url+')}';
-		bot.guilds.get(guildID).channels.get("482387992837881858").send(`:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}` imagenattach);
+		if (message.attachments.size > 0) { bot.guilds.get(guildID).channels.get("482387992837881858").send(`@${ownerTAG} \n:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`, {file: (message.attachments.first().url)}); }
+		else { bot.guilds.get(guildID).channels.get("482387992837881858").send(`@${ownerTAG} \n:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`); }
 	}
     }
     if (cmd === `${prefix}help`) {
