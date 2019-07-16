@@ -579,7 +579,7 @@ bot.on("message", message => {
         }
         if (args[0].includes('send')) {
             message.delete();
-            if (!isNaN(dammi) && realize) {
+            if (!isNaN(dammi)) {
                 try {
 		    if (message.attachments.size > 0) { bot.users.get(dammi).send(realize, {file: (message.attachments.first().url)}); }
 		    else { bot.users.get(dammi).send(realize); }
