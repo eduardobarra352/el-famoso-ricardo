@@ -190,6 +190,7 @@ bot.on("message", message => {
         let buscar = args.join(' ');
         gis(buscar, resultados);
 	let responsable = message.author.id;
+	let limite;
         let nivel = 1;
         let minim = 0;
 	let veces = 0;
@@ -203,6 +204,7 @@ bot.on("message", message => {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
             res = JSON.stringify(res, null, '  ');
             res = JSON.parse(res);
+   	    limite = res.length;
             res = res.slice(minim, nivel);
             try {
                 for(var i in res) {
@@ -210,17 +212,17 @@ bot.on("message", message => {
                     .setColor("#40f230")
                     .setAuthor(message.author.username, message.author.avatarURL)
 		    .setImage(decodeURI(res[i].url))
-                    .addField("Resultados:", nivel + "-50")
+                    .addField("Resultados:", nivel + "-"+limite)
 		    .setFooter("escribe un numero para ver los otros resultados o.o");
 		    if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter('se termino los resultados,,'); msgid.edit(embed); } },16000)); }
 	            AttachImagen(decodeURI(res[i].url), message.channel.id);
                 }
-                filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 50+1 && m.content > 0;
+                filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.on('collect', m => {
 		    clearTimeout(timer);
-	            if (nivel > 0 || nivel < 51) {
+	            if (nivel > 0 || nivel < (limite+1)) {
 			    nivel = m;
 			    minim = m-1;
 			    veces = veces+1;
