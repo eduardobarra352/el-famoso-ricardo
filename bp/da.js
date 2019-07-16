@@ -230,7 +230,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         if (e) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
         r = JSON.stringify(b, null, '  ');
         r = JSON.parse(r);
-        if (r.status == 'error') return message.channel.send(":x: Uy, un error, de posiblemente de un usuariobloqueado :spy: siga intentando,,,");
+        if (r.status == 'error') return message.channel.send(":x: usuario muerto/inexistente, siga intentando,,,");
         limite = r.stats.user_deviations;
         message.channel.startTyping();
         function resultados() {
@@ -239,7 +239,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
             if (err) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
             res = JSON.stringify(body, null, '  ');
             res = JSON.parse(res);
-            if (res.has_more == false && res.next_offset == null && veces == 0) { message.channel.send(":x: usuario no existente, opuede ser q no tenga arte subido,,"); message.channel.stopTyping(); return; }
+            if (res.has_more == false && res.next_offset == null && veces == 0) { message.channel.send(":warning: arte delusuario vacio, siga buscando,,,"); message.channel.stopTyping(); return; }
             let imagenart = '';
             let tituloart = ''; 
             let authorname = '';
