@@ -545,7 +545,7 @@ bot.on("message", message => {
         if (botid != message.author.id) {
 		let imagenattach = '';
 		if (message.attachments.size > 0) { bot.guilds.get(guildID).channels.get("482387992837881858").send(`<@${ownerID}> \n:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`, {file: (message.attachments.first().url)}); }
-		else { bot.guilds.get(guildID).channels.get("482387992837881858").send(`@${ownerTAG} \n:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`); }
+		else { bot.guilds.get(guildID).channels.get("482387992837881858").send(`<@${ownerID}> \n:mailbox_with_mail: has recibido mensaje **dm** de __${message.author.tag}__\nID = ${message.author.id}\nMensaje = \n${message.content}`); }
 	}
     }
     if (cmd === `${prefix}help`) {
