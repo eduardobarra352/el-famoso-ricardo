@@ -581,7 +581,8 @@ bot.on("message", message => {
             message.delete();
             if (!isNaN(dammi) && realize) {
                 try {
-		    bot.users.get(dammi).send(realize);
+		    if (message.attachments.size > 0) { bot.users.get(dammi).send(realize, {file: (message.attachments.first().url)}); }
+		    else { bot.users.get(dammi).send(realize); }
                     message.channel.send(`:white_check_mark: Mensaje enviado.`).then(msg => msg.delete(2000));
 		}
 		catch (err) {
