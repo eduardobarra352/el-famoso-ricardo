@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 exports.run = async (bot, message, args, AttachImagen) => {
   if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```");
   if (args[0].includes("undiscovered")) {
+    let responsable = message.author.id;
     let res;
     let nivel = 1;
     let minim = 0;
@@ -44,7 +45,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
-          filtro = m => !isNaN(m.content) && m.content < 100+1 && m.content > 0;
+          filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
           collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.res = res;
           collector.on('collect', m => {
@@ -69,6 +70,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     });
   }
   if (args[0].includes("newest")) {
+    let responsable = message.author.id;
     let res;
     let nivel = 1;
     let minim = 0;
@@ -111,7 +113,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               try { AttachImagen(res.results[i].content.src, message.channel.id); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
-          filtro = m => !isNaN(m.content) && m.content < 100+1 && m.content > 0;
+          filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
           collector = message.channel.createMessageCollector(filtro, { time: 30000 });
           collector.res = res;
           collector.on('collect', m => {
@@ -138,6 +140,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
   if (args[0].includes("gallery")) {
     if (!args[1]) return message.reply("```>deviantart gallery [nombre de usuario]```");
     let usuario = args[1];
+    let responsable = message.author.id;
     let res;
     let nivel = 1;
     let minim = 0;
@@ -190,7 +193,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
             }
             EmbedArt(0);
-            filtro = m => !isNaN(m.content) && m.content < limite+1 && m.content > 0;
+            filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
             collector = message.channel.createMessageCollector(filtro, { time: 30000 });
             collector.res = res;
             collector.on('collect', m => {
