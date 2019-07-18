@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 
 exports.run = async (bot, message, args, AttachImagen) => {
-  if (!args[0]) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart popular [opcional: algo q buscar] \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```");
+  if (!args[0] || !['popular', 'undiscovered', 'newest', 'gallery'].includes(args[0])) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart popular [opcional: algo q buscar] \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```");
   if (args[0].includes("popular")) {
     let query = args[1];
     let responsable = message.author.id;
