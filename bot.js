@@ -533,6 +533,16 @@ bot.on("message", message => {
           console.log(e.stack);
       }
     }
+    if (cmd === `${prefix}translate`) {
+      try {
+          let commandFile = require(`./bp/transl.js`);
+          commandFile.run(bot, message, args);
+      } catch(e) {
+          console.log(e.stack);
+      }
+      console.log(`${prefix}tumor usado por: ${message.author.tag} en el server ${message.guild.name} con su uso ${args}`);
+      Log(bot, message, args);
+    }
     if (cmd === `${prefix}breakingnews`) {
         try {
             let commandFile = require(`./bp/breaking.js`);
