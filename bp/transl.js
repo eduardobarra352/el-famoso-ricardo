@@ -65,6 +65,7 @@ exports.run = async (bot, message, args) => {
       console.log(resp);
       if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); } },16000)); }
       message.channel.stopTyping();
+      resp = '';
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
       collector = message.channel.createMessageCollector(filtro, { time: 15000 });
       collector.lan = lan;
@@ -76,7 +77,7 @@ exports.run = async (bot, message, args) => {
           if (m == 5) { minim = 88; nivel = 110; } if (m == 6) { minim = 110; nivel = 132; } if (m == 7) { minim = 132; nivel = 154; } if (m == 8) { minim = 154; nivel = 176; }
 	  veces = veces+1;
 	  Idiomas();
-	  setTimeout(()=>{ msgid.edit(resp); m.delete(); },1000);
+	  setTimeout(()=>{ msgid.edit(resp); m.delete(); },2000);
 	  timer = setTimeout(()=>{
             collector.on('end', m => {
 		setTimeout(()=>{ fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); },2000);
