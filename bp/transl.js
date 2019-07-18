@@ -48,7 +48,7 @@ exports.run = async (bot, message, args) => {
     let indx;
     let filtro;
     let collector;
-    let msgid
+    let msgid;
     var timer;
     let resp = '';
     message.channel.startTyping();
@@ -68,19 +68,19 @@ exports.run = async (bot, message, args) => {
       collector.lan = lan;
       collector.on('collect', m => {
         clearTimeout(timer);
-	      if (indx > 0 || indx < (limite+1)) {
-			    indx = m;
-			    if (m == 1) { minim = 0; nivel = 22; } if (m == 2) { minim = 22; nivel = 44; } if (m == 3) { minim = 44; nivel = 66; } if (m == 4) { minim = 66; nivel = 88; }
+        if (indx > 0 || indx < (limite+1)) {
+	  indx = m;
+	  if (m == 1) { minim = 0; nivel = 22; } if (m == 2) { minim = 22; nivel = 44; } if (m == 3) { minim = 44; nivel = 66; } if (m == 4) { minim = 66; nivel = 88; }
           if (m == 5) { minim = 88; nivel = 110; } if (m == 6) { minim = 110; nivel = 132; } if (m == 7) { minim = 132; nivel = 154; } if (m == 8) { minim = 154; nivel = 176; }
-			    veces = veces+1;
-			    Idiomas();
-			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
-			    timer = setTimeout(()=>{
+	  veces = veces+1;
+	  Idiomas();
+	  setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+	  timer = setTimeout(()=>{
             collector.on('end', m => {
-		    			setTimeout(()=>{ resp = `${msgid.content}se termino losresultados,,` msgid.edit(resp); },2000);
-				    });
-		  	  },15000);
-		    }
+		setTimeout(()=>{ resp = `${msgid.content}se termino losresultados,,` msgid.edit(resp); },2000);
+	    });
+	  },15000);
+	}
       });
     }
   }
