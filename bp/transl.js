@@ -49,7 +49,7 @@ exports.run = async (bot, message, args) => {
     let filtro;
     let collector;
     let msgid;
-    let msgtotal;
+    let msgtotal = '';
     var timer;
     let resp = '';
     let fin = '';
