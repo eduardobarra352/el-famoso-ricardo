@@ -43,7 +43,7 @@ exports.run = async (bot, message, args) => {
                    { "lang": "chino", "iso": "zh" }, { "lang": "zulú", "iso": "zu" }];
     let nivel = 22;
     let minim = 0;
-	  let veces = 0;
+    let veces = 0;
     let limite = 8;
     let indx;
     let filtro;
@@ -59,9 +59,9 @@ exports.run = async (bot, message, args) => {
       resp += '```>translate [idioma original] [idioma para traduccir] [Texto ._.]```';
       resp += `\nlista de idiomas (a-z): \n`;
       for(var i in lan) {
-        resp += `-**lan[i].iso** (${lan[i].lang})\n`;
+        resp += `-**${lan[i].iso}** (${lan[i].lang})\n`;
       }
-      resp += `eliga un numero para ver losdemas j: **${indx}-${limite}**`;
+      resp += `\neliga un numero para ver losdemas j: **${indx}-${limite}**`;
       console.log(resp);
       if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); } },16000)); }
       message.channel.stopTyping();
