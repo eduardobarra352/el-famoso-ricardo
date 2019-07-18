@@ -64,6 +64,7 @@ exports.run = async (bot, message, args) => {
       }
       resp += `eliga un numero para ver losdemas j: **${indx}-${limite}**`;
       msgtotal = resp;
+      console.log(msgtotal);
       if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = `${msgtotal}\nse termino losresultados,,` msgid.edit(fin); } },16000)); }
       message.channel.stopTyping();
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
