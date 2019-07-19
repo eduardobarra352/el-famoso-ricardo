@@ -337,6 +337,7 @@ bot.on("message", message => {
 	try {
 	    message.delete();
 	    let emji = bot.emojis.get(say);
+	    console.log(emji);
 	    message.channel.send(emji);
 	}
 	catch(e) {
