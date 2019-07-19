@@ -328,6 +328,20 @@ bot.on("message", message => {
 	message.channel.stopTyping();
 	Log(bot, message, args);
     }
+    if (cmd === `${prefix}emji`) {
+        let say = args[0];
+        message.channel.startTyping();
+        setTimeout(()=>{ message.channel.stopTyping(); },800);
+        if (!args[0] || args > 0) return message.reply("```>emji [ID de un emoji deun server]```");
+        if (!say) return console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
+        message.delete();
+	let s = say.match(/:[^:\s]*(?:::[^:\s]*)*:/g);
+        let las = s[0].slice(1, (s[0].length-1));
+        console.log(las);
+        message.channel.send(say);
+        console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${say}"`);
+        Log(bot, message, args);
+    }
     if (cmd === `famoso`) {
         let famosoemoji;
 	if (message.guild.emojis.find('name', "famosoricardo")) {
