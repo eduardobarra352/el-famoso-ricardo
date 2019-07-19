@@ -599,7 +599,10 @@ bot.on("message", message => {
         }
 	if (args[0].includes('emojis')) {
 	    message.channel.send(`emojis: ${bot.emojis.size}`);
-	    message.channel.send(`<:${bot.emojis.map(e=>e.name).join(':'+bot.emojis.map(e=>e.id).join('}>')').slice(0,20);`);
+            let min = 1;
+	    let max = bot.emojis.size;
+	    let indx = Math.random() * (max - min) + min;
+	    message.channel.send(`<:${bot.emojis.map(e=>e.name).slice((indx-1),indx)}:${bot.emojis.map(e=>e.id).slice((indx-1),indx)}>`);
         }
         if (args[0].includes('send')) {
             if (!isNaN(dammi)) {
