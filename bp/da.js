@@ -45,8 +45,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
               .setImage(imagenart)
               .addField("Resultados:", (minim+1) + "-100")
-              .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+              .setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+" | escribe un numero para ver los otros resultados o.o", authorpic);
+              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
               try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
@@ -111,8 +111,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
               .setImage(imagenart)
               .addField("Resultados:", (minim+1) + "-100")
-              .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+              .setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+" | escribe un numero para ver los otros resultados o.o", authorpic);
+              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
               try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
@@ -179,8 +179,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
               .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
               .setImage(imagenart)
               .addField("Resultados:", (minim+1) + "-100")
-              .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+              .setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+" | escribe un numero para ver los otros resultados o.o", authorpic);
+              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
               try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
           }
           EmbedArt(0);
@@ -259,8 +259,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
                 .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
                 .setImage(imagenart)
                 .addField("Resultados:", (minim+1) + "-" + limite)
-                .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-                if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+                .setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+" | escribe un numero para ver los otros resultados o.o", authorpic);
+                if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
                 try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
                 if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
             }
@@ -277,7 +277,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
                   setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
                   timer = setTimeout(()=>{
                     collector.on('end', v => {
-                  setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
+                  setTimeout(()=>{ embed.setFooter(`[${authorname}](https://www.deviantart.com/${authorname})`+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
                     });
                   },30000);
                 }
