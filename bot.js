@@ -335,8 +335,8 @@ bot.on("message", message => {
             message.react(famosoemoji);
 	}
 	else {
-	    famosoemoji = '<:famosoricardo:439570889340878851>';
-	    message.react(famosoemoji);
+	    famosoemoji = '439570889340878851';
+	    message.react(bot.emojis.get(famosoemoji));
 	}
     }
     if (cmd === `famosa`) {
