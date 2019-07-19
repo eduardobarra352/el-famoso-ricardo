@@ -3,14 +3,10 @@ const fs = require('fs');
 const request = require('request');
 const bot = new Discord.Client({ disableEveryone: true });
 const FFMPEG = require('ffmpeg');
-const ytdl = require('ytdl-core');
 const yt = require('yt-search');
 const gis = require('g-i-s');
 const jimp = require('jimp');
 const isUrl = require('is-url');
-const opus = require('node-opus');
-const opusscript = require('opusscript');
-const ffmpegbinaries = require('ffmpeg-binaries');
 const webshot = require('node-webshot');
 const avconv = require('avconv');
 const activo = new Map();
@@ -540,7 +536,7 @@ bot.on("message", message => {
       } catch(e) {
           console.log(e.stack);
       }
-      console.log(`${prefix}tumor usado por: ${message.author.tag} en el server ${message.guild.name} con su uso ${args}`);
+      console.log(`${prefix}translate usado por: ${message.author.tag} en el server ${message.guild.name} con su uso ${args}`);
       Log(bot, message, args);
     }
     if (cmd === `${prefix}breakingnews`) {
@@ -559,7 +555,7 @@ bot.on("message", message => {
 	}
     }
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Comandos base (mas comandos ocpionalespro nto,,,): \n>deviantart```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>translate [idioma original] [idioma q vas a traducir] [textoxD] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Comandos base (mas comandos ocpionalespro nto,,,): \n>deviantart```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
