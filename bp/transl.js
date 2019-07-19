@@ -62,7 +62,7 @@ exports.run = async (bot, message, args) => {
         resp = resp + `-**${lan[i].iso}** (${lan[i].lang})\n`;
       }
       fin = resp + `\neliga un numero para ver losdemas j: **${indx}-${limite}**`;
-      if (veces == 0) { message.reply(fin).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = resp + `\nya terminolos resultados,,,,`; msgid.edit(fin); } },31000)); }
+      if (veces == 0) { message.channel.send(fin).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = resp + `\nya terminolos resultados,,,,`; msgid.edit(fin); } },31000)); }
       else { setTimeout(()=>{ msgid.edit(fin); },2000); }
       message.channel.stopTyping();
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
