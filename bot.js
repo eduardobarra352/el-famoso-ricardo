@@ -345,6 +345,10 @@ bot.on("message", message => {
             famosaemoji = message.guild.emojis.find('name', "famosaricarda");
 	    message.react(famosaemoji);
         }
+	else {
+	    famosaemoji = '439570878196613130';
+	    message.react(bot.emojis.get(famosaemoji));
+	}
     }
     if (cmd === `barrato`) {
         let barratoemoji;
@@ -352,12 +356,20 @@ bot.on("message", message => {
             barratoemoji = message.guild.emojis.find('name', "barrato");
 	    message.react(barratoemoji);
 	}
+	else {
+            barratoemoji = '439570642715803649';
+	    message.react(bot.emojis.get(barratoemoji));
+	}
     }
     if (cmd === `phineas`) {
         let phineasemoji;
 	if (message.guild.emojis.find('name', "phineas")) {
             phineasemoji = message.guild.emojis.find('name', "phineas");
 	    message.react(phineasemoji);
+	}
+	else {
+	    phineasemoji = '439570324309409792';
+	    message.react(bot.emojis.get(phineasemoji));
 	}
     }
     if (cmd === `${prefix}deviantart`) {
@@ -475,7 +487,7 @@ bot.on("message", message => {
         console.log(`${prefix}detectorql usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
 	let barratoemoji = '';
-        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); }
+        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); } else { barratoemoji = '439570642715803649'; message.react(bot.emojis.get(barratoemoji)); }
         var number = 5;
         var random = Math.floor (Math.random() * (number - 4 + 3)) + 1;
         switch (random) {
@@ -497,12 +509,12 @@ bot.on("message", message => {
 	let putqemoji = '';
 	let barratoemoji = '';
 	let meemputasemoji = '';
-        if(message.guild.emojis.find('name', "famosoricardo")) { famosoemoji = message.guild.emojis.find('name', "famosoricardo"); }
-        if (message.guild.emojis.find('name', "famosaricarda")) { famosaemoji = message.guild.emojis.find('name', "famosaricarda"); }
-        if (message.guild.emojis.find('name', "olacomoestan")) { shrekardoemoji = message.guild.emojis.find('name', "olacomoestan"); }
-        if (message.guild.emojis.find('name', "putq")) { putqemoji = message.guild.emojis.find('name', "putq"); }
-        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); }
-        if (message.guild.emojis.find('name', "meemputas")) { meemputasemoji = message.guild.emojis.find('name', "meemputas"); }
+        if(message.guild.emojis.find('name', "famosoricardo")) { famosoemoji = message.guild.emojis.find('name', "famosoricardo"); } else { famosoemoji = '439570889340878851'; message.react(bot.emojis.get(famosoemoji)); }
+        if (message.guild.emojis.find('name', "famosaricarda")) { famosaemoji = message.guild.emojis.find('name', "famosaricarda"); } else { famosaemoji = '439570878196613130'; message.react(bot.emojis.get(famosaemoji)); }
+        if (message.guild.emojis.find('name', "olacomoestan")) { shrekardoemoji = message.guild.emojis.find('name', "olacomoestan"); } else { shrekardoemoji = '439571637831204874'; message.react(bot.emojis.get(shrekardoemoji)); }
+        if (message.guild.emojis.find('name', "putq")) { putqemoji = message.guild.emojis.find('name', "putq"); } else { putqemoji = '439571673583321088'; message.react(bot.emojis.get(putqemoji)); }
+        if (message.guild.emojis.find('name', "barrato")) { barratoemoji = message.guild.emojis.find('name', "barrato"); } else { barratoemoji = '439570642715803649'; message.react(bot.emojis.get(barratoemoji)); }
+        if (message.guild.emojis.find('name', "meemputas")) { meemputasemoji = message.guild.emojis.find('name', "meemputas"); } else { meemputasemoji = '439570953912057856'; message.react(bot.emojis.get(meemputasemoji)); }
         var number = 6;
         var random = Math.floor (Math.random() * (number - 1 + 1)) + 1;
         switch (random) {
@@ -570,24 +582,28 @@ bot.on("message", message => {
         let dammi = args[1];
         let realize = args.slice(2).join(' ');
         message.delete();
-        if (cmd === `${prefix}${code}` && status === 'online') {
+        if (args[0].includes('online')) {
             bot.user.setStatus(`Online`);
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}${code}` && status === 'idle') {
+        if (args[0].includes('idle')) {
             bot.user.setStatus(`idle`);
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}${code}` && status === 'dnd') {
+        if (args[0].includes('dnd')) {
             bot.user.setStatus(`dnd`);
             message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
-        if (cmd === `${prefix}${code}` && status === 'servers') {
+        if (args[0].includes('servers')) {
             message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
+        }
+	if (args[0].includes('emojis')) {
+            message.delete();
+            message.channel.send(`emojis: ${bot.emojis.size} o **\n-${bot.emojis.map(e=>e.name)} - ${bot.emojis.map(e=>e.id).join('\n-')}**`);
         }
         if (args[0].includes('send')) {
             message.delete();
