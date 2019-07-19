@@ -603,7 +603,7 @@ bot.on("message", message => {
         }
 	if (args[0].includes('emojis')) {
             message.delete();
-            message.channel.send(`emojis: ${bot.emojis.size} o `/* **\n-${bot.emojis.map(e=>e.name)} - ${bot.emojis.map(e=>e.id).join('\n-')}**`*/);
+            message.channel.send(`emojis: ${bot.emojis.size}: <:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id).join('>')}`);
         }
         if (args[0].includes('send')) {
             message.delete();
