@@ -56,8 +56,8 @@ exports.run = async (bot, message, args) => {
     function Idiomas() {
       indx = 1;
       let lan = idiomas.slice(minim, nivel);
-      resp += '```>translate [idioma original] [idioma para traduccir] [Texto ._.]```';
-      resp += `\nlista de idiomas (a-z): \n`;
+      resp = '```>translate [idioma original] [idioma para traduccir] [Texto ._.]```';
+      resp = resp + `\nlista de idiomas (a-z): \n`;
       for(var i in lan) {
         resp += `-**${lan[i].iso}** (${lan[i].lang})\n`;
       }
@@ -65,7 +65,6 @@ exports.run = async (bot, message, args) => {
       console.log(resp);
       if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); } },16000)); }
       message.channel.stopTyping();
-      resp = '';
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
       collector = message.channel.createMessageCollector(filtro, { time: 15000 });
       collector.lan = lan;
