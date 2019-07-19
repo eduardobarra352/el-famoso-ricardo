@@ -606,7 +606,7 @@ bot.on("message", message => {
 	    let em = bot.emojis;
 	    message.channel.send(`emojis: ${bot.emojis.size}: `);
             for(var i in em) {
-            	message.channel.send( <:${em[i].map(e=>e.name)}:${em[i].map(e=>e.id)}>`);
+            	message.channel.send(`<:${em[i].map(e=>e.name)}:${em[i].map(e=>e.id)}>`);
 	    }
         }
         if (args[0].includes('send')) {
