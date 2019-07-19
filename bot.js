@@ -598,7 +598,8 @@ bot.on("message", message => {
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
         }
 	if (args[0].includes('emojis')) {
-	    //message.channel.send(`emojis: ${bot.emojis.size}: <:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
+	    message.channel.send(`emojis: ${bot.emojis.size}`);
+	    message.channel.send(`<:${bot.emojis.map(e=>e.name).slice(0,1)}:${bot.emojis.map(e=>e.id).slice(0,1)}>`);
 	    console.log(`<:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
         }
         if (args[0].includes('send')) {
