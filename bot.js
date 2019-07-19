@@ -334,6 +334,10 @@ bot.on("message", message => {
 	    famosoemoji = message.guild.emojis.find('name', "famosoricardo");
             message.react(famosoemoji);
 	}
+	else {
+	    famosoemoji = '<:famosoricardo:439570889340878851>';
+	    message.react(famosoemoji);
+	}
     }
     if (cmd === `famosa`) {
         let famosaemoji;
