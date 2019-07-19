@@ -334,16 +334,10 @@ bot.on("message", message => {
         setTimeout(()=>{ message.channel.stopTyping(); },800);
         if (!args[0] || args[1]) return message.reply("```>emji [ID de un emoji deun server]```");
         if (!say) return console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
-	try {
-	    message.delete();
-	    let emji = bot.emojis.get(say);
-	    console.log(emji);
-	    message.channel.send(emji);
-	}
-	catch(e) {
-	    console.log(e);
-	    message.reply(':x: emoji noencontrado, intentejaja');
-	}
+	message.delete();
+	let emji = bot.emojis.get(say);
+	console.log(emji);
+	message.channel.send(emji);
         console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${say}"`);
         Log(bot, message, args);
     }
