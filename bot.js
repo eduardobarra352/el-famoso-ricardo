@@ -584,26 +584,22 @@ bot.on("message", message => {
         message.delete();
         if (args[0].includes('online')) {
             bot.user.setStatus(`Online`);
-            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
         if (args[0].includes('idle')) {
             bot.user.setStatus(`idle`);
-            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
         if (args[0].includes('dnd')) {
             bot.user.setStatus(`dnd`);
-            message.delete();
             message.channel.send(`:white_check_mark: Status cambiado correctamente.`).then(msg => msg.delete(2000));
         }
         if (args[0].includes('servers')) {
-            message.delete();
             message.channel.send(`estoi actualmente por ${bot.guilds.size} servidores o **\n-${bot.guilds.map(g=>g.name).join('\n-')}**`);
         }
 	if (args[0].includes('emojis')) {
-            message.delete();
-	    message.channel.send(`emojis: ${bot.emojis.size}: <:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
+	    //message.channel.send(`emojis: ${bot.emojis.size}: <:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
+	    console.log(`<:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
         }
         if (args[0].includes('send')) {
             if (!isNaN(dammi)) {
