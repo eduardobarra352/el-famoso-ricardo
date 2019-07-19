@@ -59,7 +59,7 @@ exports.run = async (bot, message, args) => {
       resp = '```>translate [idioma original] [idioma para traducir] [Texto ._.]```';
       resp = resp + `\nlista de idiomas (a-z): \n`;
       for(var i in lan) {
-        resp += `-**${lan[i].iso}** (${lan[i].lang})\n`;
+        resp = resp + `-**${lan[i].iso}** (${lan[i].lang})\n`;
       }
       fin = resp + `\neliga un numero para ver losdemas j: **${indx}-${limite}**`;
       if (veces == 0) { message.reply(fin).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = resp + `\nya terminolos resultados,,,,`; msgid.edit(fin); } },31000)); }
