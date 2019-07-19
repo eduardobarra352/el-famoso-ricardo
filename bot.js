@@ -337,12 +337,12 @@ bot.on("message", message => {
 	message.delete();
 	try {
 	    let emji = bot.emojis.get(say);
-	    if (emji == undefined) { message.channel.send(`${emji}`); }
+	    if (emji != undefined) { message.channel.send(`${emji}`); }
 	    else { message.reply(':x: no se encontroel emoji jajjajsg ñ'); }
 	}
 	catch(e) {
 	    console.log(e);
-	    message.reply(':x: no se encontroel emoji jajjajsg ñ');
+	    message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
 	}
         console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${say}"`);
         Log(bot, message, args);
@@ -590,7 +590,7 @@ bot.on("message", message => {
 	}
     }
     if (cmd === `${prefix}help`) {
-        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>translate [idioma original] [idioma q vas a traducir] [textoxD] \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Comandos base (mas comandos ocpionalespro nto,,,): \n>deviantart```');
+        message.channel.send('ola mis __niños__ hoy lespuedo ayudarle acojer digodigo a usarme como tu qieras .__.xD \ncomandos:```>tm \n>invite \n>server \n>paz \n \n-"Tumoristico": \n>famosisimo \n>detectorql \n>tu [textXD] \n>tumor (100 variaciones distintas omg) \n>esqeletin [textXD] \n>jpg [url de imagen] o <imagen> \n>desmotivacion [url] [Texto] \n>gatogaymermaluma \n>breakingnews | [headline] | [ticker] <imagen> \n \n-Funciones bknes: \n>say (decir algoXD) \n>img [lo q vayas a buscar] \n>yt [nombre del video] \n>translate [idioma original] [idioma q vas a traducir] [textoxD] \n>emji [ID de unemoji de un server] (lomismo q >say pero es solo un emoji "global") \n>resize [url] o <imagen> \n>purge (el destructor ricardo) \n>playing (cambia mi estado de juego omg) \n>di [dile algo al famoso, enbase decleverbot XD] \n>avatar <imagen> (puedes cambiar el perfil con imagenes si es que discord no pueda restringir por el sobrecambio del perfil) \n \n-Comandos base (mas comandos ocpionalespro nto,,,): \n>deviantart```');
         console.log(`${prefix}help usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
