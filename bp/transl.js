@@ -44,8 +44,8 @@ exports.run = async (bot, message, args) => {
     let nivel = 22;
     let minim = 0;
     let veces = 0;
-    let limite = 8;
-    let indx;
+    let limite = 9;
+    let indx = 1;
     let filtro;
     let collector;
     let msgid;
@@ -54,7 +54,6 @@ exports.run = async (bot, message, args) => {
     let fin = '';
     message.channel.startTyping();
     function Idiomas() {
-      indx = 1;
       let lan = idiomas.slice(minim, nivel);
       resp = '```>translate [idioma original] [idioma para traduccir] [Texto ._.]```';
       resp = resp + `\nlista de idiomas (a-z): \n`;
@@ -62,24 +61,23 @@ exports.run = async (bot, message, args) => {
         resp += `-**${lan[i].iso}** (${lan[i].lang})\n`;
       }
       resp += `\neliga un numero para ver losdemas j: **${indx}-${limite}**`;
-      console.log(resp);
-      if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); } },16000)); }
+      if (veces == 0) { message.reply(resp).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { msgid.delete(); } },31000)); }
       message.channel.stopTyping();
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
-      collector = message.channel.createMessageCollector(filtro, { time: 15000 });
+      collector = message.channel.createMessageCollector(filtro, { time: 30000 });
       collector.lan = lan;
       collector.on('collect', m => {
         clearTimeout(timer);
         if (indx > 0 || indx < (limite+1)) {
 	  indx = m;
 	  if (m == 1) { minim = 0; nivel = 22; } if (m == 2) { minim = 22; nivel = 44; } if (m == 3) { minim = 44; nivel = 66; } if (m == 4) { minim = 66; nivel = 88; }
-          if (m == 5) { minim = 88; nivel = 110; } if (m == 6) { minim = 110; nivel = 132; } if (m == 7) { minim = 132; nivel = 154; } if (m == 8) { minim = 154; nivel = 176; }
+          if (m == 5) { minim = 88; nivel = 110; } if (m == 6) { minim = 110; nivel = 132; } if (m == 7) { minim = 132; nivel = 154; } if (m == 8) { minim = 154; nivel = 176; } if (m == 9) { minim = 176; nivel = 184; }
 	  veces = veces+1;
 	  Idiomas();
 	  setTimeout(()=>{ msgid.edit(resp); m.delete(); },2000);
 	  timer = setTimeout(()=>{
             collector.on('end', m => {
-		setTimeout(()=>{ fin = `se termino losresultados,,`; message.channel.send(fin).then(msg => msg.delete(4000)); },2000);
+		setTimeout(()=>{ msgid.delete(); },2000);
 	    });
 	  },15000);
 	}
