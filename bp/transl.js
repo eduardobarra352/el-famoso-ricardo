@@ -87,7 +87,7 @@ exports.run = async (bot, message, args) => {
     Idiomas();
     message.channel.stopTyping();
   }
-  if (args[0] && args[1] && args[2]) 
+  if (args[0] && args[1] && args[2]) {
     let io = args[0];
     let it = args[1];
     let texto = args.slice(2).join(' ');
