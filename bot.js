@@ -603,14 +603,9 @@ bot.on("message", message => {
         }
 	if (args[0].includes('emojis')) {
             message.delete();
-	    let em = bot.emojis.map(e=>e.id);
-	    message.channel.send(`emojis: ${bot.emojis.size}: `);
-            for(var i in em) {
-            	message.channel.send(`<:${em[i].map(e=>e.name)}:${em[i].map(e=>e.id)}>`);
-	    }
+	    message.channel.send(`emojis: ${bot.emojis.size}: <:${bot.emojis.map(e=>e.name)}:${bot.emojis.map(e=>e.id)}>`);
         }
         if (args[0].includes('send')) {
-            message.delete();
             if (!isNaN(dammi)) {
                 try {
 		    if (message.attachments.size > 0) { bot.users.get(dammi).send(realize, {file: (message.attachments.first().url)}); }
