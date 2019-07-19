@@ -332,7 +332,7 @@ bot.on("message", message => {
         let say = args[0];
         message.channel.startTyping();
         setTimeout(()=>{ message.channel.stopTyping(); },800);
-        if (!args[0] || args[1] || !isNaN(args[0])) return message.reply("```>emji [ID de un emoji deun server]```");
+        if (!args[0] || args[1] || isNaN(args[0])) return message.reply("```>emji [ID de un emoji deun server]```");
         if (!say) return console.log(`${prefix}emji usado por: ${message.author.tag} en el server ${message.guild.name} con falta de usos`);
 	message.delete();
 	try {
