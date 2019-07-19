@@ -46,6 +46,7 @@ exports.run = async (bot, message, args) => {
     let veces = 0;
     let limite = 9;
     let indx = 1;
+    let lan;
     let filtro;
     let collector;
     let msgid;
@@ -54,7 +55,7 @@ exports.run = async (bot, message, args) => {
     let fin = '';
     message.channel.startTyping();
     function Idiomas() {
-      let lan = idiomas.slice(minim, nivel);
+      lan = idiomas.slice(minim, nivel);
       resp = '```>translate [idioma original] [idioma para traducir] [Texto ._.]```';
       resp = resp + `\nlista de idiomas (a-z): \n`;
       for(var i in lan) {
@@ -92,6 +93,7 @@ exports.run = async (bot, message, args) => {
     let it = args[1];
     let texto = args.slice(2).join(' ');
     try {
+      message.channel.startTyping();
       translate({
         text: texto,
         source: io,
@@ -99,10 +101,12 @@ exports.run = async (bot, message, args) => {
       }, function(r) {
         message.channel.send(r.translation);
       });
+      message.channel.stopTyping();
     }
     catch(e) {
       console.log(e);
       message.channel.send(':x: oopsie, asegura tenerbn lasolicitud e intente,,,');
+      message.channel.stopTyping();
     }
   }
 }
