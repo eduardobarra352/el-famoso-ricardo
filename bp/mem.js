@@ -6,13 +6,17 @@ exports.run = async (bot, message, args, AttachImagen) => {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
     let barra = '|';
     let indexBarra = args.indexOf(barra);
-    console.log(indexBarra);
-    let toptext = args.slice(0, indexBarra).join(' ');
-    let bottomtext = args.slice(indexBarra+1).join(' ');
+    let toptext;
+    let bottomtext;
+    if (indexBarra) {
+      toptext = args.slice(0, indexBarra).join(' ');
+      bottomtext = args.slice(indexBarra+1).join(' ');
+    }
+    if (indexBarra == -1) bottomtext = args.slice(indexBarra).join(' ');
     if (indexBarra) args.splice(indexBarra);
     if (bottomtext == undefined && args > 0) {
-      toptext = args.slice(0, Math.ceil(args.length / 2)).join(' ');
-      bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
+      toptext = args.slice(0, Math.max(args.length / 2)).join(' ');
+      bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
     console.log(toptext);
     console.log(bottomtext);
