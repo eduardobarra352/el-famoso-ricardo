@@ -5,9 +5,11 @@ exports.run = async (bot, message, args, AttachImagen) => {
   if (message.attachments.size > 0) {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
     let barra = ' | ';
-    let toptext = args.slice(0, args.indexOf(barra)).join(' ');
-    let bottomtext = args.slice(args.indexOf(barra)).join(' ');
-    args.splice(args.indexOf(barra));
+    let indexBarra = args.indexOf(barra);
+    console.log(indexBarra);
+    let toptext = args.slice(0, indexBarra).join(' ');
+    let bottomtext = args.slice(indexBarra).join(' ');
+    if (indexBarra) args.splice(indexBarra);
     if (bottomtext == undefined && Math.ceil(args.length / 2) > 0) toptext = args.slice(0, Math.ceil(args.length / 2)).join(' '); bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
     console.log(toptext);
     console.log(bottomtext);
