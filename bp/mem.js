@@ -65,6 +65,9 @@ exports.run = async (bot, message, args, AttachImagen) => {
       toptext = args.slice(1, Math.max(args.length / 2)).join(' ');
       bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
+    console.log(urlimagen);
+    console.log(toptext);
+    console.log(bottomtext);
     let anchura;
     let altura;
     gm(request(urlimagen)).size(function (err, size) { 
