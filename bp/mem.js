@@ -68,6 +68,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let altura;
     gm(request(urlimagen)).size(function (err, size) { 
         if (err) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+        console.log(err);
         message.channel.startTyping();
         anchura = size.width * 10;
         altura = size.height * 10;
