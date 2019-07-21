@@ -19,5 +19,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
    })
    .then(function(data) {
     console.log(data);
+    message.channel.send({file: (data) });
    });
 }
