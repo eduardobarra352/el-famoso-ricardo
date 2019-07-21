@@ -1,5 +1,4 @@
 const meme = require('nodejs-meme-generator');
-const isUrl = require('is-url');
 const gm = require('gm');
 
 exports.run = async (bot, message, args, AttachImagen) => {
@@ -64,7 +63,6 @@ exports.run = async (bot, message, args, AttachImagen) => {
       toptext = args.slice(1, Math.max(args.length / 2)).join(' ');
       bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
-    if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
     let anchura;
     let altura;
     gm(urlimagen).size(function (err, size) { 
