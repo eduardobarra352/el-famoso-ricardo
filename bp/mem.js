@@ -20,12 +20,12 @@ exports.run = async (bot, message, args, AttachImagen) => {
     url: 'https://i.imgur.com/7FHoSIG.png'
    })
    .then(function(data) {
-    fs.readFile('file.jpg', function(err, data) {
-      if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+    fs.readFile(data, function(err, mem) {
+      if (err) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); console.log(err); }
       http.createServer(function(req, res) {
         res.writeHead(200, {'Content-Type': 'image/png'});
         res.end(data);
-        message.channel.send({file: (data) });
+        message.channel.send({file: (mem) });
       })
     });
    });
