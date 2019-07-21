@@ -1,5 +1,6 @@
 const meme = require('nodejs-meme-generator');
 const request = require('request');
+const fs = require('fs');
 const gm = require('gm');
 
 exports.run = async (bot, message, args, AttachImagen) => {
