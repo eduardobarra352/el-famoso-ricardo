@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
       fontOptions: {
         fontSize: 40,
         fontFamily: 'arial',
-        lineHeight: 8
+        lineHeight: 18
       }
     });
     opt.generateMeme({
@@ -77,7 +77,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         fontOptions: {
           fontSize: 40,
           fontFamily: 'arial',
-          lineHeight: 8
+          lineHeight: 18
         }
       });
       opt.generateMeme({
