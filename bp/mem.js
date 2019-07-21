@@ -5,14 +5,15 @@ exports.run = async (bot, message, args, AttachImagen) => {
   if (message.attachments.size > 0) {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
     let barra = ' | ';
-    let toptext = args.join(' ').slice(0, barra);
-    let bottomtext = args.slice(barra);
-    if (bottomtext == undefined) bottomtext = args.slice(Math.ceil(toptext.length / 2));
+    let toptext = args.join(' ').slice(0, args.indexOf(barra));
+    let bottomtext = args.slice(args.indexOf(barra));
+    if (bottomtext == undefined) toptext = args.join(' ').slice(0, Math.ceil(toptext.length / 2)); bottomtext = args.slice(Math.ceil(toptext.length / 2));
+    console.log(toptext);
+    console.log(bottomtext);
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
     let anchura = message.attachments.first().width;
     let altura = message.attachments.first().height;
-    console.log(toptext);
     let opt = new meme({
       canvasOptions: {
         canvasWidth: anchura,
