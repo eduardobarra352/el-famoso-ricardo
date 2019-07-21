@@ -20,15 +20,17 @@ exports.run = async (bot, message, args, AttachImagen) => {
     }
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
-    let anchura = message.attachments.first().width;
-    let altura = message.attachments.first().height;
+    let anchura = message.attachments.first().width * 10;
+    let altura = message.attachments.first().height * 10;
+    if (anchura > 1000) anchura = 1000;
+    if (altura > 1000) altura = 1000;
     let opt = new meme({
       canvasOptions: {
         canvasWidth: anchura,
         canvasHeight: altura
       },
       fontOptions: {
-        fontSize: 2,
+        fontSize: 40,
         fontFamily: 'arial',
         lineHeight: 4
       }
