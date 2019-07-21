@@ -8,7 +8,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let indexBarra = args.indexOf(barra);
     console.log(indexBarra);
     let toptext = args.slice(0, indexBarra).join(' ');
-    let bottomtext = args.slice(indexBarra).join(' ');
+    let bottomtext = args.slice(indexBarra+1).join(' ');
     if (indexBarra) args.splice(indexBarra);
     if (bottomtext == undefined && args > 0) {
       toptext = args.slice(0, Math.ceil(args.length / 2)).join(' ');
