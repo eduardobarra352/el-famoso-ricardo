@@ -28,7 +28,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         canvasHeight: altura
       },
       fontOptions: {
-        fontSize: 10,
+        fontSize: 2,
         fontFamily: 'arial',
         lineHeight: 4
       }
