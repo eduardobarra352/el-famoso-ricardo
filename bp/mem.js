@@ -5,9 +5,9 @@ exports.run = async (bot, message, args, AttachImagen) => {
   if (message.attachments.size > 0) {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
     let barra = ' | ';
-    let toptext = args.join(' ').slice(0, args.indexOf(barra));
+    let toptext = args.slice(0, args.indexOf(barra));
     let bottomtext = args.slice(args.indexOf(barra));
-    if (bottomtext == undefined) toptext = args.join(' ').slice(0, Math.ceil(toptext.length / 2)); bottomtext = args.slice(Math.ceil(toptext.length / 2));
+    if (bottomtext == undefined) toptext = args.slice(0, Math.ceil(args.length / 2)); bottomtext = args.slice(Math.ceil(args.length / 2));
     console.log(toptext);
     console.log(bottomtext);
     message.channel.startTyping();
