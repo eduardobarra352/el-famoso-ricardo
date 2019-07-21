@@ -7,10 +7,13 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let barra = ' | ';
     let indexBarra = args.indexOf(barra);
     console.log(indexBarra);
-    let toptext = args.slice(0, indexBarra).join(' ');
-    let bottomtext = args.slice(indexBarra).join(' ');
+    let toptext = args.slice(0, indexBarra).split(indexBarra).join(' ');
+    let bottomtext = args.slice(indexBarra).split(indexBarra).join(' ');
     if (indexBarra) args.splice(indexBarra);
-    if (bottomtext == undefined && Math.ceil(args.length / 2) > 0) toptext = args.slice(0, Math.ceil(args.length / 2)).join(' '); bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
+    if (bottomtext == undefined && args > 0) {
+      toptext = args.slice(0, Math.ceil(args.length / 2)).join(' ');
+      bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
+    }
     console.log(toptext);
     console.log(bottomtext);
     message.channel.startTyping();
