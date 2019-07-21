@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
       fontOptions: {
         fontSize: 40,
         fontFamily: 'arial',
-        lineHeight: 4
+        lineHeight: 8
       }
     });
     opt.generateMeme({
@@ -44,8 +44,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
      })
      .then(function(data) {
       message.channel.send({file:(data)});
+      message.channel.stopTyping();
     });
-    message.channel.stopTyping();
   }
   else {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
@@ -77,7 +77,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
         fontOptions: {
           fontSize: 40,
           fontFamily: 'arial',
-          lineHeight: 4
+          lineHeight: 8
         }
       });
       opt.generateMeme({
@@ -87,8 +87,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
        })
        .then(function(data) {
         message.channel.send({file:(data)});
+        message.channel.stopTyping();
       });
     });
-    message.channel.stopTyping();
   }
 }
