@@ -28,8 +28,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
         canvasHeight: altura
       },
       fontOptions: {
-        fontSize: 46,
-        fontFamily: 'impact',
+        fontSize: 10,
+        fontFamily: 'arial',
         lineHeight: 4
       }
     });
