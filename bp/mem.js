@@ -7,17 +7,16 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let barra = ' | ';
     let toptext = args.slice(0, args.indexOf(barra)).join(' ');
     let bottomtext = args.slice(args.indexOf(barra)).join(' ');
+    args.splice(args.indexOf(barra));
     if (bottomtext == undefined && Math.ceil(args.length / 2) > 0) toptext = args.slice(0, Math.ceil(args.length / 2)).join(' '); bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
     console.log(toptext);
     console.log(bottomtext);
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
-    let anchura = message.attachments.first().width;
-    let altura = message.attachments.first().height;
     let opt = new meme({
       canvasOptions: {
-        canvasWidth: anchura,
-        canvasHeight: altura
+        canvasWidth: 500,
+        canvasHeight: 500
       },
       fontOptions: {
         fontSize: 46,
