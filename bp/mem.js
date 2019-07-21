@@ -18,19 +18,19 @@ exports.run = async (bot, message, args, AttachImagen) => {
       toptext = args.slice(0, Math.max(args.length / 2)).join(' ');
       bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
-    console.log(toptext);
-    console.log(bottomtext);
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
+    let anchura = message.attachments.first().width;
+    let altura = message.attachments.first().height;
     let opt = new meme({
       canvasOptions: {
-        canvasWidth: 500,
-        canvasHeight: 500
+        canvasWidth: anchura,
+        canvasHeight: altura
       },
       fontOptions: {
         fontSize: 46,
         fontFamily: 'arial',
-        lineHeight: 3
+        lineHeight: 4
       }
     });
     opt.generateMeme({
