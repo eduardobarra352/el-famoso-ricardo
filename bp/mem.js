@@ -29,7 +29,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
       },
       fontOptions: {
         fontSize: 46,
-        fontFamily: 'arial',
+        fontFamily: 'impact',
         lineHeight: 4
       }
     });
