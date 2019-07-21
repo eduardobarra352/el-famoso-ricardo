@@ -1,5 +1,6 @@
 const meme = require('nodejs-meme-generator');
 const isUrl = require('is-url');
+const gm = require('gm');
 
 exports.run = async (bot, message, args, AttachImagen) => {
   if (!args[0] && !message.attachments.size) return message.reply("```>meme [url] [tExTo] \n>meme [TeXtO] <imagen>```");
@@ -64,30 +65,34 @@ exports.run = async (bot, message, args, AttachImagen) => {
       bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
     if (isUrl(urlimagen) == false) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-    message.channel.startTyping();
-    let imagen = message.attachments.first().url;
-    let anchura = message.attachments.first().width * 10;
-    let altura = message.attachments.first().height * 10;
-    if (anchura > 1000) anchura = 1000;
-    if (altura > 1000) altura = 1000;
-    let opt = new meme({
-      canvasOptions: {
-        canvasWidth: anchura,
-        canvasHeight: altura
-      },
-      fontOptions: {
-        fontSize: 40,
-        fontFamily: 'arial',
-        lineHeight: 4
-      }
-    });
-    opt.generateMeme({
-      topText: toptext,
-      bottomText: bottomtext,
-      url: imagen
-     })
-     .then(function(data) {
-      message.channel.send({file:(data)});
+    let anchura;
+    let altura;
+    gm(urlimagen).size(function (err, size) { 
+        if (err) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
+        message.channel.startTyping();
+        anchura = size.width * 10;
+        altura = size.height * 10;
+        if (anchura > 1000) anchura = 1000;
+        if (altura > 1000) altura = 1000;
+        let opt = new meme({
+          canvasOptions: {
+            canvasWidth: anchura,
+            canvasHeight: altura
+          },
+          fontOptions: {
+            fontSize: 40,
+            fontFamily: 'arial',
+            lineHeight: 4
+          }
+        });
+        opt.generateMeme({
+          topText: toptext,
+          bottomText: bottomtext,
+          url: urlimagen
+         })
+         .then(function(data) {
+          message.channel.send({file:(data)});
+        });
     });
     message.channel.stopTyping();
   }
