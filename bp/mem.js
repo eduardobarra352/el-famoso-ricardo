@@ -7,8 +7,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let barra = ' | ';
     let toptext = args.join(' ').slice(0, barra);
     let bottomtext = args.slice(barra);
-    let mitad = Math.ceil(toptext.length / 2);
-    if (bottomtext == undefined) bottomtext = args.slice((mitad+1));
+    if (bottomtext == undefined) bottomtext = args.slice(Math.ceil(toptext.length / 2));
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
     let anchura = message.attachments.first().width;
