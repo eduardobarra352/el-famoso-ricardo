@@ -1,4 +1,6 @@
 const meme = require('nodejs-meme-generator');
+const http = require('http');
+const fs = require('fs');
 
 exports.run = async (bot, message, args, AttachImagen) => {
   let memeGenerator = new meme({
@@ -8,8 +10,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
     },
     fontOptions: {
       fontSize: 46,
-      fontFamily: 'impact',
-      lineHeight: 2
+      fontFamily: 'arial',
+      lineHeight: 3
     }
   });
   memeGenerator.generateMeme({
@@ -18,7 +20,13 @@ exports.run = async (bot, message, args, AttachImagen) => {
     url: 'https://i.imgur.com/7FHoSIG.png'
    })
    .then(function(data) {
-    console.log(data);
-    message.channel.send({file: (data) });
+    fs.readFile('file.jpg', function(err, data) {
+      if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
+      http.createServer(function(req, res) {
+        res.writeHead(200, {'Content-Type': 'image/png'});
+        res.end(data);
+        message.channel.send({file: (data) });
+      })
+    });
    });
 }
