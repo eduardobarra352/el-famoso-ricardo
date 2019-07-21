@@ -13,6 +13,8 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let imagen = message.attachments.first().url;
     let anchura = message.attachments.first().width;
     let altura = message.attachments.first().height;
+    console.log(toptext);
+    console.log(bottomtext);
     let opt = new meme({
       canvasOptions: {
         canvasWidth: anchura,
