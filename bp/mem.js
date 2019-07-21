@@ -64,24 +64,15 @@ exports.run = async (bot, message, args, AttachImagen) => {
       toptext = args.slice(1, Math.max(args.length / 2)).join(' ');
       bottomtext = args.slice(Math.max(args.length / 2)).join(' ');
     }
-    console.log(urlimagen);
-    console.log(toptext);
-    console.log(bottomtext);
     let anchura;
     let altura;
     request(urlimagen, function (err, res, body) {
-      console.log(body);
-      console.log(err);
       if (err) return message.reply(":x: imagen posiblemente malito, sigale,,.-..");
-      /*message.channel.startTyping();
-      anchura = size.width * 10;
-      altura = size.height * 10;
-      if (anchura > 1000) anchura = 1000;
-      if (altura > 1000) altura = 1000;
+      message.channel.startTyping();
       let opt = new meme({
         canvasOptions: {
-          canvasWidth: anchura,
-          canvasHeight: altura
+          canvasWidth: 500,
+          canvasHeight: 500
         },
         fontOptions: {
           fontSize: 40,
@@ -96,7 +87,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
        })
        .then(function(data) {
         message.channel.send({file:(data)});
-      });*/
+      });
     });
     message.channel.stopTyping();
   }
