@@ -245,6 +245,16 @@ bot.on("message", message => {
         console.log(`${prefix}sans usado por: ${message.author.tag} en el server ${message.guild.name}`);
         Log(bot, message, args);
     }
+    if (cmd === `${prefix}meme`) {
+	try {
+          let commandFile = require(`./bp/mem.js`);
+          commandFile.run(bot, message, args, AttachImagen);
+      	} catch(e) {
+          console.log(e.stack);
+      	}
+      	console.log(`${prefix}meme usado por: ${message.author.tag} en el server ${message.guild.name} con su uso "${args}"`);
+	Log(bot, message, args);
+    }
     if (cmd === `${prefix}jpg`) {
 		if (attach.imagen[attach.imagen.length-1].guild == message.channel.id && !args[0]) { 
 			setTimeout(()=>{
