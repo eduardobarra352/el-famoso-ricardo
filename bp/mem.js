@@ -8,13 +8,12 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let toptext = args.join(' ').slice(0, barra);
     let bottomtext = args.slice(barra);
     let mitad = Math.ceil(toptext.length / 2);
-    if (bottomtext == undefined) bottomtext = args.slice(mitad);
+    if (bottomtext == undefined) bottomtext = args.slice((mitad+1));
     message.channel.startTyping();
     let imagen = message.attachments.first().url;
     let anchura = message.attachments.first().width;
     let altura = message.attachments.first().height;
     console.log(toptext);
-    console.log(mitad);
     let opt = new meme({
       canvasOptions: {
         canvasWidth: anchura,
