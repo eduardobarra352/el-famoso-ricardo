@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
       if (err) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); console.log(err); }
       http.createServer(function(req, res) {
         res.writeHead(200, {'Content-Type': 'image/png'});
-        res.end(data);
+        res.end(mem);
         message.channel.send({file: (mem) });
       })
     });
