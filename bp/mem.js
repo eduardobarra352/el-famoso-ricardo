@@ -5,9 +5,9 @@ exports.run = async (bot, message, args, AttachImagen) => {
   if (message.attachments.size > 0) {
     if (!args[0]) return message.reply(":x: nohay ninguntexto aparteXD sigale,,,,");
     let barra = ' | ';
-    let toptext = args.join(' ').slice(0, (args.indexOf(barra)-1));
-    let bottomtext = args.join(' ').slice(args.indexOf(barra));
-    if (bottomtext == undefined) toptext = args.join(' ').slice(0, Math.ceil(args.length / 2)); bottomtext = args.join(' ').slice(Math.ceil(args.length / 2));
+    let toptext = args.slice(0, args.indexOf(barra)).join(' ');
+    let bottomtext = args.slice(args.indexOf(barra)).join(' ');
+    if (bottomtext == undefined && Math.ceil(args.length / 2) > 0) toptext = args.slice(0, Math.ceil(args.length / 2)).join(' '); bottomtext = args.slice(Math.ceil(args.length / 2)).join(' ');
     console.log(toptext);
     console.log(bottomtext);
     message.channel.startTyping();
@@ -32,6 +32,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
      })
      .then(function(data) {
       message.channel.send({file:(data)});
-     });
+    });
+    message.channel.stopTyping();
   }
 }
