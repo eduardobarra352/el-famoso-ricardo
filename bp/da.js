@@ -1,6 +1,7 @@
 const request = require('request');
 const Discord = require('discord.js');
 const fs = require('fs');
+const deviantnode = require('deviantnode');
 
 exports.run = async (bot, message, args, AttachImagen) => {
   if (!args[0] || !['popular', 'undiscovered', 'newest', 'gallery'].includes(args[0])) return message.reply("lista de comandos relacionados a\nDeviantart\nDeviantart: ```\n\n>deviantart popular [opcional: algo q buscar] \n>deviantart undiscovered \n>deviantart newest \n>deviantart gallery [nombre de usuario]```");
@@ -16,63 +17,54 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let filtro;
     let collector;
     var timer;
-    request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
-      body = JSON.parse(body);
-      let url;
-      message.channel.startTyping();
-      function resultados() {
-        if (!query) { url = 'https://www.deviantart.com/api/v1/oauth2/browse/popular?timerange=24hr&offset='+minim+'&limit='+nivel+'&access_token='+body.access_token; }
-        else { url = 'https://www.deviantart.com/api/v1/oauth2/browse/popular?q='+query+'&timerange=24hr&offset='+minim+'&limit='+nivel+'&access_token='+body.access_token; }
-        request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
-          if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
-          res = JSON.stringify(body, null, '  ');
-          res = JSON.parse(res);
-          let imagenart = '';
-          let tituloart = ''; 
-          let authorname = '';
-          let authorpic = '';
-          let arturl;
-          function EmbedArt (i) {
-              try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
-              try { arturl = res.results[i].url; } catch(e) { console.log(e); }
-              try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
-              try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
-              embed = new Discord.RichEmbed()
-              .setColor("#40f230")
-              .setTitle(tituloart)
-              .setURL(arturl)
-              .setAuthor(message.author.username, message.author.avatarURL)
-              .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
-              .setImage(imagenart)
-              .addField("Resultados:", (minim+1) + "-100")
-              .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-              if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-              try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
-          }
-          EmbedArt(0);
-          filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
-          collector = message.channel.createMessageCollector(filtro, { time: 30000 });
-          collector.res = res;
-          collector.on('collect', m => {
-              clearTimeout(timer);
-              if (m > 0 || m < 101) {
-                minim = m-1;
-                veces = veces+1;
-                resultados();
-                setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
-                timer = setTimeout(()=>{
-                  collector.on('end', v => {
-                setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
-                  });
-                },30000);
-              }
-          });
+    function resultados() {
+      deviantnode.getPopularDeviations(process.env.daclid, process.env.daclisecret, query)
+      .then(response => {
+        res = response;
+        let imagenart = '';
+        let tituloart = ''; 
+        let authorname = '';
+        let authorpic = '';
+        let arturl;
+        function EmbedArt (i) {
+          try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
+          try { arturl = res.results[i].url; } catch(e) { console.log(e); }
+          try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
+          try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
+          embed = new Discord.RichEmbed()
+          .setColor("#40f230")
+          .setTitle(tituloart)
+          .setURL(arturl)
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
+          .setImage(imagenart)
+          .addField("Resultados:", (minim+1) + "-100")
+          .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
+          if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+          try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
         }
+        EmbedArt(0);
+        filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
+        collector = message.channel.createMessageCollector(filtro, { time: 30000 });
+        collector.res = res;
+        collector.on('collect', m => {
+          clearTimeout(timer);
+          if (m > 0 || m < 101) {
+              minim = m-1;
+              veces = veces+1;
+              resultados();
+              setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+              timer = setTimeout(()=>{
+                collector.on('end', v => {
+                  setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+                });
+              },30000);
+          }
         });
-      }
-      resultados();
-      message.channel.stopTyping();
-    });
+      });
+    }
+    resultados();
+    message.channel.stopTyping();
   }
   if (args[0].includes("undiscovered")) {
     let responsable = message.author.id;
