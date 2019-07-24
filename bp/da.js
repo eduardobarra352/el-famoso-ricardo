@@ -18,7 +18,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let collector;
     var timer;
     function resultados() {
-      deviantnode.getPopularDeviations(process.env.daclid, process.env.daclisecret, query)
+      deviantnode.getPopularDeviations(process.env.daclid, process.env.daclisecret, { q: query, offset: minim, limit: nivel })
       .then(response => {
         res = response;
         let imagenart = '';
@@ -38,7 +38,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
           .setAuthor(message.author.username, message.author.avatarURL)
           .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
           .setImage(imagenart)
-          .addField("Resultados:", (minim+1) + "-10")
+          .addField("Resultados:", (minim+1) + "-100")
           .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
           if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
           try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
@@ -78,7 +78,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let collector;
     var timer;
     function resultados() {
-      deviantnode.getUndiscoveredDeviations(process.env.daclid, process.env.daclisecret)
+      deviantnode.getUndiscoveredDeviations(process.env.daclid, process.env.daclisecret, { offset: minim, limit: nivel })
       .then(response => {
         res = response;
         let imagenart = '';
@@ -137,7 +137,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let collector;
     var timer;
     function resultados() {
-      deviantnode.getNewestDeviations(process.env.daclid, process.env.daclisecret, query)
+      deviantnode.getNewestDeviations(process.env.daclid, process.env.daclisecret, { q: query, offset: minim, limit: nivel })
       .then(response => {
         res = response;
         let imagenart = '';
@@ -199,72 +199,60 @@ exports.run = async (bot, message, args, AttachImagen) => {
     let filtro;
     let collector;
     var timer;
-    request('http://barrarchiverio.7m.pl/a/access?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret, function (err, response, body) {
-      body = JSON.parse(body);
-      let url;
-      let urlStats = 'https://www.deviantart.com/api/v1/oauth2/user/profile/'+usuario+'?access_token='+body.access_token;
-      request({ url: urlStats, json: true }, function (e, r, b) { if (!e && response.statusCode === 200) {
-        if (e) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
-        r = JSON.stringify(b, null, '  ');
-        r = JSON.parse(r);
-        if (r.status == 'error') return message.channel.send(":x: usuario muerto/inexistente, siga intentando,,,");
-        limite = r.stats.user_deviations;
-        message.channel.startTyping();
-        function resultados() {
-          url = 'https://www.deviantart.com/api/v1/oauth2/gallery/all?username='+usuario+'&offset='+minim+'&limit='+nivel+'&access_token='+body.access_token;
-          request({ url: url, json: true }, function (err, response, body) { if (!err && response.statusCode === 200) {
-            if (err) { message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando"); message.channel.stopTyping(); return; }
-            res = JSON.stringify(body, null, '  ');
-            res = JSON.parse(res);
-            if (res.has_more == false && res.next_offset == null && veces == 0) { message.channel.send(":warning: arte delusuario vacio, siga buscando,,,"); message.channel.stopTyping(); return; }
-            let imagenart = '';
-            let tituloart = ''; 
-            let authorname = '';
-            let authorpic = '';
-            let arturl = '';
-            if (limite > 70) limite = 70;
-            function EmbedArt (i) {
-                try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
-                try { arturl = res.results[i].url; } catch(e) { console.log(e); }
-                try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
-                try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
-                embed = new Discord.RichEmbed()
-                .setColor("#40f230")
-                .setTitle(tituloart)
-                .setURL(arturl)
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
-                .setImage(imagenart)
-                .addField("Resultados:", (minim+1) + "-" + limite)
-                .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
-                if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
-                try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
-                if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
-            }
-            EmbedArt(0);
-            filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
-            collector = message.channel.createMessageCollector(filtro, { time: 30000 });
-            collector.res = res;
-            collector.on('collect', m => {
-                clearTimeout(timer);
-                if (m > 0 || m < (limite+1)) {
-                  minim = m-1;
-                  veces = veces+1;
-                  resultados();
-                  setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
-                  timer = setTimeout(()=>{
-                    collector.on('end', v => {
-                  setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
-                    });
-                  },30000);
-                }
-            });
+    deviantnode.getUserInfo(process.env.daclid, process.env.daclisecret, { username: usuario })
+    .then(r => {
+      limite = r.stats.user_deviations;
+      message.channel.startTyping();
+      function resultados() {
+        deviantnode.getGalleryAllDeviations(process.env.daclid, process.env.daclisecret, { username: usuario, offset: minim, limit: nivel })
+        .then(response => {
+          res = response;
+          if (res.has_more == false && res.next_offset == null && veces == 0) { message.channel.send(":warning: arte delusuario vacio, siga buscando,,,"); message.channel.stopTyping(); return; }
+          let imagenart = '';
+          let tituloart = ''; 
+          let authorname = '';
+          let authorpic = '';
+          let arturl = '';
+          if (limite > 70) limite = 70;
+          function EmbedArt (i) {
+            try { imagenart = res.results[i].content.src; } catch(e) { console.log(e); }
+            try { arturl = res.results[i].url; } catch(e) { console.log(e); }
+            try { tituloart = res.results[i].title; } catch(e) { console.log(e); }
+            try { authorname = res.results[i].author.username; authorpic = res.results[i].author.usericon; } catch(e) { console.log(e); }
+            embed = new Discord.RichEmbed()
+            .setColor("#40f230")
+            .setTitle(tituloart)
+            .setURL(arturl)
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setThumbnail('https://raw.githubusercontent.com/eduardobarra352/el-famoso-ricardo/master/img/deviantart.png')
+            .setImage(imagenart)
+            .addField("Resultados:", (minim+1) + "-" + limite)
+            .setFooter(authorname+" | escribe un numero para ver los otros resultados o.o", authorpic);
+            if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
+            try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
+            if (res.has_more == false && res.next_offset == null && veces > 0) { embed.setColor("#ff2e2e").setTitle('Uh-oh, posts del usuario').setDescription('si deseas pasarte por su deviantart es: https://www.deviantart.com/'+usuario); msgid.edit(embed); message.channel.stopTyping(); }
           }
+          EmbedArt(minim);
+          filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
+          collector = message.channel.createMessageCollector(filtro, { time: 30000 });
+          collector.res = res;
+          collector.on('collect', m => {
+            clearTimeout(timer);
+            if (m > 0 || m < (limite+1)) {
+              minim = m-1;
+              veces = veces+1;
+              resultados();
+              setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+              timer = setTimeout(()=>{
+                collector.on('end', v => {
+                  setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
+                });
+              },30000);
+            }
           });
-        }
-        resultados();
-        message.channel.stopTyping();
-      }});
+        });
+      }
+      resultados();
+      message.channel.stopTyping();
     });
-  }
 }
