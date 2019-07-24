@@ -255,4 +255,5 @@ exports.run = async (bot, message, args, AttachImagen) => {
       resultados();
       message.channel.stopTyping();
     });
+  }
 }
