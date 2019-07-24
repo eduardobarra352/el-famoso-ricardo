@@ -43,7 +43,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
           if (veces == 0) { message.channel.send(embed).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); } },31000)); }
           try { request(res.results[i].content.src).pipe(fs.createWriteStream('da.png')); setTimeout(()=>{ AttachImagen('da.png', message.channel.id) },2000); } catch(e) { console.log(e); }
         }
-        EmbedArt(0);
+        EmbedArt(minim);
         filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < 100+1 && m.content > 0;
         collector = message.channel.createMessageCollector(filtro, { time: 30000 });
         collector.res = res;
