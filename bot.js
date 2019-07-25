@@ -24,16 +24,6 @@ bot.on("ready", () => {
     bot.user.setStatus(`dnd`);
     bot.user.setPresence({ game: { name: `>help`, type: 1 } });
     bot.guilds.get(guildID).channels.get("482387992837881858").send(":white_check_mark: ya estoi en linea jajaj").then(msg => msg.delete(20000));
-    setInterval(function(){
-	request('https://www.deviantart.com/oauth2/token?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&grant_type=client_credentials', function (error, response, body) {
-  		let accesotokeado = JSON.parse(body);
-		accesotokeado = accesotokeado.access_token;
-		console.log(accesotokeado);
-		request('http://barrarchiverio.7m.pl/a/auth?client_id='+process.env.daclid+'&client_secret='+process.env.daclisecret+'&access_token='+accesotokeado, function (err, res, bdy) {
-			console.log(bdy);
-		});
-	});
-    }, 1000000);
 });
 
 bot.on("message", message => {
@@ -164,8 +154,8 @@ bot.on("message", message => {
           let resp = '';
           for(var i in videos) {
             var titulo = videos[i].title;
-	    var limitetitulo = 30;
-	    if (titulo.length > 29) titulo = titulo.substring(0, limitetitulo) + '...';
+	    var limitetitulo = 40;
+	    if (titulo.length > (limitetitulo-1)) titulo = titulo.substring(0, limitetitulo) + '...';
             resp += `**${parseInt(i)+1}**- **${titulo}** \`\`${videos[i].timestamp}\`\`\n`;
           }
           resp += `\neliga el número del video q qieres mm: **1-${videos.length}**`;
@@ -194,7 +184,8 @@ bot.on("message", message => {
         let msgid;
 	let filtro;
 	let collector;
-	var timer;
+	var edit_timer;
+	var part_timer;
         message.channel.startTyping();
         function resultados(err, res) {
             if (err) return message.channel.send(":x: Uy, un erroralgo feo, mmmm siga intentando");
@@ -217,14 +208,15 @@ bot.on("message", message => {
                 collector = message.channel.createMessageCollector(filtro, { time: 15000 });
                 collector.res = res;
                 collector.on('collect', m => {
-		    clearTimeout(timer);
+		    clearTimeout(edit_timer);
+		    clearTimeout(part_timer);
 	            if (nivel > 0 || nivel < (limite+1)) {
 			    nivel = m;
 			    minim = m-1;
 			    veces = veces+1;
 			    gis(buscar, resultados);
-			    setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
-			    timer = setTimeout(()=>{
+			    edit_timer = setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
+			    part_timer = setTimeout(()=>{
 				    collector.on('end', m => {
 		    			setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
 				    });
