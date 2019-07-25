@@ -120,7 +120,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
             edit_timer = setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
             part_timer = setTimeout(()=>{
               collector.on('end', v => {
-                setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+                setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
               });
             },30000);
           }
@@ -185,7 +185,7 @@ exports.run = async (bot, message, args, AttachImagen) => {
               edit_timer = setTimeout(()=>{ msgid.edit(embed); m.delete(); },1000);
               part_timer = setTimeout(()=>{
                 collector.on('end', v => {
-                  setTimeout(()=>{ embed.setFooter('se termino los resultados,,'); msgid.edit(embed); },2000);
+                  setTimeout(()=>{ embed.setFooter(authorname+' | se termino los resultados,,', authorpic); msgid.edit(embed); },2000);
                 });
               },30000);
           }
