@@ -50,7 +50,8 @@ exports.run = async (bot, message, args) => {
     let filtro;
     let collector;
     let msgid;
-    var timer;
+    var edit_timer;
+    var part_timer;
     let resp = '';
     let fin = '';
     message.channel.startTyping();
@@ -64,21 +65,21 @@ exports.run = async (bot, message, args) => {
       }
       fin = resp + `\neliga un numero para ver losdemas j: **${indx}-${limite}**`;
       if (veces == 0) { message.channel.send(fin).then(msg => msgid = msg).then(setTimeout(()=>{ if (veces == 0) { fin = resp + `\nya terminolos resultados,,,,`; msgid.edit(fin); } },31000)); }
-      else { setTimeout(()=>{ msgid.edit(fin); },2000); }
       message.channel.stopTyping();
       filtro = m => !isNaN(m.content) && m.author.id == responsable && m.content < limite+1 && m.content > 0;
       collector = message.channel.createMessageCollector(filtro, { time: 30000 });
       collector.lan = lan;
       collector.on('collect', m => {
-        clearTimeout(timer);
+        clearTimeout(edit_timer);
+	clearTimeout(part_timer);
         if (indx > 0 || indx < (limite+1)) {
 	  indx = m;
 	  if (m == 1) { minim = 0; nivel = 22; } if (m == 2) { minim = 22; nivel = 44; } if (m == 3) { minim = 44; nivel = 66; } if (m == 4) { minim = 66; nivel = 88; }
           if (m == 5) { minim = 88; nivel = 110; } if (m == 6) { minim = 110; nivel = 132; } if (m == 7) { minim = 132; nivel = 154; } if (m == 8) { minim = 154; nivel = 176; } if (m == 9) { minim = 176; nivel = 184; }
 	  veces = veces+1;
 	  Idiomas();
-	  setTimeout(()=>{ msgid.edit(fin); m.delete(); },2000);
-	  timer = setTimeout(()=>{
+	  edit_timer = setTimeout(()=>{ msgid.edit(fin); m.delete(); },2000);
+	  part_timer = setTimeout(()=>{
             collector.on('end', m => {
 		setTimeout(()=>{ fin = resp + `\nya terminolos resultados,,,,`; msgid.edit(fin); },2000);
 	    });
